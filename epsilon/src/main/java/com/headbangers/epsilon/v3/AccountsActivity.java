@@ -17,7 +17,11 @@ import com.headbangers.epsilon.v3.service.impl.EpsilonAccessServiceImpl;
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ItemClick;
+import org.androidannotations.annotations.OnActivityResult;
+import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
@@ -52,13 +56,12 @@ public class AccountsActivity extends AppCompatActivity implements Refreshable<L
 
         if (authToken == null || "".equals(authToken)) {
             // goto AuthActivity
-            AuthActivity_.intent(this).start();
+            startAuth();
         } else {
             // charge des comptes
-            new AccountsListAsyncLoader(this.accessService, this).execute(authToken);
+            loadAccounts();
         }
     }
-
 
     @Override
     public void refresh(List<Account> result) {
@@ -69,5 +72,33 @@ public class AccountsActivity extends AppCompatActivity implements Refreshable<L
             Toast.makeText(this, "Erreur lors du chargement.", Toast.LENGTH_LONG)
                     .show();
         }
+    }
+
+    @Click(R.id.refresh)
+    void refreshButton (){
+        loadAccounts();
+    }
+
+    @OptionsItem(R.id.menuAuth)
+    void menuAuth (){
+        startAuth();
+    }
+
+    @OnActivityResult(AuthActivity.AUTH_RESULT)
+    void afterAuth (){
+        loadAccounts();
+    }
+
+    @ItemClick(R.id.list)
+    void listClick (Account account){
+        Toast.makeText(this, "Coucou "+account, Toast.LENGTH_LONG).show();
+    }
+
+    private void loadAccounts(){
+        new AccountsListAsyncLoader(this.accessService, this).execute(epsilonPrefs.token().get());
+    }
+
+    private void startAuth(){
+        AuthActivity_.intent(this).startForResult(AuthActivity.AUTH_RESULT);
     }
 }

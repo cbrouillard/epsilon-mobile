@@ -14,7 +14,7 @@ public abstract class GenericAsyncLoader<P, R> extends AsyncTask<P, Void, R> {
     private ProgressDialog dialog;
     protected String dialogText = null;
 
-    private boolean showDialog = false;
+    private boolean showDialog = true;
 
     public GenericAsyncLoader(EpsilonAccessService dataService, Activity context) {
         this.data = dataService;

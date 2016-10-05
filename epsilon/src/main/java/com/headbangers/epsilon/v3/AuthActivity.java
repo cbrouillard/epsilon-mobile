@@ -23,6 +23,8 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 @OptionsMenu(R.menu.menu_auth)
 public class AuthActivity extends AppCompatActivity implements Refreshable<SimpleResult> {
 
+    public static final int AUTH_RESULT = 400;
+
     @Pref
     EpsilonPrefs_ epsilonPrefs;
 
@@ -99,6 +101,7 @@ public class AuthActivity extends AppCompatActivity implements Refreshable<Simpl
             this.epsilonPrefs.edit().server().put(cleanAndCompleteServerUrl())
                     .token().put(result.getCode()).apply();
 
+            setResult(AUTH_RESULT);
             finish();
         } else {
             Toast.makeText(this, "Erreur login.", Toast.LENGTH_LONG).show();
