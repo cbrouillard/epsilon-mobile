@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="fill"
                     android:padding="5dip"
-                    android:text="@string/auth.hint"
+                    android:text="@string/auth_hint"
                     android:background="@drawable/info_label"
                     android:textColor="#fff"
                     />
@@ -51,7 +51,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:focusable="true"
-                android:hint="@string/server.hint"
+                android:hint="@string/server_hint"
                 android:inputType="text"
                 android:singleLine="true"
                  />
@@ -61,7 +61,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:focusable="true"
-                android:hint="@string/login.hint"
+                android:hint="@string/login_hint"
                 android:inputType="text"
                 android:singleLine="true"
                  />
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:hint="@string/passwd.hint"
+                android:hint="@string/passwd_hint"
                 android:inputType="textPassword"
                 android:singleLine="true"
                  />

@@ -4,10 +4,12 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal" android:padding="10dip">
 
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_horizontal|center_vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -43,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1900,00€" android:textColor="#ffffff"
-                android:textSize="20dip" android:padding="10dip"
+                android:textSize="20dp" android:padding="10dp"
                 android:gravity="right" android:background="@drawable/primary_label"/>
 
         </LinearLayout>

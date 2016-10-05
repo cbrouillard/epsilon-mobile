@@ -13,14 +13,14 @@ import com.headbangers.epsilon.v3.model.Account;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class AccountsListAdapter extends ArrayAdapter<Account> {
+public class AccountsAdapter extends ArrayAdapter<Account> {
 
     private Activity context;
     private List<Account> accounts;
 
     private static DecimalFormat df = new DecimalFormat("0.00");
 
-    public AccountsListAdapter(Activity context, List<Account> accounts) {
+    public AccountsAdapter(Activity context, List<Account> accounts) {
         super(context, R.layout.one_account, accounts);
         this.context = context;
         this.accounts = accounts;
