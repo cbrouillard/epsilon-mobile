@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Epsilon</string>
+    <string name="account.list">Comptes</string>
+    <string name="authenticate">Authentification</string>
+    <string name="server.hint">Serveur</string>
+    <string name="login.hint">Login</string>
+    <string name="passwd.hint">Mot de passe</string>
+    <string name="auth.hint">Identifiez vous sur Epsilon. Attention ! l\'authentification ne peut fonctionner uniquement que si vous avez activé la fonctionnalité MOBILE sur l\'application hébergée.</string>
+    <string name="action.ok">Ok</string>
+</resources>

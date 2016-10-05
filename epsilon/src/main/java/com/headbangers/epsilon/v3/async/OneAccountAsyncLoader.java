@@ -1,0 +1,29 @@
+package com.headbangers.epsilon.v3.async;
+
+import android.app.Activity;
+
+import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
+import com.headbangers.epsilon.v3.model.Account;
+import com.headbangers.epsilon.v3.service.EpsilonAccessService;
+
+
+public class OneAccountAsyncLoader extends GenericAsyncLoader<String, Account> {
+
+    public OneAccountAsyncLoader(EpsilonAccessService dataService,
+            Activity context) {
+        super(dataService, context);
+    }
+
+    @Override
+    protected Account doInBackground(String... params) {
+        return data.getAccount(params[0],params[1]);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    protected void onPostExecute(Account result) {
+        ((Refreshable<Account>) fromContext).refresh(result);
+        super.onPostExecute(result);
+    }
+
+}
