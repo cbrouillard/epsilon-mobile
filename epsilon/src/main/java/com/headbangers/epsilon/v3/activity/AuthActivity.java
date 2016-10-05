@@ -1,10 +1,11 @@
-package com.headbangers.epsilon.v3;
+package com.headbangers.epsilon.v3.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.async.RegisterAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.SimpleResult;
@@ -14,6 +15,7 @@ import com.headbangers.epsilon.v3.service.impl.EpsilonAccessServiceImpl;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.EditorAction;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
@@ -57,6 +59,11 @@ public class AuthActivity extends AppCompatActivity implements Refreshable<Simpl
                     this.login.getText().toString(),
                     this.password.getText().toString());
         }
+    }
+
+    @EditorAction(R.id.password)
+    void enterOnPassText(){
+        ok();
     }
 
     private String cleanAndCompleteServerUrl(){

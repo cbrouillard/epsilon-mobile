@@ -1,12 +1,11 @@
-package com.headbangers.epsilon.v3;
+package com.headbangers.epsilon.v3.activity;
 
-import android.app.ListActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.adapter.AccountsListAdapter;
 import com.headbangers.epsilon.v3.async.AccountsListAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
@@ -26,7 +25,6 @@ import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @EActivity(R.layout.accounts)
@@ -91,7 +89,7 @@ public class AccountsActivity extends AppCompatActivity implements Refreshable<L
 
     @ItemClick(R.id.list)
     void listClick (Account account){
-        Toast.makeText(this, "Coucou "+account, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Account "+account.getId(), Toast.LENGTH_LONG).show();
     }
 
     private void loadAccounts(){

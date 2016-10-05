@@ -40,7 +40,10 @@
                     android:layout_height="wrap_content"
                     android:gravity="fill"
                     android:padding="5dip"
-                    android:text="@string/auth.hint" />
+                    android:text="@string/auth.hint"
+                    android:background="@drawable/info_label"
+                    android:textColor="#fff"
+                    />
             </LinearLayout>
 
             <EditText

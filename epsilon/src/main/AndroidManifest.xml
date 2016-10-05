@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme.NoActionBar">
 
         <activity
-            android:name="com.headbangers.epsilon.v3.AccountsActivity_"
+            android:name="com.headbangers.epsilon.v3.activity.AccountsActivity_"
             android:label="@string/account.list">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
         </activity>
 
         <activity
-            android:name="com.headbangers.epsilon.v3.AuthActivity_"
+            android:name="com.headbangers.epsilon.v3.activity.AuthActivity_"
             android:label="@string/authenticate"></activity>
 
     </application>
