@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="accounts">/accounts</string>
+    <string name="one_account">/account</string>
+    <string name="register">/register</string>
+    <string name="bymonth">/operationsByMonth</string>
+    <string name="bycategory">/operationsByCategory</string>
+    <string name="bytiers">/operationsByTiers</string>
+    <string name="categories_name">/categoriesName</string>
+    <string name="tiers_name">/tiersName</string>
+    <string name="add_revenue">/addRevenue</string>
+    <string name="add_depense">/addDepense</string>
+    <string name="add_virement">/addVirement</string>
+    <string name="scheduleds">/scheduled</string>
+    <string name="budgets">/budgets</string>
+    <string name="one_budget">/budget</string>
+</resources>

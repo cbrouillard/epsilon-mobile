@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <item android:enabled="true" android:title="Authentification"
+    android:id="@+id/menuAuth" android:icon="@drawable/auth"></item>
+
+  <item android:enabled="true" android:title="Voir les échéances"
+    android:id="@+id/menuScheduled" android:icon="@drawable/next"></item>
+
+  <item android:enabled="true" android:title="Voir les budgets"
+    android:id="@+id/menuBudgets" android:icon="@drawable/registre"></item>
+
+</menu>

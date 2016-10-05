@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="epsilon.headbangers.com.myapplication.MainActivity">
+    <item
+        android:id="@+id/action_auth_ok"
+        android:orderInCategory="100"
+        android:title="@string/action.ok"
+        app:showAsAction="always" />
+</menu>
