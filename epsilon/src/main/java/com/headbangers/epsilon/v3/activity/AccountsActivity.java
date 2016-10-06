@@ -2,6 +2,7 @@ package com.headbangers.epsilon.v3.activity;
 
 import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.headbangers.epsilon.v3.R;
@@ -11,6 +12,7 @@ import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.Account;
 import com.headbangers.epsilon.v3.service.impl.EpsilonAccessServiceImpl;
 
+import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
@@ -30,17 +32,29 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
     @ViewById(R.id.toolbar)
     Toolbar toolbar;
 
+    @ViewById(R.id.progressBar)
+    ProgressBar progressBar;
+
     @ViewById(R.id.list)
     ListView list;
-
-    @Bean
-    EpsilonAccessServiceImpl accessService;
 
     @AfterViews
     void bindToolbar() {
         toolbar.setTitle(R.string.account_list);
         toolbar.setSubtitle(R.string.account_list_subtitle);
         setSupportActionBar(toolbar);
+
+        if (isLogged()) {
+            init();
+        }
+    }
+
+    @AfterInject
+    void initData() {
+        if (!isLogged()) {
+            // goto AuthActivity
+            startAuth();
+        }
     }
 
     @Override
@@ -55,27 +69,26 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
     }
 
     @Click(R.id.refresh)
-    void refreshButton (){
+    void refreshButton() {
         init();
     }
 
     @OptionsItem(R.id.menuAuth)
-    void menuAuth (){
+    void menuAuth() {
         startAuth();
     }
 
     @OnActivityResult(AuthActivity.AUTH_RESULT)
-    void afterAuth (){
+    void afterAuth() {
         init();
     }
 
     @ItemClick(R.id.list)
-    void listClick (Account account){
+    void listClick(Account account) {
         AccountDetailActivity_.intent(this).extra("account", account).start();
     }
 
-    @Override
     void init() {
-        new AccountsListAsyncLoader(this.accessService, this).execute(epsilonPrefs.token().get());
+        new AccountsListAsyncLoader(this.accessService, this, progressBar).execute(token());
     }
 }

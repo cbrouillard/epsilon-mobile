@@ -1,6 +1,7 @@
 package com.headbangers.epsilon.v3.async;
 
 import android.app.Activity;
+import android.widget.ProgressBar;
 
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.Account;
@@ -12,8 +13,8 @@ public class AccountsListAsyncLoader extends
         GenericAsyncLoader<String, List<Account>> {
 
     public AccountsListAsyncLoader(EpsilonAccessService dataService,
-            Activity context) {
-        super(dataService, context);
+                                   Activity context, ProgressBar progressBar) {
+        super(dataService, context, progressBar);
     }
 
     @Override
@@ -24,7 +25,9 @@ public class AccountsListAsyncLoader extends
     @Override
     @SuppressWarnings("unchecked")
     protected void onPostExecute(List<Account> result) {
-         ((Refreshable<List<Account>>) fromContext).refresh(result);
+        if (fromContext != null && fromContext instanceof Refreshable) {
+            ((Refreshable<List<Account>>) fromContext).refresh(result);
+        }
         super.onPostExecute(result);
     }
 

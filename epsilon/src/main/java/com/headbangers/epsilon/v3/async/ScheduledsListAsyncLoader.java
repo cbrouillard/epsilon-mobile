@@ -2,6 +2,7 @@ package com.headbangers.epsilon.v3.async;
 
 
 import android.app.Activity;
+import android.widget.ProgressBar;
 
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.Operation;
@@ -14,8 +15,8 @@ public class ScheduledsListAsyncLoader extends
         GenericAsyncLoader<String, List<Operation>> {
 
     public ScheduledsListAsyncLoader(EpsilonAccessService dataService,
-                                     Activity context) {
-        super(dataService, context);
+                                     Activity context, ProgressBar progressBar) {
+        super(dataService, context, progressBar);
     }
 
     @Override

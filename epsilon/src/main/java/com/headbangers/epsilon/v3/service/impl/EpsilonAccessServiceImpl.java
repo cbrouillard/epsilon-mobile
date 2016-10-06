@@ -11,7 +11,6 @@ import com.headbangers.epsilon.v3.model.SimpleResult;
 import com.headbangers.epsilon.v3.model.Tiers;
 import com.headbangers.epsilon.v3.preferences.EpsilonPrefs_;
 import com.headbangers.epsilon.v3.service.EpsilonAccessService;
-import com.headbangers.epsilon.v3.service.WebService;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.EBean;

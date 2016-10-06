@@ -1,6 +1,7 @@
 package com.headbangers.epsilon.v3.async;
 
 import android.app.Activity;
+import android.widget.ProgressBar;
 
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.AutoCompleteData;
@@ -15,8 +16,8 @@ public class AutoCompleteDataAsyncLoader extends
     }
     
     public AutoCompleteDataAsyncLoader(EpsilonAccessService dataService,
-            Activity context) {
-        super(dataService, context);
+            Activity context, ProgressBar progressBar) {
+        super(dataService, context, progressBar);
     }
 
     @Override

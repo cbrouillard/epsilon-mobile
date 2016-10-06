@@ -3,6 +3,7 @@ package com.headbangers.epsilon.v3.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.headbangers.epsilon.v3.R;
@@ -33,6 +34,9 @@ public class AuthActivity extends AppCompatActivity implements Refreshable<Simpl
     @ViewById(R.id.toolbar)
     Toolbar toolbar;
 
+    @ViewById(R.id.progressBar)
+    ProgressBar progressBar;
+
     @ViewById(R.id.server)
     EditText server;
 
@@ -54,7 +58,7 @@ public class AuthActivity extends AppCompatActivity implements Refreshable<Simpl
     void ok() {
 
         if (validateForm()) {
-            new RegisterAsyncLoader(this.accessService, this).execute(
+            new RegisterAsyncLoader(this.accessService, this, progressBar).execute(
                     cleanAndCompleteServerUrl (),
                     this.login.getText().toString(),
                     this.password.getText().toString());

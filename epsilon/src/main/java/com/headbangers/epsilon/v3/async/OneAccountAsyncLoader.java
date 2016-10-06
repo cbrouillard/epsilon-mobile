@@ -1,6 +1,7 @@
 package com.headbangers.epsilon.v3.async;
 
 import android.app.Activity;
+import android.widget.ProgressBar;
 
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.Account;
@@ -10,8 +11,8 @@ import com.headbangers.epsilon.v3.service.EpsilonAccessService;
 public class OneAccountAsyncLoader extends GenericAsyncLoader<String, Account> {
 
     public OneAccountAsyncLoader(EpsilonAccessService dataService,
-            Activity context) {
-        super(dataService, context);
+            Activity context, ProgressBar progressBar) {
+        super(dataService, context, progressBar);
     }
 
     @Override

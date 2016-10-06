@@ -19,6 +19,15 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <ProgressBar
+        style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progress="0"
+        android:indeterminate="true"
+        android:id="@+id/progressBar"
+        android:visibility="gone"/>
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -51,7 +60,7 @@
                 android:id="@+id/sold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/primary_label"
+                android:background="@drawable/amount_label"
                 android:gravity="right"
                 android:padding="10dp"
                 android:text="1900,00€"
@@ -65,12 +74,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" android:layout_weight="4">
 
         <ListView
-            android:id="@+id/list"
+            android:id="@+id/operations"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             />
 
         <android.support.design.widget.FloatingActionButton
@@ -78,10 +87,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/adddepense"
-            android:layout_alignEnd="@id/list"
-            android:layout_alignBottom="@id/list"
+            android:layout_alignEnd="@id/operations"
+            android:layout_alignBottom="@id/operations"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="64dp"/>
+            android:layout_marginBottom="80dp"/>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/refresh"
@@ -89,8 +98,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:src="@drawable/refresh"
-            android:layout_alignEnd="@id/list"
-            android:layout_alignBottom="@id/list"/>
+            android:layout_alignEnd="@id/operations"
+            android:layout_alignBottom="@id/operations"/>
     </RelativeLayout>
 
 </LinearLayout>

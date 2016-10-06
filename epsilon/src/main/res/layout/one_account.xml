@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:text="1900,00€" android:textColor="#ffffff"
                 android:textSize="20dp" android:padding="10dp"
-                android:gravity="right" android:background="@drawable/primary_label"/>
+                android:gravity="right" android:background="@drawable/amount_label"/>
 
         </LinearLayout>
 
