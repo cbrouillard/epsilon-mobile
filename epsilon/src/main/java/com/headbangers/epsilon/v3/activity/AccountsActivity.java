@@ -61,7 +61,7 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
             AccountsAdapter accountsAdapter = new AccountsAdapter(this, result);
             list.setAdapter(accountsAdapter);
         } else {
-            Toast.makeText(this, "Erreur lors du chargement.", Toast.LENGTH_LONG)
+            Toast.makeText(this, errorLoading, Toast.LENGTH_LONG)
                     .show();
         }
     }

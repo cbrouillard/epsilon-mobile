@@ -4,12 +4,16 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.adapter.OperationsAdapter;
+import com.headbangers.epsilon.v3.async.OneAccountAsyncLoader;
 import com.headbangers.epsilon.v3.async.OperationsListAsyncLoader;
-import com.headbangers.epsilon.v3.async.OperationsSelectMode;
+import com.headbangers.epsilon.v3.async.enums.OperationType;
+import com.headbangers.epsilon.v3.async.enums.OperationsSelectMode;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
+import com.headbangers.epsilon.v3.async.interfaces.Reloadable;
 import com.headbangers.epsilon.v3.model.Account;
 import com.headbangers.epsilon.v3.model.Operation;
 
@@ -28,7 +32,7 @@ import static com.headbangers.epsilon.v3.activity.AddOperationActivity.OPERATION
 
 @EActivity(R.layout.account_detail)
 @OptionsMenu(R.menu.menu_add_operations)
-public class AccountDetailActivity extends AbstractEpsilonActivity implements Refreshable<List<Operation>> {
+public class AccountDetailActivity extends AbstractEpsilonActivity implements Refreshable<List<Operation>>, Reloadable<Account> {
 
     @ViewById(R.id.toolbar)
     Toolbar toolbar;
@@ -48,7 +52,7 @@ public class AccountDetailActivity extends AbstractEpsilonActivity implements Re
     @AfterViews
     void showDetails() {
         toolbar.setTitle(account.getName());
-        toolbar.setSubtitle("Ouvert le: "+account.getFormatedDateOpened());
+        toolbar.setSubtitle(openedAt + account.getFormatedDateOpened());
         setSupportActionBar(toolbar);
 
         init();
@@ -67,9 +71,9 @@ public class AccountDetailActivity extends AbstractEpsilonActivity implements Re
 
     @OnActivityResult(OPERATION_ADD_DONE)
     void addDone() {
-        // todo recharger l'account.
-
-        init();
+        Toast.makeText(this, operationAdded, Toast.LENGTH_LONG).show();
+        // reload account
+        new OneAccountAsyncLoader(accessService, this, progressBar).execute(token(), account.getId());
     }
 
 
@@ -80,12 +84,12 @@ public class AccountDetailActivity extends AbstractEpsilonActivity implements Re
 
     @Click(R.id.addFacture)
     @OptionsItem(R.id.menuAddDepense)
-    void addDepense (){
+    void addDepense() {
         AddOperationActivity_.intent(this).extra("account", account).extra("operationType", OperationType.DEPENSE).start();
     }
 
     @OptionsItem(R.id.menuAddRevenue)
-    void addRevenue(){
+    void addRevenue() {
         AddOperationActivity_.intent(this).extra("account", account).extra("operationType", OperationType.REVENUE).start();
     }
 
@@ -94,6 +98,14 @@ public class AccountDetailActivity extends AbstractEpsilonActivity implements Re
         if (result != null && result.size() > 5) {
             OperationsAdapter allOperations = new OperationsAdapter(this, result);
             list.setAdapter(allOperations);
+        }
+    }
+
+    @Override
+    public void reload(Account obj) {
+        if (obj != null) {
+            this.account = obj;
+            init();
         }
     }
 }

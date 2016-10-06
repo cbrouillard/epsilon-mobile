@@ -20,6 +20,7 @@ import org.androidannotations.annotations.EditorAction;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.res.StringRes;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
 @EActivity(R.layout.authentication)
@@ -60,21 +61,21 @@ public class AuthActivity extends AppCompatActivity implements Refreshable<Simpl
 
         if (validateForm()) {
             new RegisterAsyncLoader(this.accessService, this, progressBar).execute(
-                    cleanAndCompleteServerUrl (),
+                    cleanAndCompleteServerUrl(),
                     this.login.getText().toString(),
                     this.password.getText().toString());
         }
     }
 
-    private String cleanAndCompleteServerUrl(){
+    private String cleanAndCompleteServerUrl() {
         String server = this.server.getText().toString();
 
-        if (!server.startsWith("http")){
+        if (!server.startsWith("http")) {
             server = "http://" + server;
         }
 
-        if (server.endsWith("/")){
-            server = server.substring(0, server.length()-1);
+        if (server.endsWith("/")) {
+            server = server.substring(0, server.length() - 1);
         }
 
         return server + "/mobile";
@@ -86,15 +87,15 @@ public class AuthActivity extends AppCompatActivity implements Refreshable<Simpl
         String password = this.password.getText().toString();
 
         if (server == null || server.isEmpty()) {
-            this.server.setError("Le serveur sur lequel se connecter est requis.");
+            this.server.setError(errorFormServer);
         }
 
         if (login == null || login.isEmpty()) {
-            this.login.setError("Le login est requis.");
+            this.login.setError(errorFormLogin);
         }
 
         if (password == null || password.isEmpty()) {
-            this.password.setError("Le mot de passe est requis.");
+            this.password.setError(errorFormPassword);
         }
 
         return server != null && !server.isEmpty()
@@ -104,14 +105,23 @@ public class AuthActivity extends AppCompatActivity implements Refreshable<Simpl
 
     @Override
     public void refresh(SimpleResult result) {
-        if (result != null && result.getCode() != null && !result.getCode().equals("null")){
+        if (result != null && result.getCode() != null && !result.getCode().equals("null")) {
             this.epsilonPrefs.edit().server().put(cleanAndCompleteServerUrl())
                     .token().put(result.getCode()).apply();
 
             setResult(AUTH_RESULT);
             finish();
         } else {
-            Toast.makeText(this, "Erreur login.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, errorFormLogin, Toast.LENGTH_LONG).show();
         }
     }
+
+    @StringRes(R.string.error_login)
+    String errorLogin;
+    @StringRes(R.string.error_form_server)
+    String errorFormServer;
+    @StringRes(R.string.error_form_login)
+    String errorFormLogin;
+    @StringRes(R.string.error_form_password)
+    String errorFormPassword;
 }

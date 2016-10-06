@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_loading">Erreur lors du chargement.</string>
+    <string name="error_login">Erreur login.</string>
+    <string name="error_form_tiers">Le nom du tiers est requis.</string>
+    <string name="error_form_category">Le nom de la catégorie est requis.</string>
+    <string name="error_form_amount">Le montant de l\'opération est requis.</string>
+    <string name="error_form_server">Le serveur sur lequel se connecter est requis.</string>
+    <string name="error_form_login">Le login est requis.</string>
+    <string name="error_form_password">Le mot de passe est requis.</string>
+</resources>

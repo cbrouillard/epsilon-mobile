@@ -1,6 +1,5 @@
 package com.headbangers.epsilon.v3.activity;
 
-import android.app.Activity;
 import android.support.v7.widget.Toolbar;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.async.AddOperationAsyncLoader;
 import com.headbangers.epsilon.v3.async.AutoCompleteDataAsyncLoader;
+import com.headbangers.epsilon.v3.async.enums.OperationType;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.Account;
 import com.headbangers.epsilon.v3.model.AutoCompleteData;
@@ -81,11 +81,11 @@ public class AddOperationActivity extends AbstractEpsilonActivity implements Ref
     @Override
     public void refresh(AutoCompleteData result) {
         if (result != null) {
-            ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(this,
+            ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(this,
                     android.R.layout.select_dialog_item, result.getCategories());
             this.category.setAdapter(categoryAdapter);
 
-            ArrayAdapter<String> tiersAdapter = new ArrayAdapter<String>(this,
+            ArrayAdapter<String> tiersAdapter = new ArrayAdapter<>(this,
                     android.R.layout.select_dialog_item, result.getTiers());
             this.tiers.setAdapter(tiersAdapter);
         }
@@ -117,15 +117,15 @@ public class AddOperationActivity extends AbstractEpsilonActivity implements Ref
         String tiers = this.tiers.getText().toString();
 
         if (tiers == null || tiers.isEmpty()) {
-            this.tiers.setError("Le nom du tiers est requis.");
+            this.tiers.setError(errorFormTiers);
         }
 
         if (category == null || category.isEmpty()) {
-            this.category.setError("Le nom de la catégorie est requis.");
+            this.category.setError(errorFormCategory);
         }
 
         if (amount == null || amount.isEmpty()) {
-            this.amount.setError("Le montant de l'opération est requis.");
+            this.amount.setError(errorFormAmount);
         }
 
         return amount != null && !amount.isEmpty()

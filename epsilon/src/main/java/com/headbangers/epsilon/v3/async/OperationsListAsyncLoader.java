@@ -4,6 +4,7 @@ package com.headbangers.epsilon.v3.async;
 import android.app.Activity;
 import android.widget.ProgressBar;
 
+import com.headbangers.epsilon.v3.async.enums.OperationsSelectMode;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.Operation;
 import com.headbangers.epsilon.v3.service.EpsilonAccessService;

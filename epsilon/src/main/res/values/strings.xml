@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Epsilon</string>
+    <string name="opened_at">Ouvert le:</string>
     <string name="account_list">Comptes</string>
     <string name="account_list_subtitle">Liste des comptes enregistrés</string>
     <string name="authenticate">Authentification</string>
@@ -23,4 +24,5 @@
     <string name="add_revenue">Faire un dépôt</string>
     <string name="add_virement">Faire un virement</string>
     <string name="add_operation_hint">Saisissez votre opération. Les champs sont tous obligatoires. La catégorie et/ou le tiers seront créés automatiquement s\'ils ne sont pas déjà dans la liste.</string>
+    <string name="operation_added">Opération ajoutée.</string>
 </resources>

@@ -1,5 +1,5 @@
 package com.headbangers.epsilon.v3.async.interfaces;
 
-public interface Reloadable {
-    void reload();
+public interface Reloadable<T> {
+    void reload(T obj);
 }
