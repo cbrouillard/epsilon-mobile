@@ -4,10 +4,23 @@
     <string name="account_list">Comptes</string>
     <string name="account_list_subtitle">Liste des comptes enregistrés</string>
     <string name="authenticate">Authentification</string>
-    <string name="server_hint">Serveur</string>
-    <string name="login_hint">Login</string>
-    <string name="passwd_hint">Mot de passe</string>
+    <string name="server">Serveur</string>
+    <string name="server_hint">Serveur web de l\'application hébergée</string>
+    <string name="login">Login</string>
+    <string name="login_hint">Votre login Epsilon</string>
+    <string name="password">Mot de passe</string>
+    <string name="password_hint">Votre mot de passe Epsilon</string>
     <string name="auth_hint">Identifiez vous sur Epsilon. Attention ! l\'authentification ne peut fonctionner uniquement que si vous avez activé la fonctionnalité MOBILE sur l\'application hébergée.</string>
     <string name="action_ok">Ok</string>
     <string name="current_amount">Montant actuel</string>
+    <string name="category">Catégorie</string>
+    <string name="tiers">Tiers</string>
+    <string name="amount">Montant</string>
+    <string name="category_hint">Quelle est la catégorie ?</string>
+    <string name="tiers_hint">Qui est concerné ?</string>
+    <string name="amount_hint">Montant de l\'opération</string>
+    <string name="add_depense">Ajouter une dépense</string>
+    <string name="add_revenue">Faire un dépôt</string>
+    <string name="add_virement">Faire un virement</string>
+    <string name="add_operation_hint">Saisissez votre opération. Les champs sont tous obligatoires. La catégorie et/ou le tiers seront créés automatiquement s\'ils ne sont pas déjà dans la liste.</string>
 </resources>

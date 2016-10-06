@@ -6,5 +6,6 @@
     <color name="colorInfo">#63b452</color>
     <color name="colorInfoDark">#428035</color>
     <color name="colorAmount">#555</color>
-    <color name="colorAmountDark">#111</color>
+    <color name="colorAmountDark">#444</color>
+    <color name="lightBlue">#7fadf2</color>
 </resources>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
@@ -30,71 +30,118 @@
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="4">
 
         <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
+
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/current_amount"
+                        android:textSize="16dip" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_horizontal|center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/sold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/amount_label"
+                        android:gravity="right"
+                        android:padding="10dp"
+                        android:text="1900,00€"
+                        android:textColor="#ffffff"
+                        android:textSize="20dp" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/info_label"
                 android:gravity="fill"
                 android:padding="10dp"
-                android:text="@string/auth_hint"
+                android:text="@string/add_operation_hint"
                 android:textColor="#fff" />
 
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
-                android:text="@string/server"
+                android:text="@string/tiers"
                 android:textColor="@color/lightBlue" />
 
-            <EditText
-                android:id="@+id/server"
+            <AutoCompleteTextView
+                android:id="@+id/tiers"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:focusable="true"
-                android:hint="@string/server_hint"
+                android:hint="@string/tiers_hint"
                 android:inputType="text" />
 
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
-                android:text="@string/login"
+                android:text="@string/category"
                 android:textColor="@color/lightBlue" />
 
-            <EditText
-                android:id="@+id/login"
+            <AutoCompleteTextView
+                android:id="@+id/category"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:focusable="true"
-                android:hint="@string/login_hint"
+                android:hint="@string/category_hint"
                 android:inputType="text" />
 
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
-                android:text="@string/password"
+                android:text="@string/amount"
                 android:textColor="@color/lightBlue" />
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/amount"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:hint="@string/password_hint"
-                android:inputType="textPassword" />
-
+                android:hint="@string/amount_hint"
+                android:inputType="numberDecimal" />
         </LinearLayout>
-
     </ScrollView>
-
 </LinearLayout>

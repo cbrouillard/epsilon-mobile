@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.headbangers.epsilon.v3.activity.OperationType;
 import com.headbangers.epsilon.v3.model.SimpleResult;
 import com.headbangers.epsilon.v3.service.EpsilonAccessService;
+
+import static com.headbangers.epsilon.v3.activity.AddOperationActivity.OPERATION_ADD_DONE;
 
 public class AddOperationAsyncLoader extends
         GenericAsyncLoader<String, SimpleResult> {
@@ -18,14 +21,14 @@ public class AddOperationAsyncLoader extends
     @Override
     protected SimpleResult doInBackground(String... params) {
         // params[0] = type
-        /*OperationType type = OperationType.valueOf(params[0]);
+        OperationType type = OperationType.valueOf(params[0]);
         if (type==OperationType.DEPENSE){
             return data.addDepense(params[1], params[2], params[3], params[4], params[5]);
         } else if (type==OperationType.REVENUE){
             return data.addRevenue(params[1], params[2], params[3], params[4], params[5]);
         } else if (type == OperationType.VIREMENT){
             return data.addVirement(params[1], params[2], params[3], params[4], params[5]);
-        }*/
+        }
         return null;
     }
 
@@ -34,7 +37,7 @@ public class AddOperationAsyncLoader extends
     protected void onPostExecute(SimpleResult result) {
 
         if (result != null && result.isOk()) {
-            fromContext.setResult(fromContext.RESULT_OK);
+            fromContext.setResult(OPERATION_ADD_DONE);
             fromContext.finish();
         } else {
             Toast.makeText(fromContext,

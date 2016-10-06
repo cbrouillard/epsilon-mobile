@@ -25,33 +25,33 @@ import java.util.Map;
 public class EpsilonAccessServiceImpl extends WebService implements
         EpsilonAccessService {
 
-    @StringRes(R.string.accounts)
+    @StringRes(R.string.ws_accounts)
     String allAccountsUrl;
-    @StringRes(R.string.register)
+    @StringRes(R.string.ws_register)
     String registerUrl;
-    @StringRes(R.string.bymonth)
+    @StringRes(R.string.ws_bymonth)
     String opByMonthUrl;
-    @StringRes(R.string.bycategory)
+    @StringRes(R.string.ws_bycategory)
     String opByCategoryUrl;
-    @StringRes(R.string.bytiers)
+    @StringRes(R.string.ws_bytiers)
     String opByTiersUrl;
-    @StringRes(R.string.categories_name)
+    @StringRes(R.string.ws_categories_name)
     String categoriesNameUrl;
-    @StringRes(R.string.tiers_name)
+    @StringRes(R.string.ws_tiers_name)
     String tiersNameUrl;
-    @StringRes(R.string.add_revenue)
+    @StringRes(R.string.ws_add_revenue)
     String addRevenueUrl;
-    @StringRes(R.string.add_depense)
+    @StringRes(R.string.ws_add_depense)
     String addDepenseUrl;
-    @StringRes(R.string.add_virement)
+    @StringRes(R.string.ws_add_virement)
     String addVirementUrl;
-    @StringRes(R.string.one_account)
+    @StringRes(R.string.ws_one_account)
     String oneAccountUrl;
-    @StringRes(R.string.scheduleds)
+    @StringRes(R.string.ws_scheduleds)
     String scheduledsUrl;
-    @StringRes(R.string.budgets)
+    @StringRes(R.string.ws_budgets)
     String budgetsUrl;
-    @StringRes(R.string.one_budget)
+    @StringRes(R.string.ws_one_budget)
     String oneBudgetUrl;
 
     // from SharedPrefs

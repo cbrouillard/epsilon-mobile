@@ -6,13 +6,16 @@ import android.support.v7.app.AppCompatActivity;
 import com.headbangers.epsilon.v3.preferences.EpsilonPrefs_;
 import com.headbangers.epsilon.v3.service.impl.EpsilonAccessServiceImpl;
 
-import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
+import java.text.DecimalFormat;
+
 @EActivity
 public abstract class AbstractEpsilonActivity extends AppCompatActivity{
+
+    protected static DecimalFormat df = new DecimalFormat("0.00");
 
     @Pref
     EpsilonPrefs_ epsilonPrefs;

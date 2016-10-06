@@ -10,11 +10,9 @@ import com.headbangers.epsilon.v3.adapter.AccountsAdapter;
 import com.headbangers.epsilon.v3.async.AccountsListAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.Account;
-import com.headbangers.epsilon.v3.service.impl.EpsilonAccessServiceImpl;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ItemClick;
@@ -26,7 +24,7 @@ import org.androidannotations.annotations.ViewById;
 import java.util.List;
 
 @EActivity(R.layout.accounts)
-@OptionsMenu(R.menu.accounts)
+@OptionsMenu(R.menu.menu_welcome)
 public class AccountsActivity extends AbstractEpsilonActivity implements Refreshable<List<Account>> {
 
     @ViewById(R.id.toolbar)

@@ -23,7 +23,7 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
 @EActivity(R.layout.authentication)
-@OptionsMenu(R.menu.menu_auth)
+@OptionsMenu(R.menu.menu_ok)
 public class AuthActivity extends AppCompatActivity implements Refreshable<SimpleResult> {
 
     public static final int AUTH_RESULT = 400;
@@ -54,7 +54,8 @@ public class AuthActivity extends AppCompatActivity implements Refreshable<Simpl
         setSupportActionBar(toolbar);
     }
 
-    @OptionsItem(R.id.action_auth_ok)
+    @OptionsItem(R.id.action_ok)
+    @EditorAction(R.id.password)
     void ok() {
 
         if (validateForm()) {
@@ -63,11 +64,6 @@ public class AuthActivity extends AppCompatActivity implements Refreshable<Simpl
                     this.login.getText().toString(),
                     this.password.getText().toString());
         }
-    }
-
-    @EditorAction(R.id.password)
-    void enterOnPassText(){
-        ok();
     }
 
     private String cleanAndCompleteServerUrl(){
