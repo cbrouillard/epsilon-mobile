@@ -1,6 +1,7 @@
 package com.headbangers.epsilon.v3.adapter;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import java.util.List;
 
 public class AccountsAdapter extends ArrayAdapter<Account> {
 
+    String openedAt;
+
     private Activity context;
     private List<Account> accounts;
 
@@ -24,6 +27,7 @@ public class AccountsAdapter extends ArrayAdapter<Account> {
         super(context, R.layout.one_account, accounts);
         this.context = context;
         this.accounts = accounts;
+        this.openedAt = getContext().getString(R.string.opened_at);
     }
 
     @Override
@@ -37,12 +41,28 @@ public class AccountsAdapter extends ArrayAdapter<Account> {
 
         TextView name = (TextView) row.findViewById(R.id.name);
         name.setText(account.getName());
+        if (account.isMobileDefault()) {
+            name.setTypeface(null, Typeface.BOLD);
+        } else {
+            name.setTypeface(null, Typeface.NORMAL);
+        }
 
         TextView sold = (TextView) row.findViewById(R.id.sold);
         sold.setText(df.format(account.getSold()) + "€");
 
         TextView date = (TextView) row.findViewById(R.id.date);
-        date.setText("Ouvert le: " + account.getFormatedDateOpened());
+        date.setText(openedAt + " " + account.getFormatedDateOpened());
+
+        TextView status = (TextView) row.findViewById(R.id.status);
+        if (account.getType().equalsIgnoreCase("CHEQUES")) {
+            if (account.getSold() > 0) {
+                status.setBackgroundResource(R.drawable.span_ok);
+            } else {
+                status.setBackgroundResource(R.drawable.span_ko);
+            }
+        } else {
+            status.setBackgroundResource(R.drawable.span_ok);
+        }
 
         return row;
     }

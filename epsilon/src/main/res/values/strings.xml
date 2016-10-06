@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Epsilon</string>
-    <string name="opened_at">Ouvert le:</string>
+    <string name="opened_at">Ouvert le: </string>
     <string name="account_list">Comptes</string>
     <string name="account_list_subtitle">Liste des comptes enregistrés</string>
     <string name="authenticate">Authentification</string>

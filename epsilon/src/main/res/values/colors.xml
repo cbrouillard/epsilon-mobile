@@ -8,4 +8,6 @@
     <color name="colorAmount">#555</color>
     <color name="colorAmountDark">#444</color>
     <color name="lightBlue">#7fadf2</color>
+    <color name="colorFail">#d9174e</color>
+    <color name="colorFailDark">#b61241</color>
 </resources>

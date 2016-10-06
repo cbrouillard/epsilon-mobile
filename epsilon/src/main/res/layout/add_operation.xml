@@ -83,65 +83,77 @@
 
             </LinearLayout>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/info_label"
-                android:gravity="fill"
-                android:padding="10dp"
-                android:text="@string/add_operation_hint"
-                android:textColor="#fff" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/info_label"
+                    android:gravity="fill"
+                    android:padding="10dp"
+                    android:text="@string/add_operation_hint"
+                    android:textColor="#fff" />
 
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:text="@string/tiers"
-                android:textColor="@color/lightBlue" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:text="@string/tiers"
+                    android:textColor="@color/lightBlue" />
 
-            <AutoCompleteTextView
-                android:id="@+id/tiers"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:focusable="true"
-                android:hint="@string/tiers_hint"
-                android:inputType="text" />
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:text="@string/category"
-                android:textColor="@color/lightBlue" />
-
-            <AutoCompleteTextView
-                android:id="@+id/category"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:focusable="true"
-                android:hint="@string/category_hint"
-                android:inputType="text" />
+                <AutoCompleteTextView
+                    android:id="@+id/tiers"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:focusable="true"
+                    android:hint="@string/tiers_hint"
+                    android:inputType="text" />
 
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:text="@string/amount"
-                android:textColor="@color/lightBlue" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:text="@string/category"
+                    android:textColor="@color/lightBlue" />
 
-            <EditText
-                android:id="@+id/amount"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:focusable="true"
-                android:hint="@string/amount_hint"
-                android:inputType="numberDecimal" />
+                <AutoCompleteTextView
+                    android:id="@+id/category"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:focusable="true"
+                    android:hint="@string/category_hint"
+                    android:inputType="text" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:text="@string/amount"
+                    android:textColor="@color/lightBlue" />
+
+                <EditText
+                    android:id="@+id/amount"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:focusable="true"
+                    android:hint="@string/amount_hint"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

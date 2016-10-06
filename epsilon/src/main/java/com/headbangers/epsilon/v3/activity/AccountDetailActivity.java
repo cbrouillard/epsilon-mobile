@@ -52,7 +52,7 @@ public class AccountDetailActivity extends AbstractEpsilonActivity implements Re
     @AfterViews
     void showDetails() {
         toolbar.setTitle(account.getName());
-        toolbar.setSubtitle(openedAt + account.getFormatedDateOpened());
+        toolbar.setSubtitle(openedAt + " " + account.getFormatedDateOpened());
         setSupportActionBar(toolbar);
 
         init();
