@@ -1,5 +1,6 @@
 package com.headbangers.epsilon.v3.activity;
 
+import android.content.res.Configuration;
 import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -13,6 +14,7 @@ import com.headbangers.epsilon.v3.model.Account;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ItemClick;
@@ -22,6 +24,8 @@ import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
+
+import static com.headbangers.epsilon.v3.activity.AccountDetailActivity.FROM_DETAILS_ACTIVITY;
 
 @EActivity(R.layout.accounts)
 @OptionsMenu(R.menu.menu_welcome)
@@ -42,13 +46,11 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
         toolbar.setSubtitle(R.string.account_list_subtitle);
         setSupportActionBar(toolbar);
 
-        if (isLogged()) {
-            init();
-        }
+        init();
     }
 
     @AfterInject
-    void initData() {
+    void checkAuth() {
         if (!isLogged()) {
             // goto AuthActivity
             startAuth();
@@ -77,8 +79,13 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
     }
 
     @OptionsItem(R.id.menuScheduled)
-    void showScheduleds (){
+    void showScheduleds() {
         ScheduledsActivity_.intent(this).start();
+    }
+
+    @OptionsItem(R.id.menuBudgets)
+    void showBudgets() {
+        BudgetsActivity_.intent(this).start();
     }
 
     @OnActivityResult(AuthActivity.AUTH_RESULT)
@@ -87,12 +94,20 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
         init();
     }
 
+    @OnActivityResult(FROM_DETAILS_ACTIVITY)
+    void fromDetailsActivity(){
+        init();
+    }
+
     @ItemClick(R.id.list)
     void listClick(Account account) {
-        AccountDetailActivity_.intent(this).extra("account", account).start();
+        AccountDetailActivity_.intent(this).extra("account", account).startForResult(FROM_DETAILS_ACTIVITY);
     }
 
     void init() {
-        new AccountsListAsyncLoader(this.accessService, this, progressBar).execute(token());
+        if (isLogged()) {
+            new AccountsListAsyncLoader(this.accessService, this, progressBar).execute(token());
+        }
     }
+
 }

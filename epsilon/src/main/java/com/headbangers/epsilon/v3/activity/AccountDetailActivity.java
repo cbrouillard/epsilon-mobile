@@ -4,7 +4,6 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.adapter.OperationsAdapter;
@@ -33,6 +32,8 @@ import static com.headbangers.epsilon.v3.activity.AddOperationActivity.OPERATION
 @EActivity(R.layout.account_detail)
 @OptionsMenu(R.menu.menu_add_operations)
 public class AccountDetailActivity extends AbstractEpsilonActivity implements Refreshable<List<Operation>>, Reloadable<Account> {
+
+    public static final int FROM_DETAILS_ACTIVITY = 200;
 
     @ViewById(R.id.toolbar)
     Toolbar toolbar;
@@ -71,11 +72,8 @@ public class AccountDetailActivity extends AbstractEpsilonActivity implements Re
 
     @OnActivityResult(OPERATION_ADD_DONE)
     void addDone() {
-        Toast.makeText(this, operationAdded, Toast.LENGTH_LONG).show();
-        // reload account
         new OneAccountAsyncLoader(accessService, this, progressBar).execute(token(), account.getId());
     }
-
 
     @Click(R.id.refresh)
     void refreshButton() {
@@ -96,6 +94,13 @@ public class AccountDetailActivity extends AbstractEpsilonActivity implements Re
         AddOperationActivity_.intent(this)
                 .extra("account", account)
                 .extra("operationType", OperationType.REVENUE)
+                .startForResult(OPERATION_ADD_DONE);
+    }
+
+    @OptionsItem(R.id.menuAddVirement)
+    void addVirement() {
+        AddVirementActivity_.intent(this)
+                .extra("account", account)
                 .startForResult(OPERATION_ADD_DONE);
     }
 

@@ -33,10 +33,19 @@
         <activity
             android:name="com.headbangers.epsilon.v3.activity.AddOperationActivity_"
             android:label="@string/app_name"></activity>
+
+        <activity
+            android:name="com.headbangers.epsilon.v3.activity.AddVirementActivity_"
+            android:label="@string/app_name"></activity>
+
         <activity
             android:name="com.headbangers.epsilon.v3.activity.ScheduledsActivity_"
-            android:label="@string/app_name">
-        </activity>
+            android:label="@string/app_name"></activity>
+
+        <activity
+            android:name="com.headbangers.epsilon.v3.activity.BudgetsActivity_"
+            android:label="@string/app_name"></activity>
+
 
     </application>
 </manifest>

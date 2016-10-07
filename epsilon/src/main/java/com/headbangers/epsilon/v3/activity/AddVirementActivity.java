@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.headbangers.epsilon.v3.R;
@@ -20,14 +21,16 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.EditorAction;
 import org.androidannotations.annotations.Extra;
-import org.androidannotations.annotations.OnActivityResult;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 
-@EActivity(R.layout.add_operation)
+import java.util.ArrayList;
+import java.util.List;
+
+@EActivity(R.layout.add_virement)
 @OptionsMenu(R.menu.menu_ok)
-public class AddOperationActivity extends AbstractEpsilonActivity implements Refreshable<AutoCompleteData> {
+public class AddVirementActivity extends AbstractEpsilonActivity implements Refreshable<AutoCompleteData> {
 
     public static final int OPERATION_ADD_DONE = 100;
 
@@ -40,11 +43,14 @@ public class AddOperationActivity extends AbstractEpsilonActivity implements Ref
     @ViewById(R.id.sold)
     TextView sold;
 
+    @ViewById(R.id.accountFrom)
+    Spinner accountFrom;
+
+    @ViewById(R.id.accountTo)
+    Spinner accountTo;
+
     @ViewById(R.id.category)
     AutoCompleteTextView category;
-
-    @ViewById(R.id.tiers)
-    AutoCompleteTextView tiers;
 
     @ViewById(R.id.amount)
     EditText amount;
@@ -52,21 +58,13 @@ public class AddOperationActivity extends AbstractEpsilonActivity implements Ref
     @Extra("account")
     Account account;
 
-    @Extra("operationType")
-    OperationType type;
+    // loaded accounts
+    private List<Account> accounts;
 
     @AfterViews
     void showDetails() {
         toolbar.setTitle(account.getName());
-        switch (type) {
-            case DEPENSE:
-                toolbar.setSubtitle(R.string.add_depense);
-                break;
-            case REVENUE:
-                toolbar.setSubtitle(R.string.add_revenue);
-                break;
-        }
-
+        toolbar.setSubtitle(R.string.add_virement);
         setSupportActionBar(toolbar);
 
         sold.setText(df.format(account.getSold()) + "€");
@@ -76,29 +74,35 @@ public class AddOperationActivity extends AbstractEpsilonActivity implements Ref
 
     private void init() {
         new AutoCompleteDataAsyncLoader(accessService, this, progressBar).execute(
-                AutoCompleteDataAsyncLoader.Load.CATEGORY_TIERS.name(), token());
+                AutoCompleteDataAsyncLoader.Load.CATEGORY_ACCOUNTS.name(), token());
     }
 
     @Override
     public void refresh(AutoCompleteData result) {
         if (result != null) {
+            this.accounts = result.getAccounts();
+
+            List<String> accountsName = new ArrayList<>();
+            for (Account account : accounts) {
+                accountsName.add(account.getName() + " - "
+                        + df.format(account.getSold()) + "€");
+            }
+
+            ArrayAdapter<String> accountAdapter = new ArrayAdapter<>(
+                    this, android.R.layout.simple_spinner_item,
+                    accountsName);
+            accountAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            this.accountFrom.setAdapter(accountAdapter);
+            this.accountTo.setAdapter(accountAdapter);
+
             ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(this,
                     android.R.layout.select_dialog_item, result.getCategories());
             this.category.setAdapter(categoryAdapter);
-
-            ArrayAdapter<String> tiersAdapter = new ArrayAdapter<>(this,
-                    android.R.layout.select_dialog_item, result.getTiers());
-            this.tiers.setAdapter(tiersAdapter);
         }
     }
 
-    @EditorAction(R.id.tiers)
-    void tiersOk(){
-        category.requestFocus();
-    }
-
     @EditorAction(R.id.category)
-    void categoryOk(){
+    void categoryOk() {
         amount.requestFocus();
     }
 
@@ -109,21 +113,17 @@ public class AddOperationActivity extends AbstractEpsilonActivity implements Ref
         if (validateForm()) {
             String amount = this.amount.getText().toString();
             String category = this.category.getText().toString();
-            String tiers = this.tiers.getText().toString();
+            Account accountTo = this.accounts.get(this.accountTo.getSelectedItemPosition());
+            Account accountFrom = this.accounts.get(this.accountFrom.getSelectedItemPosition());
 
-            new AddOperationAsyncLoader(accessService, this, progressBar).execute(type.name(), token(),
-                    account.getId(), amount, category, tiers);
+            new AddOperationAsyncLoader(accessService, this, progressBar).execute(OperationType.VIREMENT.name(),
+                    token(), accountTo.getId(), accountFrom.getId(), amount, category);
         }
     }
 
     private boolean validateForm() {
         String amount = this.amount.getText().toString();
         String category = this.category.getText().toString();
-        String tiers = this.tiers.getText().toString();
-
-        if (tiers == null || tiers.isEmpty()) {
-            this.tiers.setError(errorFormTiers);
-        }
 
         if (category == null || category.isEmpty()) {
             this.category.setError(errorFormCategory);
@@ -134,7 +134,6 @@ public class AddOperationActivity extends AbstractEpsilonActivity implements Ref
         }
 
         return amount != null && !amount.isEmpty()
-                && category != null && !category.isEmpty()
-                && tiers != null && !tiers.isEmpty();
+                && category != null && !category.isEmpty();
     }
 }

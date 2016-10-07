@@ -97,28 +97,42 @@
                     android:background="@drawable/info_label"
                     android:gravity="fill"
                     android:padding="10dp"
-                    android:text="@string/add_operation_hint"
+                    android:text="@string/add_virement_hint"
                     android:textColor="#fff" />
-
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="14dp"
-                    android:text="@string/tiers"
+                    android:text="@string/account_minus"
                     android:textColor="@color/lightBlue"
                     android:textStyle="italic" />
 
-                <AutoCompleteTextView
-                    android:id="@+id/tiers"
-                    android:layout_width="fill_parent"
+                <Spinner
+                    android:id="@+id/accountFrom"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:focusable="true"
-                    android:hint="@string/tiers_hint"
-                    android:inputType="textCapSentences" />
+                    android:layout_marginRight="10dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:text="@string/account_plus"
+                    android:textColor="@color/lightBlue"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:id="@+id/accountTo"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
 
                 <TextView
                     android:layout_width="match_parent"

@@ -1,7 +1,6 @@
 package com.headbangers.epsilon.v3.async;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -16,11 +15,13 @@ public class AddOperationAsyncLoader extends
         GenericAsyncLoader<String, SimpleResult> {
 
     String errorOperationAdd;
+    String operationAdded;
 
     public AddOperationAsyncLoader(EpsilonAccessService dataService,
                                    Activity context, ProgressBar progressBar) {
         super(dataService, context, progressBar);
         this.errorOperationAdd = context.getString(R.string.error_operation_add);
+        this.operationAdded = context.getString(R.string.operation_added);
     }
 
     @Override
@@ -43,6 +44,7 @@ public class AddOperationAsyncLoader extends
 
         if (result != null && result.isOk()) {
             if (fromContext != null) {
+                Toast.makeText(fromContext, operationAdded, Toast.LENGTH_LONG).show();
                 fromContext.setResult(OPERATION_ADD_DONE);
                 fromContext.finish();
             }

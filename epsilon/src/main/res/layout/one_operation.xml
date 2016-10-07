@@ -1,45 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="fill_parent" android:layout_height="wrap_content"
-  android:orientation="horizontal" android:padding="5dip">
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal|center_vertical"
+    android:orientation="horizontal"
+    android:padding="5dip">
 
-  <ImageView android:id="@+id/icon" android:layout_width="36dip"
-    android:layout_height="36dip" android:layout_gravity="center" />
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="36dip"
+        android:layout_height="36dip"
+        android:layout_gravity="center"/>
 
-  <LinearLayout android:layout_width="fill_parent"
-    android:layout_height="wrap_content" android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <LinearLayout android:layout_width="wrap_content"
-      android:layout_height="fill_parent" android:orientation="horizontal">
-      <TextView android:id="@+id/category"
-        android:layout_width="wrap_content" android:layout_height="fill_parent"
-        android:textSize="14dip" android:gravity="center_vertical"
-        android:paddingLeft="5dip"
-          android:text="Catégorie" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
 
-      <TextView android:id="@+id/tiers" android:layout_width="wrap_content"
-        android:layout_height="fill_parent" android:textSize="14dip"
-        android:gravity="center_vertical" android:scrollHorizontally="true"
-          android:text="Tiers" />
+            <TextView
+                android:id="@+id/category"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dip"
+                android:text="Catégorie - "
+                android:textSize="14dip" />
+
+            <TextView
+                android:id="@+id/tiers"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:scrollHorizontally="true"
+                android:text="Tiers"
+                android:textSize="14dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dip"
+                android:text="Le: 12/02/2016"
+                android:textSize="12dip" />
+
+            <TextView
+                android:id="@+id/amount"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginRight="10dip"
+                android:layout_weight="4"
+                android:gravity="center_vertical|right"
+                android:paddingLeft="10dip"
+                android:text="-56,00€"
+                android:textSize="12dip" />
+        </LinearLayout>
+
     </LinearLayout>
-
-    <LinearLayout android:layout_width="fill_parent"
-      android:layout_height="fill_parent" android:orientation="horizontal">
-      
-      <TextView android:id="@+id/date"
-        android:layout_width="wrap_content" android:layout_height="fill_parent"
-        android:textSize="12dip" android:gravity="center_vertical"
-        android:paddingLeft="5dip"
-          android:text="Le: 12/02/2016" />
-
-      <TextView android:id="@+id/amount" android:layout_width="fill_parent"
-        android:layout_height="fill_parent" android:textSize="12dip"
-        android:gravity="center_vertical|right" android:paddingLeft="10dip"
-        android:layout_marginRight="10dip" android:layout_weight="4"
-          android:text="-56,00€" />
-    </LinearLayout>
-
-  </LinearLayout>
 
 
 </LinearLayout>

@@ -6,6 +6,8 @@
     <string name="account_list_subtitle">Liste des comptes enregistrés</string>
     <string name="scheduled_list">Echéances</string>
     <string name="scheduled_list_subtitle">Liste des opérations futures</string>
+    <string name="budget_list">Budgets</string>
+    <string name="budget_list_subtitle">Liste des budgets actifs</string>
     <string name="authenticate">Authentification</string>
     <string name="server">Serveur</string>
     <string name="server_hint">Serveur web de l\'application hébergée</string>
@@ -26,5 +28,8 @@
     <string name="add_revenue">Faire un dépôt</string>
     <string name="add_virement">Faire un virement</string>
     <string name="add_operation_hint">Saisissez votre opération. Les champs sont tous obligatoires. La catégorie et/ou le tiers seront créés automatiquement s\'ils ne sont pas déjà dans la liste.</string>
+    <string name="add_virement_hint">Saisissez votre opération. Les champs sont tous obligatoires. La catégorie sera créée automatiquement si elle n\'est pas déjà dans la liste.</string>
     <string name="operation_added">Opération ajoutée.</string>
+    <string name="account_minus">Depuis le compte (débit)</string>
+    <string name="account_plus">Vers le compte (crédit)</string>
 </resources>

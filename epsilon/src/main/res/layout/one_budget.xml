@@ -2,9 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:padding="10dip">
-
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -29,18 +28,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="PEL"
+                android:text="Budget vacances"
                 android:textSize="16dip" />
 
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ouvert le: 12/02/2016"
-                android:textSize="12dip" />
-
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -49,19 +40,25 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/sold"
+                android:id="@+id/amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:padding="10dp"
-                android:text="1900,00€"
+                android:text="228,12 / 500,00€"
                 android:textSize="15dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 
-
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:text="Categorie 1 / Categorie 2 / Categorie 3 / Categorie 4"
+        android:textSize="12dip" />
 
 </LinearLayout>

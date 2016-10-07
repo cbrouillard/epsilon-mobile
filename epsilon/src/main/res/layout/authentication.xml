@@ -50,14 +50,16 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="14dp"
                 android:text="@string/server"
-                android:textColor="@color/lightBlue" />
+                android:textColor="@color/lightBlue"
+                android:textStyle="italic" />
 
             <EditText
                 android:id="@+id/server"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:focusable="true"
@@ -67,14 +69,16 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="14dp"
                 android:text="@string/login"
-                android:textColor="@color/lightBlue" />
+                android:textColor="@color/lightBlue"
+                android:textStyle="italic" />
 
             <EditText
                 android:id="@+id/login"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:focusable="true"
@@ -84,14 +88,16 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="14dp"
                 android:text="@string/password"
-                android:textColor="@color/lightBlue" />
+                android:textColor="@color/lightBlue"
+                android:textStyle="italic" />
 
             <EditText
                 android:id="@+id/password"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:focusable="true"

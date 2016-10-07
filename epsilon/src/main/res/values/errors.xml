@@ -8,5 +8,5 @@
     <string name="error_form_server">Le serveur sur lequel se connecter est requis.</string>
     <string name="error_form_login">Le login est requis.</string>
     <string name="error_form_password">Le mot de passe est requis.</string>
-    <string name="error_operation_add">Impossible d'ajouter l'opération. Reessayez!</string>
+    <string name="error_operation_add">Impossible d\'ajouter l\'opération.</string>
 </resources>

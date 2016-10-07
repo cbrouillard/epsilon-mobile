@@ -6,10 +6,10 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.headbangers.epsilon.v3.R;
-import com.headbangers.epsilon.v3.adapter.ScheduledsAdapter;
-import com.headbangers.epsilon.v3.async.ScheduledsListAsyncLoader;
+import com.headbangers.epsilon.v3.adapter.BudgetsAdapter;
+import com.headbangers.epsilon.v3.async.BudgetsListAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
-import com.headbangers.epsilon.v3.model.Operation;
+import com.headbangers.epsilon.v3.model.Budget;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -19,7 +19,7 @@ import org.androidannotations.annotations.ViewById;
 import java.util.List;
 
 @EActivity(R.layout.scheduleds)
-public class ScheduledsActivity extends AbstractEpsilonActivity implements Refreshable<List<Operation>> {
+public class BudgetsActivity extends AbstractEpsilonActivity implements Refreshable<List<Budget>> {
 
     @ViewById(R.id.toolbar)
     Toolbar toolbar;
@@ -32,8 +32,8 @@ public class ScheduledsActivity extends AbstractEpsilonActivity implements Refre
 
     @AfterViews
     void bindToolbar() {
-        toolbar.setTitle(R.string.scheduled_list);
-        toolbar.setSubtitle(R.string.scheduled_list_subtitle);
+        toolbar.setTitle(R.string.budget_list);
+        toolbar.setSubtitle(R.string.budget_list_subtitle);
         setSupportActionBar(toolbar);
 
         if (isLogged()) {
@@ -47,14 +47,14 @@ public class ScheduledsActivity extends AbstractEpsilonActivity implements Refre
     }
 
     private void init() {
-        new ScheduledsListAsyncLoader(accessService, this, progressBar).execute(token());
+        new BudgetsListAsyncLoader(accessService, this, progressBar).execute(token());
     }
 
     @Override
-    public void refresh(List<Operation> result) {
+    public void refresh(List<Budget> result) {
         if (result != null) {
-            ScheduledsAdapter scheduledsAdapter = new ScheduledsAdapter(this, result);
-            list.setAdapter(scheduledsAdapter);
+            BudgetsAdapter budgetsAdapter = new BudgetsAdapter(this, result);
+            list.setAdapter(budgetsAdapter);
         } else {
             Toast.makeText(this, errorLoading, Toast.LENGTH_LONG)
                     .show();
