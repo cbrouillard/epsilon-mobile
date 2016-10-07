@@ -4,6 +4,8 @@
     <string name="opened_at">Ouvert le: </string>
     <string name="account_list">Comptes</string>
     <string name="account_list_subtitle">Liste des comptes enregistrés</string>
+    <string name="scheduled_list">Echéances</string>
+    <string name="scheduled_list_subtitle">Liste des opérations futures</string>
     <string name="authenticate">Authentification</string>
     <string name="server">Serveur</string>
     <string name="server_hint">Serveur web de l\'application hébergée</string>

@@ -22,7 +22,9 @@ public class OneBudgetAsyncLoader extends GenericAsyncLoader<String, Budget> {
     @Override
     @SuppressWarnings("unchecked")
     protected void onPostExecute(Budget result) {
-        ((Refreshable<Budget>) fromContext).refresh(result);
+        if (fromContext != null && fromContext instanceof Refreshable) {
+            ((Refreshable<Budget>) fromContext).refresh(result);
+        }
         super.onPostExecute(result);
     }
 

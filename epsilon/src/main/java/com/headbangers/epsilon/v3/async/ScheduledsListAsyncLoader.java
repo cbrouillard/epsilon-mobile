@@ -28,7 +28,9 @@ public class ScheduledsListAsyncLoader extends
     @Override
     @SuppressWarnings("unchecked")
     protected void onPostExecute(List<Operation> result) {
-        ((Refreshable<List<Operation>>) fromContext).refresh(result);
+        if (fromContext != null && fromContext instanceof Refreshable) {
+            ((Refreshable<List<Operation>>) fromContext).refresh(result);
+        }
         super.onPostExecute(result);
     }
 

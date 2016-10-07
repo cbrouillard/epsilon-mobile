@@ -14,7 +14,7 @@ public class BudgetsListAsyncLoader extends
         GenericAsyncLoader<String, List<Budget>> {
 
     public BudgetsListAsyncLoader(EpsilonAccessService dataService,
-            Activity context, ProgressBar progressBar) {
+                                  Activity context, ProgressBar progressBar) {
         super(dataService, context, progressBar);
     }
 
@@ -27,7 +27,9 @@ public class BudgetsListAsyncLoader extends
     @Override
     @SuppressWarnings("unchecked")
     protected void onPostExecute(List<Budget> result) {
-         ((Refreshable<List<Budget>>) fromContext).refresh(result);
+        if (fromContext != null && fromContext instanceof Refreshable) {
+            ((Refreshable<List<Budget>>) fromContext).refresh(result);
+        }
         super.onPostExecute(result);
     }
 

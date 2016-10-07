@@ -25,15 +25,14 @@ public abstract class GenericAsyncLoader<P, R> extends AsyncTask<P, Void, R> {
     @Override
     protected void onPreExecute() {
 
-        if (manageProgressBar) {
+        if (manageProgressBar && progressBar != null) {
             progressBar.setVisibility(View.VISIBLE);
         }
     }
 
     @Override
     protected void onPostExecute(R result) {
-        if (manageProgressBar) {
-            //dialog.dismiss();
+        if (manageProgressBar && progressBar != null) {
             progressBar.setVisibility(View.GONE);
         }
     };

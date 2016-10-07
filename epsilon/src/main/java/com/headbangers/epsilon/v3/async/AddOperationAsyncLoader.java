@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.async.enums.OperationType;
 import com.headbangers.epsilon.v3.model.SimpleResult;
 import com.headbangers.epsilon.v3.service.EpsilonAccessService;
@@ -14,9 +15,12 @@ import static com.headbangers.epsilon.v3.activity.AddOperationActivity.OPERATION
 public class AddOperationAsyncLoader extends
         GenericAsyncLoader<String, SimpleResult> {
 
+    String errorOperationAdd;
+
     public AddOperationAsyncLoader(EpsilonAccessService dataService,
                                    Activity context, ProgressBar progressBar) {
         super(dataService, context, progressBar);
+        this.errorOperationAdd = context.getString(R.string.error_operation_add);
     }
 
     @Override
@@ -43,9 +47,7 @@ public class AddOperationAsyncLoader extends
                 fromContext.finish();
             }
         } else {
-            Toast.makeText(fromContext,
-                    "Impossible d'ajouter l'opération. Reessayez!", Toast.LENGTH_LONG)
-                    .show();
+            Toast.makeText(fromContext, errorOperationAdd, Toast.LENGTH_LONG).show();
         }
 
         super.onPostExecute(result);

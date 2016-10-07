@@ -76,6 +76,11 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
         startAuth();
     }
 
+    @OptionsItem(R.id.menuScheduled)
+    void showScheduleds (){
+        ScheduledsActivity_.intent(this).start();
+    }
+
     @OnActivityResult(AuthActivity.AUTH_RESULT)
     void afterAuth() {
         this.accessService.refreshServerUrl();
