@@ -32,4 +32,7 @@
     <string name="operation_added">Opération ajoutée.</string>
     <string name="account_minus">Depuis le compte (débit)</string>
     <string name="account_plus">Vers le compte (crédit)</string>
+    <string name="save">Enregistrer</string>
+    <string name="cancel">Annuler</string>
+    <string name="delete">Effacer</string>
 </resources>

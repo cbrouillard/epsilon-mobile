@@ -9,14 +9,18 @@ import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.adapter.BudgetsAdapter;
 import com.headbangers.epsilon.v3.async.BudgetsListAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
+import com.headbangers.epsilon.v3.model.Account;
 import com.headbangers.epsilon.v3.model.Budget;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
+
+import static com.headbangers.epsilon.v3.activity.AccountDetailActivity.FROM_DETAILS_ACTIVITY;
 
 @EActivity(R.layout.scheduleds)
 public class BudgetsActivity extends AbstractEpsilonActivity implements Refreshable<List<Budget>> {
@@ -44,6 +48,11 @@ public class BudgetsActivity extends AbstractEpsilonActivity implements Refresha
     @Click(R.id.refresh)
     void refreshButton() {
         init();
+    }
+
+    @ItemClick(R.id.list)
+    void listClick(Budget budget) {
+        BudgetDetailActivity_.intent(this).extra("budget", budget).start();
     }
 
     private void init() {

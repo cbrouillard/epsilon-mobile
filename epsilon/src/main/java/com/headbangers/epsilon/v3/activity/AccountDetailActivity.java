@@ -1,6 +1,9 @@
 package com.headbangers.epsilon.v3.activity;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -20,6 +23,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.OnActivityResult;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
@@ -118,5 +122,12 @@ public class AccountDetailActivity extends AbstractEpsilonActivity implements Re
             this.account = obj;
             init();
         }
+    }
+
+    @ItemClick(R.id.operations)
+    void listClick(Operation operation) {
+        DialogEditOperationFragment fragment = new DialogEditOperationFragment_();
+        fragment.setOperation(operation);
+        fragment.show(this.getFragmentManager(), "EDITOPERATION");
     }
 }

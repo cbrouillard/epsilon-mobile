@@ -3,11 +3,13 @@ package com.headbangers.epsilon.v3.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
 import java.util.List;
 
 
 @JsonIgnoreProperties({"class"})
-public class Budget {
+public class Budget implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @JsonProperty("id")
     private String id;
