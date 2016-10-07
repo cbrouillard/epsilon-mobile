@@ -61,7 +61,7 @@ public class EpsilonAccessServiceImpl extends WebService implements
     EpsilonPrefs_ epsilonPrefs;
 
     @AfterInject
-    void getServerUrl(){
+    public void refreshServerUrl(){
         this.server = epsilonPrefs.server().get();
     }
 

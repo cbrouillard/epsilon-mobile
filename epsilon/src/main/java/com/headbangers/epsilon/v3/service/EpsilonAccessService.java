@@ -11,6 +11,8 @@ import java.util.List;
 
 public interface EpsilonAccessService {
 
+    void refreshServerUrl();
+
     List<Account> findAccounts(String token);
 
     Account getAccount(String token, String accountId);

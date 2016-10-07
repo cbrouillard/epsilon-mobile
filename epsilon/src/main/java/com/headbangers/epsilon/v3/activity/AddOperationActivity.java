@@ -105,12 +105,6 @@ public class AddOperationActivity extends AbstractEpsilonActivity implements Ref
         }
     }
 
-    @OnActivityResult(OPERATION_ADD_DONE)
-    void addDone() {
-        setResult(OPERATION_ADD_DONE);
-        finish();
-    }
-
     private boolean validateForm() {
         String amount = this.amount.getText().toString();
         String category = this.category.getText().toString();

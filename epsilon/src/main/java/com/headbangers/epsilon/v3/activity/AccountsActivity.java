@@ -78,6 +78,7 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
 
     @OnActivityResult(AuthActivity.AUTH_RESULT)
     void afterAuth() {
+        this.accessService.refreshServerUrl();
         init();
     }
 

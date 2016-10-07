@@ -85,12 +85,18 @@ public class AccountDetailActivity extends AbstractEpsilonActivity implements Re
     @Click(R.id.addFacture)
     @OptionsItem(R.id.menuAddDepense)
     void addDepense() {
-        AddOperationActivity_.intent(this).extra("account", account).extra("operationType", OperationType.DEPENSE).start();
+        AddOperationActivity_.intent(this)
+                .extra("account", account)
+                .extra("operationType", OperationType.DEPENSE)
+                .startForResult(OPERATION_ADD_DONE);
     }
 
     @OptionsItem(R.id.menuAddRevenue)
     void addRevenue() {
-        AddOperationActivity_.intent(this).extra("account", account).extra("operationType", OperationType.REVENUE).start();
+        AddOperationActivity_.intent(this)
+                .extra("account", account)
+                .extra("operationType", OperationType.REVENUE)
+                .startForResult(OPERATION_ADD_DONE);
     }
 
     @Override
