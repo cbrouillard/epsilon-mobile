@@ -7,16 +7,20 @@ import android.widget.TextView;
 
 import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.activity.AbstractEpsilonActivity;
+import com.headbangers.epsilon.v3.activity.operation.DialogEditOperationFragment;
+import com.headbangers.epsilon.v3.activity.operation.DialogEditOperationFragment_;
 import com.headbangers.epsilon.v3.adapter.OperationsAdapter;
 import com.headbangers.epsilon.v3.async.OneBudgetAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.OperationEditable;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.Budget;
+import com.headbangers.epsilon.v3.model.Operation;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.budget_detail)
@@ -67,5 +71,13 @@ public class BudgetDetailActivity extends AbstractEpsilonActivity
     @Override
     public void afterOperationEdition() {
         refreshButton();
+    }
+
+    @ItemClick(R.id.operations)
+    void listClick(Operation operation) {
+        DialogEditOperationFragment fragment = new DialogEditOperationFragment_();
+        fragment.setOperation(operation);
+        fragment.setProgressBar(progressBar);
+        fragment.show(this.getFragmentManager(), "EDITOPERATION");
     }
 }
