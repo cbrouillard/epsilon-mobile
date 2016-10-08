@@ -20,10 +20,10 @@ public abstract class AbstractEpsilonActivity extends AppCompatActivity{
     protected static DecimalFormat df = new DecimalFormat("0.00");
 
     @Pref
-    EpsilonPrefs_ epsilonPrefs;
+    protected EpsilonPrefs_ epsilonPrefs;
 
     @Bean
-    EpsilonAccessServiceImpl accessService;
+    protected EpsilonAccessServiceImpl accessService;
 
     protected boolean isLogged (){
         String authToken = epsilonPrefs.token().get();
@@ -40,16 +40,16 @@ public abstract class AbstractEpsilonActivity extends AppCompatActivity{
     }
 
     @StringRes(R.string.opened_at)
-    String openedAt;
+    protected String openedAt;
     @StringRes(R.string.operation_added)
-    String operationAdded;
+    protected String operationAdded;
 
     @StringRes(R.string.error_loading)
-    String errorLoading;
+    protected String errorLoading;
     @StringRes(R.string.error_form_amount)
-    String errorFormAmount;
+    protected String errorFormAmount;
     @StringRes(R.string.error_form_tiers)
-    String errorFormTiers;
+    protected String errorFormTiers;
     @StringRes(R.string.error_form_category)
-    String errorFormCategory;
+    protected String errorFormCategory;
 }

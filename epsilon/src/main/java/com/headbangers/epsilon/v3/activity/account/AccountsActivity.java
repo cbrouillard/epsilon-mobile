@@ -1,12 +1,15 @@
-package com.headbangers.epsilon.v3.activity;
+package com.headbangers.epsilon.v3.activity.account;
 
-import android.content.res.Configuration;
 import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.headbangers.epsilon.v3.R;
+import com.headbangers.epsilon.v3.activity.AbstractEpsilonActivity;
+import com.headbangers.epsilon.v3.activity.AuthActivity;
+import com.headbangers.epsilon.v3.activity.budget.BudgetsActivity_;
+import com.headbangers.epsilon.v3.activity.scheduled.ScheduledsActivity_;
 import com.headbangers.epsilon.v3.adapter.AccountsAdapter;
 import com.headbangers.epsilon.v3.async.AccountsListAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
@@ -14,7 +17,6 @@ import com.headbangers.epsilon.v3.model.Account;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ItemClick;
@@ -25,7 +27,7 @@ import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
 
-import static com.headbangers.epsilon.v3.activity.AccountDetailActivity.FROM_DETAILS_ACTIVITY;
+import static com.headbangers.epsilon.v3.activity.account.AccountDetailActivity.FROM_DETAILS_ACTIVITY;
 
 @EActivity(R.layout.accounts)
 @OptionsMenu(R.menu.menu_welcome)

@@ -1,6 +1,5 @@
-package com.headbangers.epsilon.v3.activity;
+package com.headbangers.epsilon.v3.activity.operation;
 
-import android.content.res.Configuration;
 import android.support.v7.widget.Toolbar;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -9,6 +8,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.headbangers.epsilon.v3.R;
+import com.headbangers.epsilon.v3.activity.AbstractEpsilonActivity;
 import com.headbangers.epsilon.v3.async.AddOperationAsyncLoader;
 import com.headbangers.epsilon.v3.async.AutoCompleteDataAsyncLoader;
 import com.headbangers.epsilon.v3.async.enums.OperationType;
@@ -20,7 +20,6 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.EditorAction;
 import org.androidannotations.annotations.Extra;
-import org.androidannotations.annotations.OnActivityResult;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;

@@ -49,4 +49,8 @@ public interface EpsilonAccessService {
     List<Budget> findBudgets(String token);
     
     Budget getBudget (String token, String budgetId);
+
+    SimpleResult editOperation(String token, String operationId, String categoryName, String tiersName, String amount);
+
+    SimpleResult deleteOperation (String token, String operationId);
 }

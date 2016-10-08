@@ -14,4 +14,6 @@
     <string name="ws_scheduleds">/scheduled</string>
     <string name="ws_budgets">/budgets</string>
     <string name="ws_one_budget">/budget</string>
+    <string name="ws_edit_operation">/editOperation</string>
+    <string name="ws_delete_operation">/deleteOperation</string>
 </resources>

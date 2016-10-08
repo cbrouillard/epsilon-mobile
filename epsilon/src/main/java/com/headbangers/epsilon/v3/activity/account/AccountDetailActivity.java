@@ -1,19 +1,22 @@
-package com.headbangers.epsilon.v3.activity;
+package com.headbangers.epsilon.v3.activity.account;
 
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.headbangers.epsilon.v3.R;
+import com.headbangers.epsilon.v3.activity.AbstractEpsilonActivity;
+import com.headbangers.epsilon.v3.activity.operation.AddOperationActivity_;
+import com.headbangers.epsilon.v3.activity.operation.AddVirementActivity_;
+import com.headbangers.epsilon.v3.activity.operation.DialogEditOperationFragment;
+import com.headbangers.epsilon.v3.activity.operation.DialogEditOperationFragment_;
 import com.headbangers.epsilon.v3.adapter.OperationsAdapter;
 import com.headbangers.epsilon.v3.async.OneAccountAsyncLoader;
 import com.headbangers.epsilon.v3.async.OperationsListAsyncLoader;
 import com.headbangers.epsilon.v3.async.enums.OperationType;
 import com.headbangers.epsilon.v3.async.enums.OperationsSelectMode;
+import com.headbangers.epsilon.v3.async.interfaces.OperationEditable;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.async.interfaces.Reloadable;
 import com.headbangers.epsilon.v3.model.Account;
@@ -31,11 +34,12 @@ import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
 
-import static com.headbangers.epsilon.v3.activity.AddOperationActivity.OPERATION_ADD_DONE;
+import static com.headbangers.epsilon.v3.activity.operation.AddOperationActivity.OPERATION_ADD_DONE;
 
 @EActivity(R.layout.account_detail)
 @OptionsMenu(R.menu.menu_add_operations)
-public class AccountDetailActivity extends AbstractEpsilonActivity implements Refreshable<List<Operation>>, Reloadable<Account> {
+public class AccountDetailActivity extends AbstractEpsilonActivity
+        implements Refreshable<List<Operation>>, Reloadable<Account>, OperationEditable {
 
     public static final int FROM_DETAILS_ACTIVITY = 200;
 
@@ -128,6 +132,12 @@ public class AccountDetailActivity extends AbstractEpsilonActivity implements Re
     void listClick(Operation operation) {
         DialogEditOperationFragment fragment = new DialogEditOperationFragment_();
         fragment.setOperation(operation);
+        fragment.setProgressBar(progressBar);
         fragment.show(this.getFragmentManager(), "EDITOPERATION");
+    }
+
+    @Override
+    public void afterOperationEdition() {
+        new OneAccountAsyncLoader(accessService, this, progressBar).execute(token(), account.getId());
     }
 }

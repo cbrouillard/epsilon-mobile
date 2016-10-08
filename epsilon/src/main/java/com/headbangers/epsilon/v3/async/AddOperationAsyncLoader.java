@@ -9,7 +9,7 @@ import com.headbangers.epsilon.v3.async.enums.OperationType;
 import com.headbangers.epsilon.v3.model.SimpleResult;
 import com.headbangers.epsilon.v3.service.EpsilonAccessService;
 
-import static com.headbangers.epsilon.v3.activity.AddOperationActivity.OPERATION_ADD_DONE;
+import static com.headbangers.epsilon.v3.activity.operation.AddOperationActivity.OPERATION_ADD_DONE;
 
 public class AddOperationAsyncLoader extends
         GenericAsyncLoader<String, SimpleResult> {

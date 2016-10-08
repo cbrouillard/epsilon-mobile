@@ -1,4 +1,4 @@
-package com.headbangers.epsilon.v3.activity;
+package com.headbangers.epsilon.v3.activity.operation;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -13,17 +13,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.headbangers.epsilon.v3.R;
+import com.headbangers.epsilon.v3.async.DeleteOperationAsyncLoader;
+import com.headbangers.epsilon.v3.async.EditOperationAsyncLoader;
 import com.headbangers.epsilon.v3.model.Operation;
+import com.headbangers.epsilon.v3.preferences.EpsilonPrefs_;
+import com.headbangers.epsilon.v3.service.impl.EpsilonAccessServiceImpl;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.sharedpreferences.Pref;
 
 @EFragment
 public class DialogEditOperationFragment extends DialogFragment {
     private View view;
+
+    @Bean
+    EpsilonAccessServiceImpl accessService;
+
+    @Pref
+    EpsilonPrefs_ epsilonPrefs;
 
     @ViewById(R.id.toolbar)
     Toolbar toolbar;
@@ -38,6 +51,8 @@ public class DialogEditOperationFragment extends DialogFragment {
     EditText amount;
 
     private Operation operation;
+
+    ProgressBar progressBar;
 
     @AfterViews
     public void init() {
@@ -61,10 +76,25 @@ public class DialogEditOperationFragment extends DialogFragment {
                 .setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
+
+                        new EditOperationAsyncLoader(accessService, getActivity(), progressBar).execute(
+                                epsilonPrefs.token().get(),
+                                operation.getId(),
+                                category.getText().toString(),
+                                tiers.getText().toString(),
+                                amount.getText().toString());
+
+                        dismiss();
                     }
                 })
+
                 .setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+
+                        new DeleteOperationAsyncLoader(accessService, getActivity(), progressBar).execute(
+                                epsilonPrefs.token().get(), operation.getId());
+
+                        dismiss();
                     }
                 });
 
@@ -79,5 +109,9 @@ public class DialogEditOperationFragment extends DialogFragment {
 
     public void setOperation(Operation operation) {
         this.operation = operation;
+    }
+
+    public void setProgressBar(ProgressBar progressBar) {
+        this.progressBar = progressBar;
     }
 }

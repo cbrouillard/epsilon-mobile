@@ -1,4 +1,4 @@
-package com.headbangers.epsilon.v3.activity;
+package com.headbangers.epsilon.v3.activity.scheduled;
 
 import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
@@ -6,6 +6,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.headbangers.epsilon.v3.R;
+import com.headbangers.epsilon.v3.activity.AbstractEpsilonActivity;
 import com.headbangers.epsilon.v3.adapter.ScheduledsAdapter;
 import com.headbangers.epsilon.v3.async.ScheduledsListAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;

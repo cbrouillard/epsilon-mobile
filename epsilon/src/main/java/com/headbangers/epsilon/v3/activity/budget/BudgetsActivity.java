@@ -1,4 +1,4 @@
-package com.headbangers.epsilon.v3.activity;
+package com.headbangers.epsilon.v3.activity.budget;
 
 import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
@@ -6,10 +6,10 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.headbangers.epsilon.v3.R;
+import com.headbangers.epsilon.v3.activity.AbstractEpsilonActivity;
 import com.headbangers.epsilon.v3.adapter.BudgetsAdapter;
 import com.headbangers.epsilon.v3.async.BudgetsListAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
-import com.headbangers.epsilon.v3.model.Account;
 import com.headbangers.epsilon.v3.model.Budget;
 
 import org.androidannotations.annotations.AfterViews;
@@ -19,8 +19,6 @@ import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
-
-import static com.headbangers.epsilon.v3.activity.AccountDetailActivity.FROM_DETAILS_ACTIVITY;
 
 @EActivity(R.layout.scheduleds)
 public class BudgetsActivity extends AbstractEpsilonActivity implements Refreshable<List<Budget>> {

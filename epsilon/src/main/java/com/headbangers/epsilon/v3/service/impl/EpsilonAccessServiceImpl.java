@@ -53,6 +53,10 @@ public class EpsilonAccessServiceImpl extends WebService implements
     String budgetsUrl;
     @StringRes(R.string.ws_one_budget)
     String oneBudgetUrl;
+    @StringRes(R.string.ws_edit_operation)
+    String editOperationUrl;
+    @StringRes(R.string.ws_delete_operation)
+    String deleteOperationUrl;
 
     // from SharedPrefs
     private String server;
@@ -119,7 +123,48 @@ public class EpsilonAccessServiceImpl extends WebService implements
 
         return null;
     }
-    
+
+    @Override
+    public SimpleResult editOperation(String token, String operationId, String categoryName, String tiersName, String amount) {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("token", token);
+        params.put("oId", operationId);
+        params.put("amount", amount);
+        params.put("tiers", tiersName);
+        params.put("category", categoryName);
+
+        String completeUrl = this.server + this.editOperationUrl;
+        String json = callHttp(completeUrl, params);
+
+        if (json != null) {
+            SimpleResult result = this.<SimpleResult> parseJson(json,
+                    new TypeReference<SimpleResult>() {
+                    });
+            return result;
+        }
+
+        return null;
+    }
+
+    @Override
+    public SimpleResult deleteOperation(String token, String operationId) {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("token", token);
+        params.put("oId", operationId);
+
+        String completeUrl = this.server + this.deleteOperationUrl;
+        String json = callHttp(completeUrl, params);
+
+        if (json != null) {
+            SimpleResult result = this.<SimpleResult> parseJson(json,
+                    new TypeReference<SimpleResult>() {
+                    });
+            return result;
+        }
+
+        return null;
+    }
+
     @Override
     public Account getAccount(String token, String accountId) {
         Map<String, String> params = new HashMap<String, String>();
