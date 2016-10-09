@@ -1,10 +1,11 @@
-package com.headbangers.epsilon.v3.async;
+package com.headbangers.epsilon.v3.async.operation;
 
 import android.app.Activity;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.headbangers.epsilon.v3.R;
+import com.headbangers.epsilon.v3.async.GenericAsyncLoader;
 import com.headbangers.epsilon.v3.async.enums.OperationType;
 import com.headbangers.epsilon.v3.model.SimpleResult;
 import com.headbangers.epsilon.v3.service.EpsilonAccessService;

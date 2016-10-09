@@ -7,7 +7,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.headbangers.epsilon.v3.R;
-import com.headbangers.epsilon.v3.async.RegisterAsyncLoader;
+import com.headbangers.epsilon.v3.async.AuthAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.SimpleResult;
 import com.headbangers.epsilon.v3.preferences.EpsilonPrefs_;
@@ -60,7 +60,7 @@ public class AuthActivity extends AppCompatActivity implements Refreshable<Simpl
     void ok() {
 
         if (validateForm()) {
-            new RegisterAsyncLoader(this.accessService, this, progressBar).execute(
+            new AuthAsyncLoader(this.accessService, this, progressBar).execute(
                     cleanAndCompleteServerUrl(),
                     this.login.getText().toString(),
                     this.password.getText().toString());

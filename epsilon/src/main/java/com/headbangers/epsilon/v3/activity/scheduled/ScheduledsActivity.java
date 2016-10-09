@@ -8,7 +8,7 @@ import android.widget.Toast;
 import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.activity.AbstractEpsilonActivity;
 import com.headbangers.epsilon.v3.adapter.ScheduledsAdapter;
-import com.headbangers.epsilon.v3.async.ScheduledsListAsyncLoader;
+import com.headbangers.epsilon.v3.async.scheduled.ScheduledsListAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.Operation;
 

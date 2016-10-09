@@ -3,6 +3,7 @@ package com.headbangers.epsilon.v3.service;
 import com.headbangers.epsilon.v3.model.Account;
 import com.headbangers.epsilon.v3.model.Budget;
 import com.headbangers.epsilon.v3.model.Category;
+import com.headbangers.epsilon.v3.model.chart.ChartData;
 import com.headbangers.epsilon.v3.model.Operation;
 import com.headbangers.epsilon.v3.model.SimpleResult;
 import com.headbangers.epsilon.v3.model.Tiers;
@@ -53,4 +54,6 @@ public interface EpsilonAccessService {
     SimpleResult editOperation(String token, String operationId, String categoryName, String tiersName, String amount);
 
     SimpleResult deleteOperation (String token, String operationId);
+
+    ChartData retrieveChartByCategoryData (String token);
 }

@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.activity.AbstractEpsilonActivity;
-import com.headbangers.epsilon.v3.async.AddOperationAsyncLoader;
-import com.headbangers.epsilon.v3.async.AutoCompleteDataAsyncLoader;
+import com.headbangers.epsilon.v3.async.operation.AddOperationAsyncLoader;
+import com.headbangers.epsilon.v3.async.data.AutoCompleteDataAsyncLoader;
 import com.headbangers.epsilon.v3.async.enums.OperationType;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.Account;

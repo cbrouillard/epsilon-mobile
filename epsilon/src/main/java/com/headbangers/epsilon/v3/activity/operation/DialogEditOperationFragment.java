@@ -16,8 +16,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.headbangers.epsilon.v3.R;
-import com.headbangers.epsilon.v3.async.DeleteOperationAsyncLoader;
-import com.headbangers.epsilon.v3.async.EditOperationAsyncLoader;
+import com.headbangers.epsilon.v3.async.operation.DeleteOperationAsyncLoader;
+import com.headbangers.epsilon.v3.async.operation.EditOperationAsyncLoader;
 import com.headbangers.epsilon.v3.model.Operation;
 import com.headbangers.epsilon.v3.preferences.EpsilonPrefs_;
 import com.headbangers.epsilon.v3.service.impl.EpsilonAccessServiceImpl;

@@ -1,19 +1,37 @@
 package com.headbangers.epsilon.v3.activity.account;
 
+import android.graphics.Color;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.DefaultValueFormatter;
+import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.activity.AbstractEpsilonActivity;
 import com.headbangers.epsilon.v3.activity.AuthActivity;
 import com.headbangers.epsilon.v3.activity.budget.BudgetsActivity_;
 import com.headbangers.epsilon.v3.activity.scheduled.ScheduledsActivity_;
 import com.headbangers.epsilon.v3.adapter.AccountsAdapter;
-import com.headbangers.epsilon.v3.async.AccountsListAsyncLoader;
+import com.headbangers.epsilon.v3.async.account.AccountsListAsyncLoader;
+import com.headbangers.epsilon.v3.async.data.ChartCategoryDataAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.Account;
+import com.headbangers.epsilon.v3.model.chart.ChartData;
+import com.headbangers.epsilon.v3.model.chart.GraphData;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -25,13 +43,14 @@ import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.headbangers.epsilon.v3.activity.account.AccountDetailActivity.FROM_DETAILS_ACTIVITY;
 
 @EActivity(R.layout.accounts)
 @OptionsMenu(R.menu.menu_welcome)
-public class AccountsActivity extends AbstractEpsilonActivity implements Refreshable<List<Account>> {
+public class AccountsActivity extends AbstractEpsilonActivity implements Refreshable<List<Account>>, OnChartValueSelectedListener {
 
     @ViewById(R.id.toolbar)
     Toolbar toolbar;
@@ -41,6 +60,9 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
 
     @ViewById(R.id.list)
     ListView list;
+
+    @ViewById(R.id.chart)
+    PieChart chart;
 
     @AfterViews
     void bindToolbar() {
@@ -64,6 +86,8 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
         if (result != null) {
             AccountsAdapter accountsAdapter = new AccountsAdapter(this, result);
             list.setAdapter(accountsAdapter);
+
+            initChart();
         } else {
             Toast.makeText(this, errorLoading, Toast.LENGTH_LONG)
                     .show();
@@ -97,7 +121,7 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
     }
 
     @OnActivityResult(FROM_DETAILS_ACTIVITY)
-    void fromDetailsActivity(){
+    void fromDetailsActivity() {
         init();
     }
 
@@ -112,4 +136,79 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
         }
     }
 
+    private void initChart() {
+        chart.setUsePercentValues(true);
+        chart.setDescription("");
+        chart.setDragDecelerationFrictionCoef(0.95f);
+
+        chart.setDrawHoleEnabled(true);
+        chart.setHoleColor(Color.TRANSPARENT);
+
+        chart.setTransparentCircleColor(Color.WHITE);
+        chart.setTransparentCircleAlpha(110);
+
+        chart.setHoleRadius(30f);
+        chart.setTransparentCircleRadius(35f);
+
+        chart.setRotationAngle(0);
+        chart.setRotationEnabled(true);
+        chart.setHighlightPerTapEnabled(true);
+        chart.setDrawEntryLabels(false);
+
+        chart.setEntryLabelColor(R.color.colorAmount);
+        chart.setEntryLabelTextSize(12f);
+
+        chart.setOnChartValueSelectedListener(this);
+
+        chart.getLegend().setEnabled(true);
+        chart.getLegend().setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        chart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+        chart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
+        chart.getLegend().setDrawInside(false);
+        chart.invalidate();
+
+        new ChartCategoryDataAsyncLoader(accessService, this, progressBar).execute(token());
+    }
+
+    public void showChartAfterData(ChartData result) {
+        if (result != null && result.getData() != null && !result.getData().isEmpty()) {
+
+            ArrayList<PieEntry> entries = new ArrayList<>();
+            for (GraphData oneData : result.getData()) {
+                entries.add(new PieEntry(oneData.getValue().floatValue(), oneData.getKey()));
+            }
+
+            ArrayList<Integer> colors = new ArrayList<>();
+            for (String oneColor : result.getColors()) {
+                colors.add(Color.parseColor(oneColor));
+            }
+
+            PieDataSet dataSet = new PieDataSet(entries, "");
+            dataSet.setSliceSpace(3f);
+            dataSet.setSelectionShift(10f);
+            dataSet.setColors(colors);
+
+            PieData data = new PieData(dataSet);
+            data.setValueFormatter(new PercentFormatter());
+            data.setValueTextSize(11f);
+            data.setValueTextColor(Color.WHITE);
+            chart.setData(data);
+
+            chart.highlightValues(null);
+            chart.setVisibility(View.VISIBLE);
+            chart.invalidate();
+            chart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
+        }
+    }
+
+    @Override
+    public void onValueSelected(Entry e, Highlight h) {
+        PieEntry entry = (PieEntry) e;
+        Toast.makeText(this, entry.getLabel() + " : " + entry.getValue() + "€", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onNothingSelected() {
+        // nothing to do.
+    }
 }

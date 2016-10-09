@@ -1,28 +1,40 @@
-package com.headbangers.epsilon.v3.async;
+package com.headbangers.epsilon.v3.async.operation;
 
 
 import android.app.Activity;
 import android.widget.ProgressBar;
 
+import com.headbangers.epsilon.v3.async.GenericAsyncLoader;
+import com.headbangers.epsilon.v3.async.enums.OperationsSelectMode;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.Operation;
 import com.headbangers.epsilon.v3.service.EpsilonAccessService;
 
 import java.util.List;
 
-
-public class ScheduledsListAsyncLoader extends
+public class OperationsListAsyncLoader extends
         GenericAsyncLoader<String, List<Operation>> {
 
-    public ScheduledsListAsyncLoader(EpsilonAccessService dataService,
+    public OperationsListAsyncLoader(EpsilonAccessService dataService,
                                      Activity context, ProgressBar progressBar) {
         super(dataService, context, progressBar);
     }
 
+
     @Override
     protected List<Operation> doInBackground(String... params) {
         // params[0] = selectmode
-        return data.findScheduleds(params[0]);
+        OperationsSelectMode mode = OperationsSelectMode.valueOf(params[0]);
+        switch (mode) {
+            case BYMONTH:
+                return data.findMonthOperations(params[1], params[2]);
+            case BYCATEGORY:
+                return data.findCategoriesOperations(params[1], params[2]);
+            case BYTIERS:
+                return data.findTiersOperations(params[1], params[2]);
+        }
+
+        return null;
     }
 
     @Override

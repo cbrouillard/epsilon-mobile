@@ -10,7 +10,7 @@ import com.headbangers.epsilon.v3.activity.AbstractEpsilonActivity;
 import com.headbangers.epsilon.v3.activity.operation.DialogEditOperationFragment;
 import com.headbangers.epsilon.v3.activity.operation.DialogEditOperationFragment_;
 import com.headbangers.epsilon.v3.adapter.OperationsAdapter;
-import com.headbangers.epsilon.v3.async.OneBudgetAsyncLoader;
+import com.headbangers.epsilon.v3.async.budget.OneBudgetAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.OperationEditable;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.Budget;

@@ -37,4 +37,5 @@
     <string name="delete">Effacer</string>
     <string name="edit_operation">Edition de l\'opération :</string>
     <string name="suppress_operation">Suppression de l\'opération :</string>
+    <string name="chart_by_category">Dépenses par catégorie</string>
 </resources>

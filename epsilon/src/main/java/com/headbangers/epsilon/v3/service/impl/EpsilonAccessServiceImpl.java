@@ -6,6 +6,7 @@ import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.model.Account;
 import com.headbangers.epsilon.v3.model.Budget;
 import com.headbangers.epsilon.v3.model.Category;
+import com.headbangers.epsilon.v3.model.chart.ChartData;
 import com.headbangers.epsilon.v3.model.Operation;
 import com.headbangers.epsilon.v3.model.SimpleResult;
 import com.headbangers.epsilon.v3.model.Tiers;
@@ -57,12 +58,13 @@ public class EpsilonAccessServiceImpl extends WebService implements
     String editOperationUrl;
     @StringRes(R.string.ws_delete_operation)
     String deleteOperationUrl;
-
-    // from SharedPrefs
-    private String server;
+    @StringRes(R.string.ws_chart_category)
+    String retrieveChartByCategoryUrl;
 
     @Pref
     EpsilonPrefs_ epsilonPrefs;
+    // from SharedPrefs
+    private String server;
 
     @AfterInject
     public void refreshServerUrl(){
@@ -160,6 +162,24 @@ public class EpsilonAccessServiceImpl extends WebService implements
                     new TypeReference<SimpleResult>() {
                     });
             return result;
+        }
+
+        return null;
+    }
+
+    @Override
+    public ChartData retrieveChartByCategoryData(String token) {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("token", token);
+
+        String completeUrl = this.server + this.retrieveChartByCategoryUrl;
+        String json = callHttp(completeUrl, params);
+
+        if (json != null) {
+            ChartData data = this.<ChartData> parseJson(json,
+                    new TypeReference<ChartData>() {
+                    });
+            return data;
         }
 
         return null;

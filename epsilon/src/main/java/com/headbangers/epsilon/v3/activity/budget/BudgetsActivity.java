@@ -8,7 +8,7 @@ import android.widget.Toast;
 import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.activity.AbstractEpsilonActivity;
 import com.headbangers.epsilon.v3.adapter.BudgetsAdapter;
-import com.headbangers.epsilon.v3.async.BudgetsListAsyncLoader;
+import com.headbangers.epsilon.v3.async.budget.BudgetsListAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.Budget;
 

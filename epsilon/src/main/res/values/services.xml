@@ -16,4 +16,5 @@
     <string name="ws_one_budget">/budget</string>
     <string name="ws_edit_operation">/editOperation</string>
     <string name="ws_delete_operation">/deleteOperation</string>
+    <string name="ws_chart_category">/chartByCategoryData</string>
 </resources>

@@ -1,8 +1,9 @@
-package com.headbangers.epsilon.v3.async;
+package com.headbangers.epsilon.v3.async.data;
 
 import android.app.Activity;
 import android.widget.ProgressBar;
 
+import com.headbangers.epsilon.v3.async.GenericAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.AutoCompleteData;
 import com.headbangers.epsilon.v3.service.EpsilonAccessService;

@@ -8,10 +8,10 @@ import com.headbangers.epsilon.v3.model.SimpleResult;
 import com.headbangers.epsilon.v3.service.EpsilonAccessService;
 
 
-public class RegisterAsyncLoader extends GenericAsyncLoader<String, SimpleResult> {
+public class AuthAsyncLoader extends GenericAsyncLoader<String, SimpleResult> {
 
-    public RegisterAsyncLoader(EpsilonAccessService dataService,
-                               Activity context, ProgressBar progressBar) {
+    public AuthAsyncLoader(EpsilonAccessService dataService,
+                           Activity context, ProgressBar progressBar) {
         super(dataService, context, progressBar);
     }
 
