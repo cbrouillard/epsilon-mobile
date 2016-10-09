@@ -27,8 +27,8 @@
     <string name="add_depense">Ajouter une dépense</string>
     <string name="add_revenue">Faire un dépôt</string>
     <string name="add_virement">Faire un virement</string>
-    <string name="add_operation_hint">Saisissez votre opération. Les champs sont tous obligatoires. La catégorie et/ou le tiers seront créés automatiquement s\'ils ne sont pas déjà dans la liste.</string>
-    <string name="add_virement_hint">Saisissez votre opération. Les champs sont tous obligatoires. La catégorie sera créée automatiquement si elle n\'est pas déjà dans la liste.</string>
+    <string name="add_operation_hint">Saisissez votre opération. Les champs sont tous obligatoires. La catégorie et/ou le tiers seront créés automatiquement si nécessaire.</string>
+    <string name="add_virement_hint">Saisissez votre opération. Les champs sont tous obligatoires. La catégorie sera créée automatiquement si nécessaire.</string>
     <string name="operation_added">Opération ajoutée.</string>
     <string name="account_minus">Depuis le compte (débit)</string>
     <string name="account_plus">Vers le compte (crédit)</string>
