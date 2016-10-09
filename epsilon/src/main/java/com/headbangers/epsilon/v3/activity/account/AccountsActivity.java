@@ -1,6 +1,7 @@
 package com.headbangers.epsilon.v3.activity.account;
 
 import android.graphics.Color;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -24,10 +25,13 @@ import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.activity.AbstractEpsilonActivity;
 import com.headbangers.epsilon.v3.activity.AuthActivity;
 import com.headbangers.epsilon.v3.activity.budget.BudgetsActivity_;
+import com.headbangers.epsilon.v3.activity.operation.AddOperationActivity_;
 import com.headbangers.epsilon.v3.activity.scheduled.ScheduledsActivity_;
 import com.headbangers.epsilon.v3.adapter.AccountsAdapter;
 import com.headbangers.epsilon.v3.async.account.AccountsListAsyncLoader;
+import com.headbangers.epsilon.v3.async.account.OneAccountAsyncLoader;
 import com.headbangers.epsilon.v3.async.data.ChartCategoryDataAsyncLoader;
+import com.headbangers.epsilon.v3.async.enums.OperationType;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.Account;
 import com.headbangers.epsilon.v3.model.chart.ChartData;
@@ -47,6 +51,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.headbangers.epsilon.v3.activity.account.AccountDetailActivity.FROM_DETAILS_ACTIVITY;
+import static com.headbangers.epsilon.v3.activity.operation.AddOperationActivity.OPERATION_ADD_DONE;
 
 @EActivity(R.layout.accounts)
 @OptionsMenu(R.menu.menu_welcome)
@@ -63,6 +68,11 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
 
     @ViewById(R.id.chart)
     PieChart chart;
+
+    @ViewById(R.id.addFacture)
+    FloatingActionButton addFactureOnDefaultAccountButton;
+
+    private Account defaultAccount;
 
     @AfterViews
     void bindToolbar() {
@@ -86,6 +96,15 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
         if (result != null) {
             AccountsAdapter accountsAdapter = new AccountsAdapter(this, result);
             list.setAdapter(accountsAdapter);
+
+            this.defaultAccount = null;
+            addFactureOnDefaultAccountButton.setVisibility(View.GONE);
+            for (Account account : result){
+                if (account.isMobileDefault()){
+                    this.defaultAccount = account;
+                    addFactureOnDefaultAccountButton.setVisibility(View.VISIBLE);
+                }
+            }
 
             initChart();
         } else {
@@ -125,9 +144,24 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
         init();
     }
 
+    @OnActivityResult(OPERATION_ADD_DONE)
+    void addOperationDone() {
+        init();
+    }
+
     @ItemClick(R.id.list)
     void listClick(Account account) {
         AccountDetailActivity_.intent(this).extra("account", account).startForResult(FROM_DETAILS_ACTIVITY);
+    }
+
+    @Click(R.id.addFacture)
+    void addDepenseOnDefaultAccount() {
+        if (this.defaultAccount != null) {
+            AddOperationActivity_.intent(this)
+                    .extra("account", this.defaultAccount)
+                    .extra("operationType", OperationType.DEPENSE)
+                    .startForResult(OPERATION_ADD_DONE);
+        }
     }
 
     void init() {

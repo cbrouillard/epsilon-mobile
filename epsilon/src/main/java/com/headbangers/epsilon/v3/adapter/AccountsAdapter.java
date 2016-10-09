@@ -66,5 +66,4 @@ public class AccountsAdapter extends ArrayAdapter<Account> {
 
         return row;
     }
-
 }
