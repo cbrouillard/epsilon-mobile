@@ -21,13 +21,16 @@ android {
     }
     productFlavors {
     }
+    lintOptions {
+        disable "InvalidPackage", "InflateParams", "IconColors", "IconLocation", "GoogleAppIndexingWarning"
+    }
 }
 
 dependencies {
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
-    compile 'com.android.support:appcompat-v7:24.0.0-alpha2'
-    compile 'com.android.support:design:24.0.0-alpha2'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.8.3'
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.0-beta1'
 }

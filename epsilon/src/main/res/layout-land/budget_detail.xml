@@ -31,6 +31,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:baselineAligned="false"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -43,24 +44,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/current_amount"
-                android:textSize="16dip" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/sold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/amount_label"
-                android:gravity="right"
-                android:padding="10dp"
                 android:layout_marginTop="5dp"
+                android:background="@drawable/amount_label"
+                android:gravity="end"
+                android:padding="10dp"
                 android:text="1900,00€"
                 android:textColor="#ffffff"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4">
 

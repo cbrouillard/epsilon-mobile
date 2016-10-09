@@ -31,6 +31,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:baselineAligned="false"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -43,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/current_amount"
-                android:textSize="16dip" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/sold"
@@ -51,114 +52,109 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/amount_label"
-                android:gravity="right"
+                android:gravity="end"
                 android:padding="10dp"
                 android:text="1900,00€"
                 android:textColor="#ffffff"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
         <ScrollView
-            android:layout_width="fill_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
+
+                <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/info_label"
+                    android:gravity="fill"
+                    android:padding="10dp"
+                    android:text="@string/add_virement_hint"
+                    android:textColor="#fff" />
 
-                    <TextView
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/info_label"
-                        android:gravity="fill"
-                        android:padding="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/add_virement_hint"
-                        android:textColor="#fff" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:text="@string/account_minus"
+                    android:textColor="@color/lightBlue"
+                    android:textStyle="italic" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="14dp"
-                        android:text="@string/account_minus"
-                        android:textColor="@color/lightBlue"
-                        android:textStyle="italic" />
+                <Spinner
+                    android:id="@+id/accountFrom"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp" />
 
-                    <Spinner
-                        android:id="@+id/accountFrom"
-                        style="@style/Widget.AppCompat.Spinner.Underlined"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:text="@string/account_plus"
+                    android:textColor="@color/lightBlue"
+                    android:textStyle="italic" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="14dp"
-                        android:text="@string/account_plus"
-                        android:textColor="@color/lightBlue"
-                        android:textStyle="italic" />
+                <Spinner
+                    android:id="@+id/accountTo"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp" />
 
-                    <Spinner
-                        android:id="@+id/accountTo"
-                        style="@style/Widget.AppCompat.Spinner.Underlined"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:text="@string/category"
+                    android:textColor="@color/lightBlue"
+                    android:textStyle="italic" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="14dp"
-                        android:text="@string/category"
-                        android:textColor="@color/lightBlue"
-                        android:textStyle="italic" />
+                <AutoCompleteTextView
+                    android:id="@+id/category"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:focusable="true"
+                    android:hint="@string/category_hint"
+                    android:inputType="textCapSentences" />
 
-                    <AutoCompleteTextView
-                        android:id="@+id/category"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:focusable="true"
-                        android:hint="@string/category_hint"
-                        android:inputType="textCapSentences" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:text="@string/amount"
+                    android:textColor="@color/lightBlue"
+                    android:textStyle="italic" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="14dp"
-                        android:text="@string/amount"
-                        android:textColor="@color/lightBlue"
-                        android:textStyle="italic" />
-
-                    <EditText
-                        android:id="@+id/amount"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:focusable="true"
-                        android:hint="@string/amount_hint"
-                        android:inputType="numberDecimal" />
-                </LinearLayout>
+                <EditText
+                    android:id="@+id/amount"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:focusable="true"
+                    android:hint="@string/amount_hint"
+                    android:inputType="numberDecimal" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

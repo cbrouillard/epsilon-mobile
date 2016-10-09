@@ -10,7 +10,8 @@
         android:id="@+id/icon"
         android:layout_width="36dip"
         android:layout_height="36dip"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:contentDescription="@string/operation_contentDescription" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -27,9 +28,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:gravity="center_vertical"
-                android:paddingLeft="5dip"
+                android:layout_marginStart="5dip"
                 android:text="Catégorie - "
-                android:textSize="14dip" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tiers"
@@ -38,7 +39,7 @@
                 android:gravity="center_vertical"
                 android:scrollHorizontally="true"
                 android:text="Tiers"
-                android:textSize="14dip" />
+                android:textSize="14sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -51,20 +52,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:gravity="center_vertical"
-                android:paddingLeft="5dip"
+                android:layout_marginStart="5dip"
                 android:text="Le: 12/02/2016"
-                android:textSize="12dip" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/amount"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginRight="10dip"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dip"
                 android:layout_weight="4"
-                android:gravity="center_vertical|right"
-                android:paddingLeft="10dip"
+                android:gravity="center_vertical|end"
+                android:layout_marginStart="10dip"
                 android:text="-56,00€"
-                android:textSize="12dip" />
+                android:textSize="12sp" />
         </LinearLayout>
 
     </LinearLayout>

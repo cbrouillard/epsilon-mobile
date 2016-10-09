@@ -20,7 +20,7 @@ import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
 
-@EActivity(R.layout.scheduleds)
+@EActivity(R.layout.budgets)
 public class BudgetsActivity extends AbstractEpsilonActivity implements Refreshable<List<Budget>> {
 
     @ViewById(R.id.toolbar)

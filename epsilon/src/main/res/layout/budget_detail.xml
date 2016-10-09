@@ -20,13 +20,13 @@
     </android.support.design.widget.AppBarLayout>
 
     <ProgressBar
+        android:id="@+id/progressBar"
         style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:progress="0"
         android:indeterminate="true"
-        android:id="@+id/progressBar"
-        android:visibility="gone"/>
+        android:progress="0"
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:text="@string/current_amount"
-                android:textSize="16dip" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -53,7 +53,7 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="right|center_horizontal|center_vertical"
+            android:gravity="end|center_horizontal|center_vertical"
             android:orientation="horizontal">
 
             <TextView
@@ -61,11 +61,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/amount_label"
-                android:gravity="right"
+                android:gravity="end"
                 android:padding="10dp"
                 android:text="1900,00€"
                 android:textColor="#ffffff"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -74,22 +74,22 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" android:layout_weight="4">
+        android:layout_height="0dp"
+        android:layout_weight="4">
 
         <ListView
             android:id="@+id/operations"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            />
+            android:layout_height="fill_parent" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/refresh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:src="@drawable/refresh"
+            android:layout_alignBottom="@id/operations"
             android:layout_alignEnd="@id/operations"
-            android:layout_alignBottom="@id/operations"/>
+            android:layout_margin="16dp"
+            android:src="@drawable/refresh" />
     </RelativeLayout>
 
 </LinearLayout>

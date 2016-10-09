@@ -5,63 +5,52 @@
     android:orientation="horizontal"
     android:padding="10dip">
 
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/span_ok" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="PEL"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ouvert le: 12/02/2016"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal|center_vertical"
+        android:gravity="end|center_horizontal|center_vertical"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/status"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/span_ok" />
-
-        <LinearLayout
+            android:id="@+id/sold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="PEL"
-                android:textSize="16dip" />
-
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ouvert le: 12/02/2016"
-                android:textSize="12dip" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right|center_horizontal|center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/sold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="10dp"
-                android:text="1900,00€"
-                android:textSize="15dp"
-                android:textStyle="bold"/>
-
-        </LinearLayout>
-
+            android:gravity="end"
+            android:padding="10dp"
+            android:text="1900,00€"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
-
 
 </LinearLayout>

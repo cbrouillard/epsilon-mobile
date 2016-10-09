@@ -6,13 +6,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 
 @JsonIgnoreProperties({"class"})
 public class Operation implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
 
     @JsonProperty("id")
     private String id;

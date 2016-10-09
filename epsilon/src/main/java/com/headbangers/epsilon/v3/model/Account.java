@@ -7,13 +7,14 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 @JsonIgnoreProperties({"class"})
 public class Account implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
 
     @JsonProperty("id")
     private String id;

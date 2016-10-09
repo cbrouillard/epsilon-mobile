@@ -39,7 +39,7 @@
 
     <RelativeLayout android:layout_weight="4"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp">
 
         <ListView
             android:id="@+id/list"
@@ -55,7 +55,7 @@
             android:src="@drawable/adddepense"
             android:layout_alignEnd="@id/list"
             android:layout_alignBottom="@id/list"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="80dp"
             android:visibility="gone"/>
 

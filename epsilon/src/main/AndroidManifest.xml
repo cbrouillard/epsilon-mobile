@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.headbangers.epsilon.v3"
-    android:versionCode="1"
-    android:versionName="1.0">
+    package="com.headbangers.epsilon.v3">
 
-    <uses-sdk android:minSdkVersion="22" />
+    <uses-sdk />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:icon="@drawable/money"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/AppTheme.NoActionBar"
+        android:allowBackup="false"
+        android:supportsRtl="true">
 
         <activity
             android:name="com.headbangers.epsilon.v3.activity.account.AccountsActivity_"
@@ -24,32 +24,31 @@
 
         <activity
             android:name="com.headbangers.epsilon.v3.activity.AuthActivity_"
-            android:label="@string/authenticate"></activity>
+            android:label="@string/authenticate" />
 
         <activity
             android:name="com.headbangers.epsilon.v3.activity.account.AccountDetailActivity_"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
 
         <activity
             android:name="com.headbangers.epsilon.v3.activity.budget.BudgetDetailActivity_"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
 
         <activity
             android:name="com.headbangers.epsilon.v3.activity.operation.AddOperationActivity_"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
 
         <activity
             android:name="com.headbangers.epsilon.v3.activity.operation.AddVirementActivity_"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
 
         <activity
             android:name="com.headbangers.epsilon.v3.activity.scheduled.ScheduledsActivity_"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
 
         <activity
             android:name="com.headbangers.epsilon.v3.activity.budget.BudgetsActivity_"
-            android:label="@string/app_name"></activity>
-
+            android:label="@string/app_name" />
 
     </application>
 </manifest>

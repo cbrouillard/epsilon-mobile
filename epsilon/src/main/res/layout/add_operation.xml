@@ -30,12 +30,12 @@
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="4">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
@@ -56,7 +56,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:text="@string/current_amount"
-                        android:textSize="16dip" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -64,7 +64,7 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right|center_horizontal|center_vertical"
+                    android:gravity="end|center_horizontal|center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
@@ -72,11 +72,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/amount_label"
-                        android:gravity="right"
+                        android:gravity="end"
                         android:padding="10dp"
                         android:text="1900,00€"
                         android:textColor="#ffffff"
-                        android:textSize="20dp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -92,8 +92,8 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:background="@drawable/info_label"
                     android:gravity="fill"
                     android:padding="10dp"
@@ -104,7 +104,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="14dp"
+                    android:layout_marginStart="14dp"
                     android:text="@string/tiers"
                     android:textColor="@color/lightBlue"
                     android:textStyle="italic" />
@@ -114,8 +114,8 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:focusable="true"
                     android:hint="@string/tiers_hint"
                     android:inputType="textCapSentences" />
@@ -123,7 +123,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="14dp"
+                    android:layout_marginStart="14dp"
                     android:text="@string/category"
                     android:textColor="@color/lightBlue"
                     android:textStyle="italic" />
@@ -133,8 +133,8 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:focusable="true"
                     android:hint="@string/category_hint"
                     android:inputType="textCapSentences" />
@@ -142,7 +142,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="14dp"
+                    android:layout_marginStart="14dp"
                     android:text="@string/amount"
                     android:textColor="@color/lightBlue"
                     android:textStyle="italic" />
@@ -152,8 +152,8 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:focusable="true"
                     android:hint="@string/amount_hint"
                     android:inputType="numberDecimal" />
