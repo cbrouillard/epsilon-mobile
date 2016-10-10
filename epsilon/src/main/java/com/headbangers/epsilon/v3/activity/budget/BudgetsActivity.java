@@ -1,6 +1,8 @@
 package com.headbangers.epsilon.v3.activity.budget;
 
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -35,6 +37,9 @@ public class BudgetsActivity extends AbstractEpsilonActivity implements Refresha
 
     @ViewById(R.id.used)
     TextView usedAmount;
+
+    @ViewById(R.id.infos_aboutsold)
+    LinearLayout infosSold;
 
     @AfterViews
     void bindToolbar() {
@@ -71,12 +76,13 @@ public class BudgetsActivity extends AbstractEpsilonActivity implements Refresha
 
             Double currentUsedAmount = 0D;
             Double totalMaxAmount = 0D;
-            for (Budget budget : result){
+            for (Budget budget : result) {
                 currentUsedAmount += budget.getUsedAmound();
                 totalMaxAmount += budget.getMaxAmount();
             }
 
             usedAmount.setText(currentUsedAmount + " / " + totalMaxAmount + "€");
+            infosSold.setVisibility(View.VISIBLE);
 
         } else {
             Toast.makeText(this, errorLoading, Toast.LENGTH_LONG)
