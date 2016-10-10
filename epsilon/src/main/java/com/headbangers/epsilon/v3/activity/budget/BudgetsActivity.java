@@ -3,6 +3,7 @@ package com.headbangers.epsilon.v3.activity.budget;
 import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.headbangers.epsilon.v3.R;
@@ -32,11 +33,16 @@ public class BudgetsActivity extends AbstractEpsilonActivity implements Refresha
     @ViewById(R.id.list)
     ListView list;
 
+    @ViewById(R.id.used)
+    TextView usedAmount;
+
     @AfterViews
     void bindToolbar() {
         toolbar.setTitle(R.string.budget_list);
         toolbar.setSubtitle(R.string.budget_list_subtitle);
         setSupportActionBar(toolbar);
+
+        usedAmount.setText("");
 
         if (isLogged()) {
             init();
@@ -62,6 +68,16 @@ public class BudgetsActivity extends AbstractEpsilonActivity implements Refresha
         if (result != null) {
             BudgetsAdapter budgetsAdapter = new BudgetsAdapter(this, result);
             list.setAdapter(budgetsAdapter);
+
+            Double currentUsedAmount = 0D;
+            Double totalMaxAmount = 0D;
+            for (Budget budget : result){
+                currentUsedAmount += budget.getUsedAmound();
+                totalMaxAmount += budget.getMaxAmount();
+            }
+
+            usedAmount.setText(currentUsedAmount + " / " + totalMaxAmount + "€");
+
         } else {
             Toast.makeText(this, errorLoading, Toast.LENGTH_LONG)
                     .show();

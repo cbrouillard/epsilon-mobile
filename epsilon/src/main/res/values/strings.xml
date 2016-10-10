@@ -40,4 +40,5 @@
     <string name="see_scheduleds">Voir les échéances</string>
     <string name="see_budgets">Voir les budgets</string>
     <string name="operation_contentDescription">+ or -</string>
+    <string name="budget_used_amount">Total actuellement utilisé</string>
 </resources>
