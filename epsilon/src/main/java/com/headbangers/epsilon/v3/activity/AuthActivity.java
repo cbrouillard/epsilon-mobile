@@ -78,7 +78,7 @@ public class AuthActivity extends AppCompatActivity implements Refreshable<Simpl
             server = server.substring(0, server.length() - 1);
         }
 
-        return server + "/mobile";
+        return server + "/api";
     }
 
     private boolean validateForm() {
@@ -112,7 +112,7 @@ public class AuthActivity extends AppCompatActivity implements Refreshable<Simpl
             setResult(AUTH_RESULT);
             finish();
         } else {
-            Toast.makeText(this, errorFormLogin, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, errorLogin, Toast.LENGTH_LONG).show();
         }
     }
 

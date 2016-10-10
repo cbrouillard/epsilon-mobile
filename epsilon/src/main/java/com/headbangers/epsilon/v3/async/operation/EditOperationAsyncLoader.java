@@ -22,7 +22,7 @@ public class EditOperationAsyncLoader extends GenericAsyncLoader<String, SimpleR
     @Override
     protected SimpleResult doInBackground(String... params) {
         // 0:token, 1:id, 2:category, 3:tiers, 4:amount
-        return data.editOperation(params[0], params[1], params[2], params[3], params[4]);
+        return data.editOperation(params[1], params[2], params[3], params[4]);
     }
 
     @Override

@@ -22,7 +22,7 @@ public class BudgetsListAsyncLoader extends
     @Override
     protected List<Budget> doInBackground(String... params) {
         // params[0] = selectmode
-        return data.findBudgets(params[0]);
+        return data.findBudgets();
     }
 
     @Override

@@ -28,26 +28,26 @@ public class AutoCompleteDataAsyncLoader extends
         AutoCompleteData autoCompleteData = new AutoCompleteData();
         switch (toLoad) {
             case CATEGORY_ONLY:
-                autoCompleteData.setCategories(data.findCategoriesName(params[1]));
+                autoCompleteData.setCategories(data.findCategoriesName());
                 break;
             case TIERS_ONLY:
-                autoCompleteData.setTiers(data.findTiersName(params[1]));
+                autoCompleteData.setTiers(data.findTiersName());
                 break;
             case ACCOUNT_ONLY:
-                autoCompleteData.setAccounts(data.findAccounts(params[1]));
+                autoCompleteData.setAccounts(data.findAccounts());
                 break;
             case CATEGORY_TIERS:
-                autoCompleteData.setCategories(data.findCategoriesName(params[1]));
-                autoCompleteData.setTiers(data.findTiersName(params[1]));
+                autoCompleteData.setCategories(data.findCategoriesName());
+                autoCompleteData.setTiers(data.findTiersName());
                 break;
             case CATEGORY_ACCOUNTS:
-                autoCompleteData.setCategories(data.findCategoriesName(params[1]));
-                autoCompleteData.setAccounts(data.findAccounts(params[1]));
+                autoCompleteData.setCategories(data.findCategoriesName());
+                autoCompleteData.setAccounts(data.findAccounts());
                 break;
             case ALL:
-                autoCompleteData.setCategories(data.findCategoriesName(params[1]));
-                autoCompleteData.setTiers(data.findTiersName(params[1]));
-                autoCompleteData.setAccounts(data.findAccounts(params[1]));
+                autoCompleteData.setCategories(data.findCategoriesName());
+                autoCompleteData.setTiers(data.findTiersName());
+                autoCompleteData.setAccounts(data.findAccounts());
                 break;
         }
 

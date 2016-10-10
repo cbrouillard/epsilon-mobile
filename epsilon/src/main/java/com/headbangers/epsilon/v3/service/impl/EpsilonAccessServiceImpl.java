@@ -6,17 +6,16 @@ import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.model.Account;
 import com.headbangers.epsilon.v3.model.Budget;
 import com.headbangers.epsilon.v3.model.Category;
+import com.headbangers.epsilon.v3.model.Scheduled;
 import com.headbangers.epsilon.v3.model.chart.ChartData;
 import com.headbangers.epsilon.v3.model.Operation;
 import com.headbangers.epsilon.v3.model.SimpleResult;
 import com.headbangers.epsilon.v3.model.Tiers;
-import com.headbangers.epsilon.v3.preferences.EpsilonPrefs_;
 import com.headbangers.epsilon.v3.service.EpsilonAccessService;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.res.StringRes;
-import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import java.util.HashMap;
 import java.util.List;
@@ -61,26 +60,22 @@ public class EpsilonAccessServiceImpl extends WebService implements
     @StringRes(R.string.ws_chart_category)
     String retrieveChartByCategoryUrl;
 
-    @Pref
-    EpsilonPrefs_ epsilonPrefs;
     // from SharedPrefs
     private String server;
 
     @AfterInject
-    public void refreshServerUrl(){
+    public void refreshServerUrl() {
         this.server = epsilonPrefs.server().get();
     }
 
     @Override
-    public List<Account> findAccounts(String token) {
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("token", token);
+    public List<Account> findAccounts() {
 
         String completeUrl = this.server + this.allAccountsUrl;
-        String json = callHttp(completeUrl, params);
+        String json = get(completeUrl);
 
         if (json != null) {
-            List<Account> accounts = this.<List<Account>> parseJson(json,
+            List<Account> accounts = this.<List<Account>>parseJson(json,
                     new TypeReference<List<Account>>() {
                     });
             return accounts;
@@ -88,17 +83,15 @@ public class EpsilonAccessServiceImpl extends WebService implements
 
         return null;
     }
-    
+
     @Override
-    public List<Budget> findBudgets(String token) {
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("token", token);
+    public List<Budget> findBudgets() {
 
         String completeUrl = this.server + this.budgetsUrl;
-        String json = callHttp(completeUrl, params);
+        String json = get(completeUrl);
 
         if (json != null) {
-            List<Budget> budgets = this.<List<Budget>> parseJson(json,
+            List<Budget> budgets = this.<List<Budget>>parseJson(json,
                     new TypeReference<List<Budget>>() {
                     });
             return budgets;
@@ -106,18 +99,14 @@ public class EpsilonAccessServiceImpl extends WebService implements
 
         return null;
     }
-    
-    @Override
-    public Budget getBudget(String token, String budgetId) {
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("token", token);
-        params.put("budget", budgetId);
 
-        String completeUrl = this.server + this.oneBudgetUrl;
-        String json = callHttp(completeUrl, params);
+    @Override
+    public Budget getBudget(String budgetId) {
+        String completeUrl = this.server + this.oneBudgetUrl.replace("{id}", budgetId);
+        String json = get(completeUrl);
 
         if (json != null) {
-            Budget budget = this.<Budget> parseJson(json,
+            Budget budget = this.<Budget>parseJson(json,
                     new TypeReference<Budget>() {
                     });
             return budget;
@@ -127,56 +116,13 @@ public class EpsilonAccessServiceImpl extends WebService implements
     }
 
     @Override
-    public SimpleResult editOperation(String token, String operationId, String categoryName, String tiersName, String amount) {
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("token", token);
-        params.put("oId", operationId);
-        params.put("amount", amount);
-        params.put("tiers", tiersName);
-        params.put("category", categoryName);
-
-        String completeUrl = this.server + this.editOperationUrl;
-        String json = callHttp(completeUrl, params);
-
-        if (json != null) {
-            SimpleResult result = this.<SimpleResult> parseJson(json,
-                    new TypeReference<SimpleResult>() {
-                    });
-            return result;
-        }
-
-        return null;
-    }
-
-    @Override
-    public SimpleResult deleteOperation(String token, String operationId) {
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("token", token);
-        params.put("oId", operationId);
-
-        String completeUrl = this.server + this.deleteOperationUrl;
-        String json = callHttp(completeUrl, params);
-
-        if (json != null) {
-            SimpleResult result = this.<SimpleResult> parseJson(json,
-                    new TypeReference<SimpleResult>() {
-                    });
-            return result;
-        }
-
-        return null;
-    }
-
-    @Override
-    public ChartData retrieveChartByCategoryData(String token) {
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("token", token);
+    public ChartData retrieveChartByCategoryData() {
 
         String completeUrl = this.server + this.retrieveChartByCategoryUrl;
-        String json = callHttp(completeUrl, params);
+        String json = get(completeUrl);
 
         if (json != null) {
-            ChartData data = this.<ChartData> parseJson(json,
+            ChartData data = this.<ChartData>parseJson(json,
                     new TypeReference<ChartData>() {
                     });
             return data;
@@ -186,16 +132,12 @@ public class EpsilonAccessServiceImpl extends WebService implements
     }
 
     @Override
-    public Account getAccount(String token, String accountId) {
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("token", token);
-        params.put("account", accountId);
-
-        String completeUrl = this.server + this.oneAccountUrl;
-        String json = callHttp(completeUrl, params);
+    public Account getAccount(String accountId) {
+        String completeUrl = this.server + this.oneAccountUrl.replace("{id}", accountId);
+        String json = get(completeUrl);
 
         if (json != null) {
-            Account account = this.<Account> parseJson(json,
+            Account account = this.<Account>parseJson(json,
                     new TypeReference<Account>() {
                     });
             return account;
@@ -217,15 +159,13 @@ public class EpsilonAccessServiceImpl extends WebService implements
     }
 
     @Override
-    public List<String> findCategoriesName(String token) {
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("token", token);
+    public List<String> findCategoriesName() {
 
         String completeUrl = this.server + this.categoriesNameUrl;
-        String json = callHttp(completeUrl, params);
+        String json = get(completeUrl);
 
         if (json != null) {
-            List<String> names = this.<List<String>> parseJson(json,
+            List<String> names = this.<List<String>>parseJson(json,
                     new TypeReference<List<String>>() {
                     });
             return names;
@@ -235,15 +175,13 @@ public class EpsilonAccessServiceImpl extends WebService implements
     }
 
     @Override
-    public List<String> findTiersName(String token) {
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("token", token);
+    public List<String> findTiersName() {
 
         String completeUrl = this.server + this.tiersNameUrl;
-        String json = callHttp(completeUrl, params);
+        String json = get(completeUrl);
 
         if (json != null) {
-            List<String> names = this.<List<String>> parseJson(json,
+            List<String> names = this.<List<String>>parseJson(json,
                     new TypeReference<List<String>>() {
                     });
             return names;
@@ -253,43 +191,18 @@ public class EpsilonAccessServiceImpl extends WebService implements
     }
 
     @Override
-    public SimpleResult addDepense(String token, String accountId,
-            String amount, String category, String tiers) {
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("token", token);
-        params.put("account", accountId);
-        params.put("amount", amount);
-        params.put("tiers", tiers);
-        params.put("category", category);
-        
-        String completeUrl = this.server + this.addDepenseUrl;
-        String json = callHttp(completeUrl, params);
-
-        if (json != null) {
-            SimpleResult result = this.<SimpleResult> parseJson(json,
-                    new TypeReference<SimpleResult>() {
-                    });
-            return result;
-        }
-
-        return null;
-    }
-
-    @Override
-    public SimpleResult addRevenue(String token, String accountId,
+    public SimpleResult addDepense(String accountId,
                                    String amount, String category, String tiers) {
         Map<String, String> params = new HashMap<String, String>();
-        params.put("token", token);
-        params.put("account", accountId);
         params.put("amount", amount);
         params.put("tiers", tiers);
         params.put("category", category);
-        
-        String completeUrl = this.server + this.addRevenueUrl;
-        String json = callHttp(completeUrl, params);
+
+        String completeUrl = this.server + this.addDepenseUrl.replace("{id}", accountId);
+        String json = post(completeUrl, params);
 
         if (json != null) {
-            SimpleResult result = this.<SimpleResult> parseJson(json,
+            SimpleResult result = this.<SimpleResult>parseJson(json,
                     new TypeReference<SimpleResult>() {
                     });
             return result;
@@ -299,20 +212,41 @@ public class EpsilonAccessServiceImpl extends WebService implements
     }
 
     @Override
-    public SimpleResult addVirement(String token, String accountTo,
-            String accountFrom, String amount, String category) {
+    public SimpleResult addRevenue(String accountId,
+                                   String amount, String category, String tiers) {
         Map<String, String> params = new HashMap<String, String>();
-        params.put("token", token);
+        params.put("account", accountId);
+        params.put("amount", amount);
+        params.put("tiers", tiers);
+        params.put("category", category);
+
+        String completeUrl = this.server + this.addRevenueUrl.replace("{id}", accountId);
+        String json = post(completeUrl, params);
+
+        if (json != null) {
+            SimpleResult result = this.<SimpleResult>parseJson(json,
+                    new TypeReference<SimpleResult>() {
+                    });
+            return result;
+        }
+
+        return null;
+    }
+
+    @Override
+    public SimpleResult addVirement(String accountTo,
+                                    String accountFrom, String amount, String category) {
+        Map<String, String> params = new HashMap<String, String>();
         params.put("accountFrom", accountFrom);
         params.put("accountTo", accountTo);
         params.put("amount", amount);
         params.put("category", category);
-        
-        String completeUrl = this.server + this.addVirementUrl;
-        String json = callHttp(completeUrl, params);
+
+        String completeUrl = this.server + this.addVirementUrl.replace("{idFrom}", accountFrom).replace("{idTo}", accountTo);
+        String json = post(completeUrl, params);
 
         if (json != null) {
-            SimpleResult result = this.<SimpleResult> parseJson(json,
+            SimpleResult result = this.<SimpleResult>parseJson(json,
                     new TypeReference<SimpleResult>() {
                     });
             return result;
@@ -320,23 +254,18 @@ public class EpsilonAccessServiceImpl extends WebService implements
 
         return null;
     }
-    
+
     @Override
-    public List<Operation> findMonthOperations(String token, String account) {
-        return findOperations(token, account, "account", this.opByMonthUrl);
+    public List<Operation> findMonthOperations(String account) {
+        return findOperations(this.opByMonthUrl.replace("{id}", account));
     }
 
-    private List<Operation> findOperations(String token, String param,
-            String paramName, String url) {
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("token", token);
-        params.put(paramName, param);
-
+    private List<Operation> findOperations(String url) {
         String completeUrl = this.server + url;
-        String json = callHttp(completeUrl, params);
+        String json = get(completeUrl);
 
         if (json != null) {
-            List<Operation> operations = this.<List<Operation>> parseJson(json,
+            List<Operation> operations = this.<List<Operation>>parseJson(json,
                     new TypeReference<List<Operation>>() {
                     });
             return operations;
@@ -346,38 +275,29 @@ public class EpsilonAccessServiceImpl extends WebService implements
     }
 
     @Override
-    public List<Operation> findCategoriesOperations(String token,
-            String categoryId) {
-        return findOperations(token, categoryId, "category",
-                this.opByCategoryUrl);
+    public List<Operation> findCategoriesOperations(String categoryId) {
+        return findOperations(
+                this.opByCategoryUrl.replace("{id}", categoryId));
     }
 
     @Override
-    public List<Operation> findTiersOperations(String token, String tiersId) {
-        return findOperations(token, tiersId, "tiers", this.opByTiersUrl);
+    public List<Operation> findTiersOperations(String tiersId) {
+        return findOperations(this.opByTiersUrl.replace("{id}", tiersId));
     }
 
     @Override
-    public List<Operation> findScheduleds(String token) {
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("token", token);
+    public List<Scheduled> findScheduleds() {
 
         String completeUrl = this.server + this.scheduledsUrl;
-        String json = callHttp(completeUrl, params);
+        String json = get(completeUrl);
 
         if (json != null) {
-            List<Operation> operations = this.<List<Operation>> parseJson(json,
-                    new TypeReference<List<Operation>>() {
+            List<Scheduled> operations = this.<List<Scheduled>>parseJson(json,
+                    new TypeReference<List<Scheduled>>() {
                     });
             return operations;
         }
 
-        return null;
-    }
-
-    @Override
-    public SimpleResult checkToken(String token) {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -388,10 +308,10 @@ public class EpsilonAccessServiceImpl extends WebService implements
         params.put("pass", pass);
 
         String completeUrl = server + this.registerUrl;
-        String json = callHttp(completeUrl, params);
+        String json = post(completeUrl, params);
 
         if (json != null) {
-            SimpleResult result = this.<SimpleResult> parseJson(json,
+            SimpleResult result = this.<SimpleResult>parseJson(json,
                     new TypeReference<SimpleResult>() {
                     });
             return result;
@@ -400,4 +320,39 @@ public class EpsilonAccessServiceImpl extends WebService implements
         return null;
     }
 
+    @Override
+    public SimpleResult editOperation(String operationId, String categoryName, String tiersName, String amount) {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("amount", amount);
+        params.put("tiers", tiersName);
+        params.put("category", categoryName);
+
+        String completeUrl = this.server + this.editOperationUrl.replace("{id}", operationId);
+        String json = post(completeUrl, params);
+
+        if (json != null) {
+            SimpleResult result = this.<SimpleResult>parseJson(json,
+                    new TypeReference<SimpleResult>() {
+                    });
+            return result;
+        }
+
+        return null;
+    }
+
+    @Override
+    public SimpleResult deleteOperation(String operationId) {
+
+        String completeUrl = this.server + this.deleteOperationUrl.replace("{id}", operationId);
+        String json = delete(completeUrl);
+
+        if (json != null) {
+            SimpleResult result = this.<SimpleResult>parseJson(json,
+                    new TypeReference<SimpleResult>() {
+                    });
+            return result;
+        }
+
+        return null;
+    }
 }

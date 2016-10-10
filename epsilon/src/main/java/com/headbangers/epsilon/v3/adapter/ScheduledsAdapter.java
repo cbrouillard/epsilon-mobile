@@ -10,18 +10,19 @@ import android.widget.TextView;
 
 import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.model.Operation;
+import com.headbangers.epsilon.v3.model.Scheduled;
 
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class ScheduledsAdapter extends ArrayAdapter<Operation>{
+public class ScheduledsAdapter extends ArrayAdapter<Scheduled>{
 
     private Activity context;
-    private List<Operation> operations;
+    private List<Scheduled> operations;
 
     private static DecimalFormat df = new DecimalFormat("0.00");
 
-    public ScheduledsAdapter(Activity context, List<Operation> operations) {
+    public ScheduledsAdapter(Activity context, List<Scheduled> operations) {
         super(context, R.layout.one_operation, operations);
         this.context = context;
         this.operations = operations;
@@ -34,7 +35,7 @@ public class ScheduledsAdapter extends ArrayAdapter<Operation>{
             LayoutInflater inflater = context.getLayoutInflater();
             row = inflater.inflate(R.layout.one_operation, null);
         }
-        Operation operation = operations.get(position);
+        Scheduled operation = operations.get(position);
 
         ImageView icon = (ImageView) row.findViewById (R.id.icon);
         if (operation.getSign().equals("+")){

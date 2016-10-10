@@ -20,7 +20,7 @@ public class AccountsListAsyncLoader extends
 
     @Override
     protected List<Account> doInBackground(String... params) {
-        return data.findAccounts(params[0]);
+        return data.findAccounts();
     }
 
     @Override

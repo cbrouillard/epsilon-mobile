@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="ws_accounts">/accounts</string>
-    <string name="ws_one_account">/account</string>
-    <string name="ws_register">/register</string>
-    <string name="ws_bymonth">/operationsByMonth</string>
-    <string name="ws_bycategory">/operationsByCategory</string>
-    <string name="ws_bytiers">/operationsByTiers</string>
-    <string name="ws_categories_name">/categoriesName</string>
-    <string name="ws_tiers_name">/tiersName</string>
-    <string name="ws_add_revenue">/addRevenue</string>
-    <string name="ws_add_depense">/addDepense</string>
-    <string name="ws_add_virement">/addVirement</string>
-    <string name="ws_scheduleds">/scheduled</string>
+    <string name="ws_one_account">/accounts/{id}</string>
+    <string name="ws_register">/auth</string>
+    <string name="ws_bymonth">/accounts/{id}/operations</string>
+    <string name="ws_bycategory">/categories/{id}/operations</string>
+    <string name="ws_bytiers">/tiers/{id}/operations</string>
+    <string name="ws_categories_name">/categories/names</string>
+    <string name="ws_tiers_name">/tiers/names</string>
+    <string name="ws_add_revenue">/accounts/{id}/operations/revenue</string>
+    <string name="ws_add_depense">/accounts/{id}/operations/spent</string>
+    <string name="ws_add_virement">/accounts/{idFrom}/operations/transfer/{idTo}</string>
+    <string name="ws_scheduleds">/scheduleds</string>
     <string name="ws_budgets">/budgets</string>
-    <string name="ws_one_budget">/budget</string>
-    <string name="ws_edit_operation">/editOperation</string>
-    <string name="ws_delete_operation">/deleteOperation</string>
-    <string name="ws_chart_category">/chartByCategoryData</string>
+    <string name="ws_one_budget">/budgets/{id}</string>
+    <string name="ws_edit_operation">/operations/{id}/e</string>
+    <string name="ws_delete_operation">/operations/{id}</string>
+    <string name="ws_chart_category">/data/categorychart</string>
 </resources>

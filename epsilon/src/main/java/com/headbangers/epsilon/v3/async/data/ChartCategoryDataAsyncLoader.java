@@ -17,7 +17,7 @@ public class ChartCategoryDataAsyncLoader extends
 
     @Override
     protected ChartData doInBackground(String... params) {
-        return data.retrieveChartByCategoryData(params[0]);
+        return data.retrieveChartByCategoryData();
     }
 
     @Override

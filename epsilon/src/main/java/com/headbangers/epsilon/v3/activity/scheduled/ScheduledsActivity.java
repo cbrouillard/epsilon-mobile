@@ -11,6 +11,7 @@ import com.headbangers.epsilon.v3.adapter.ScheduledsAdapter;
 import com.headbangers.epsilon.v3.async.scheduled.ScheduledsListAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.Operation;
+import com.headbangers.epsilon.v3.model.Scheduled;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -20,7 +21,7 @@ import org.androidannotations.annotations.ViewById;
 import java.util.List;
 
 @EActivity(R.layout.scheduleds)
-public class ScheduledsActivity extends AbstractEpsilonActivity implements Refreshable<List<Operation>> {
+public class ScheduledsActivity extends AbstractEpsilonActivity implements Refreshable<List<Scheduled>> {
 
     @ViewById(R.id.toolbar)
     Toolbar toolbar;
@@ -52,7 +53,7 @@ public class ScheduledsActivity extends AbstractEpsilonActivity implements Refre
     }
 
     @Override
-    public void refresh(List<Operation> result) {
+    public void refresh(List<Scheduled> result) {
         if (result != null) {
             ScheduledsAdapter scheduledsAdapter = new ScheduledsAdapter(this, result);
             list.setAdapter(scheduledsAdapter);

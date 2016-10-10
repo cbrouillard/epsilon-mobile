@@ -7,13 +7,14 @@ import android.widget.ProgressBar;
 import com.headbangers.epsilon.v3.async.GenericAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.Operation;
+import com.headbangers.epsilon.v3.model.Scheduled;
 import com.headbangers.epsilon.v3.service.EpsilonAccessService;
 
 import java.util.List;
 
 
 public class ScheduledsListAsyncLoader extends
-        GenericAsyncLoader<String, List<Operation>> {
+        GenericAsyncLoader<String, List<Scheduled>> {
 
     public ScheduledsListAsyncLoader(EpsilonAccessService dataService,
                                      Activity context, ProgressBar progressBar) {
@@ -21,16 +22,16 @@ public class ScheduledsListAsyncLoader extends
     }
 
     @Override
-    protected List<Operation> doInBackground(String... params) {
+    protected List<Scheduled> doInBackground(String... params) {
         // params[0] = selectmode
-        return data.findScheduleds(params[0]);
+        return data.findScheduleds();
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    protected void onPostExecute(List<Operation> result) {
+    protected void onPostExecute(List<Scheduled> result) {
         if (fromContext != null && fromContext instanceof Refreshable) {
-            ((Refreshable<List<Operation>>) fromContext).refresh(result);
+            ((Refreshable<List<Scheduled>>) fromContext).refresh(result);
         }
         super.onPostExecute(result);
     }

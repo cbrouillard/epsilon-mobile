@@ -6,6 +6,10 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.headbangers.epsilon.v3.preferences.EpsilonPrefs_;
+
+import org.androidannotations.annotations.EBean;
+import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -21,35 +25,56 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Map;
 
+@EBean
 public abstract class WebService {
 
     public static String TAG = "WEBSERVICE";
 
     protected ObjectMapper jsonMapper;
 
+    @Pref
+    EpsilonPrefs_ epsilonPrefs;
+
     public WebService() {
         this.jsonMapper = new ObjectMapper();
     }
 
-    protected String callHttp(String url, Map<String, String> postParams) {
-        Log.i(TAG, "Appel de l'url " + url);
+    protected String post(String url, Map<String, String> postParams) {
+        return callHttp(url, "POST", postParams);
+    }
+
+    protected String put(String url, Map<String, String> putParams) {
+        return callHttp(url, "PUT", putParams);
+    }
+
+    protected String delete(String url) {
+        return callHttp(url, "DELETE", null);
+    }
+
+    protected String get(String url) {
+        return callHttp(url, "GET", null);
+    }
+
+    private String callHttp(String url, String method, Map<String, String> params) {
+        Log.i(TAG, "CALL " + method + " " + url);
         HttpURLConnection urlConnection = null;
         try {
             URL zeUrl = new URL(url);
             urlConnection = (HttpURLConnection) zeUrl.openConnection();
+            urlConnection.setReadTimeout(50000);
+            urlConnection.setConnectTimeout(50000);
+            urlConnection.setRequestMethod(method);
 
-            if (postParams != null) {
+            urlConnection.setRequestProperty("WWW-Authenticate", epsilonPrefs.token().get());
 
+            if (params != null) {
                 urlConnection.setDoOutput(true);
                 urlConnection.setDoInput(true);
-                urlConnection.setReadTimeout(50000);
-                urlConnection.setConnectTimeout(50000);
-                urlConnection.setRequestMethod("POST");
 
                 OutputStream os = urlConnection.getOutputStream();
                 BufferedWriter writer = new BufferedWriter(
                         new OutputStreamWriter(os, "UTF-8"));
-                writer.write(forgeQuery(postParams));
+                writer.write(forgeQuery(params));
                 writer.flush();
                 writer.close();
                 os.close();

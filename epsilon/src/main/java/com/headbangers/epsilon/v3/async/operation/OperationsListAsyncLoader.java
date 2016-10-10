@@ -27,11 +27,11 @@ public class OperationsListAsyncLoader extends
         OperationsSelectMode mode = OperationsSelectMode.valueOf(params[0]);
         switch (mode) {
             case BYMONTH:
-                return data.findMonthOperations(params[1], params[2]);
+                return data.findMonthOperations(params[2]);
             case BYCATEGORY:
-                return data.findCategoriesOperations(params[1], params[2]);
+                return data.findCategoriesOperations(params[2]);
             case BYTIERS:
-                return data.findTiersOperations(params[1], params[2]);
+                return data.findTiersOperations(params[2]);
         }
 
         return null;

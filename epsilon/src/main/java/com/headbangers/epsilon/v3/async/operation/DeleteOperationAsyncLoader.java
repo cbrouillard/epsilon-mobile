@@ -22,7 +22,7 @@ public class DeleteOperationAsyncLoader extends GenericAsyncLoader<String, Simpl
     @Override
     protected SimpleResult doInBackground(String... params) {
         // 0:token, 1:id
-        return data.deleteOperation(params[0], params[1]);
+        return data.deleteOperation(params[1]);
     }
 
     @Override

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.widget.ProgressBar;
 
 import com.headbangers.epsilon.v3.async.GenericAsyncLoader;
-import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.async.interfaces.Reloadable;
 import com.headbangers.epsilon.v3.model.Account;
 import com.headbangers.epsilon.v3.service.EpsilonAccessService;
@@ -19,7 +18,7 @@ public class OneAccountAsyncLoader extends GenericAsyncLoader<String, Account> {
 
     @Override
     protected Account doInBackground(String... params) {
-        return data.getAccount(params[0], params[1]);
+        return data.getAccount(params[1]);
     }
 
     @Override

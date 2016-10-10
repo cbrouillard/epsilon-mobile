@@ -3,6 +3,7 @@ package com.headbangers.epsilon.v3.service;
 import com.headbangers.epsilon.v3.model.Account;
 import com.headbangers.epsilon.v3.model.Budget;
 import com.headbangers.epsilon.v3.model.Category;
+import com.headbangers.epsilon.v3.model.Scheduled;
 import com.headbangers.epsilon.v3.model.chart.ChartData;
 import com.headbangers.epsilon.v3.model.Operation;
 import com.headbangers.epsilon.v3.model.SimpleResult;
@@ -14,46 +15,44 @@ public interface EpsilonAccessService {
 
     void refreshServerUrl();
 
-    List<Account> findAccounts(String token);
+    List<Account> findAccounts();
 
-    Account getAccount(String token, String accountId);
+    Account getAccount(String accountId);
 
     List<Category> findCategories(String token);
 
     List<Tiers> findTiers(String token);
 
-    List<String> findCategoriesName(String token);
+    List<String> findCategoriesName();
 
-    List<String> findTiersName(String token);
+    List<String> findTiersName();
 
-    SimpleResult addDepense(String token, String accountId, String amount,
+    SimpleResult addDepense(String accountId, String amount,
                             String category, String tiers);
 
-    SimpleResult addRevenue(String token, String accountId, String amount,
-            String category, String tiers);
+    SimpleResult addRevenue(String accountId, String amount,
+                            String category, String tiers);
 
-    SimpleResult addVirement(String token, String accountTo,
-            String accountFrom, String amount, String category);
+    SimpleResult addVirement(String accountTo,
+                             String accountFrom, String amount, String category);
 
-    List<Operation> findMonthOperations(String token, String account);
+    List<Operation> findMonthOperations(String account);
 
-    List<Operation> findCategoriesOperations(String token, String categoryId);
+    List<Operation> findCategoriesOperations(String categoryId);
 
-    List<Operation> findTiersOperations(String token, String tiersId);
+    List<Operation> findTiersOperations(String tiersId);
 
-    List<Operation> findScheduleds(String token);
-
-    SimpleResult checkToken(String token);
+    List<Scheduled> findScheduleds();
 
     SimpleResult register(String server, String login, String pass);
 
-    List<Budget> findBudgets(String token);
+    List<Budget> findBudgets();
     
-    Budget getBudget (String token, String budgetId);
+    Budget getBudget(String budgetId);
 
-    SimpleResult editOperation(String token, String operationId, String categoryName, String tiersName, String amount);
+    SimpleResult editOperation(String operationId, String categoryName, String tiersName, String amount);
 
-    SimpleResult deleteOperation (String token, String operationId);
+    SimpleResult deleteOperation(String operationId);
 
-    ChartData retrieveChartByCategoryData (String token);
+    ChartData retrieveChartByCategoryData();
 }
