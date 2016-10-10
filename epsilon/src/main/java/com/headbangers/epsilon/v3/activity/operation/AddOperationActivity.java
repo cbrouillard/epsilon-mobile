@@ -75,7 +75,7 @@ public class AddOperationActivity extends AbstractEpsilonActivity implements Ref
 
     private void init() {
         new AutoCompleteDataAsyncLoader(accessService, this, progressBar).execute(
-                AutoCompleteDataAsyncLoader.Load.CATEGORY_TIERS.name(), token());
+                AutoCompleteDataAsyncLoader.Load.CATEGORY_TIERS.name());
     }
 
     @Override
@@ -110,7 +110,7 @@ public class AddOperationActivity extends AbstractEpsilonActivity implements Ref
             String category = this.category.getText().toString();
             String tiers = this.tiers.getText().toString();
 
-            new AddOperationAsyncLoader(accessService, this, progressBar).execute(type.name(), token(),
+            new AddOperationAsyncLoader(accessService, this, progressBar).execute(type.name(),
                     account.getId(), amount, category, tiers);
         }
     }

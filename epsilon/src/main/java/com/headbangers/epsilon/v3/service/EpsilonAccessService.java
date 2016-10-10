@@ -19,9 +19,9 @@ public interface EpsilonAccessService {
 
     Account getAccount(String accountId);
 
-    List<Category> findCategories(String token);
+    List<Category> findCategories();
 
-    List<Tiers> findTiers(String token);
+    List<Tiers> findTiers();
 
     List<String> findCategoriesName();
 

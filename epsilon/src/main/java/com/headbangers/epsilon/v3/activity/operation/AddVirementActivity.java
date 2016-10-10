@@ -74,7 +74,7 @@ public class AddVirementActivity extends AbstractEpsilonActivity implements Refr
 
     private void init() {
         new AutoCompleteDataAsyncLoader(accessService, this, progressBar).execute(
-                AutoCompleteDataAsyncLoader.Load.CATEGORY_ACCOUNTS.name(), token());
+                AutoCompleteDataAsyncLoader.Load.CATEGORY_ACCOUNTS.name());
     }
 
     @Override
@@ -117,7 +117,7 @@ public class AddVirementActivity extends AbstractEpsilonActivity implements Refr
             Account accountFrom = this.accounts.get(this.accountFrom.getSelectedItemPosition());
 
             new AddOperationAsyncLoader(accessService, this, progressBar).execute(OperationType.VIREMENT.name(),
-                    token(), accountTo.getId(), accountFrom.getId(), amount, category);
+                    accountTo.getId(), accountFrom.getId(), amount, category);
         }
     }
 

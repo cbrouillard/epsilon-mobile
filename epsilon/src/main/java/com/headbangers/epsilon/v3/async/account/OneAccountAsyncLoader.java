@@ -18,7 +18,7 @@ public class OneAccountAsyncLoader extends GenericAsyncLoader<String, Account> {
 
     @Override
     protected Account doInBackground(String... params) {
-        return data.getAccount(params[1]);
+        return data.getAccount(params[0]);
     }
 
     @Override

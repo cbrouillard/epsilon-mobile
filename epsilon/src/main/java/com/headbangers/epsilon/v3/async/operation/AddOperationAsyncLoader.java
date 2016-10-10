@@ -30,11 +30,11 @@ public class AddOperationAsyncLoader extends
         // params[0] = type
         OperationType type = OperationType.valueOf(params[0]);
         if (type == OperationType.DEPENSE) {
-            return data.addDepense(params[2], params[3], params[4], params[5]);
+            return data.addDepense(params[1], params[2], params[3], params[4]);
         } else if (type == OperationType.REVENUE) {
-            return data.addRevenue(params[2], params[3], params[4], params[5]);
+            return data.addRevenue(params[1], params[2], params[3], params[4]);
         } else if (type == OperationType.VIREMENT) {
-            return data.addVirement(params[2], params[3], params[4], params[5]);
+            return data.addVirement(params[1], params[2], params[3], params[4]);
         }
         return null;
     }

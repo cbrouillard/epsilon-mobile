@@ -59,6 +59,10 @@ public class EpsilonAccessServiceImpl extends WebService implements
     String deleteOperationUrl;
     @StringRes(R.string.ws_chart_category)
     String retrieveChartByCategoryUrl;
+    @StringRes(R.string.ws_categories)
+    String allCategoriesUrl;
+    @StringRes(R.string.ws_tierses)
+    String allTiersUrl;
 
     // from SharedPrefs
     private String server;
@@ -147,14 +151,32 @@ public class EpsilonAccessServiceImpl extends WebService implements
     }
 
     @Override
-    public List<Category> findCategories(String token) {
-        // TODO Auto-generated method stub
+    public List<Category> findCategories() {
+        String completeUrl = this.server + this.allCategoriesUrl;
+        String json = get(completeUrl);
+
+        if (json != null) {
+            List<Category> categories = this.<List<Category>>parseJson(json,
+                    new TypeReference<List<Category>>() {
+                    });
+            return categories;
+        }
+
         return null;
     }
 
     @Override
-    public List<Tiers> findTiers(String token) {
-        // TODO Auto-generated method stub
+    public List<Tiers> findTiers() {
+        String completeUrl = this.server + this.allTiersUrl;
+        String json = get(completeUrl);
+
+        if (json != null) {
+            List<Tiers> tierses = this.<List<Tiers>>parseJson(json,
+                    new TypeReference<List<Tiers>>() {
+                    });
+            return tierses;
+        }
+
         return null;
     }
 

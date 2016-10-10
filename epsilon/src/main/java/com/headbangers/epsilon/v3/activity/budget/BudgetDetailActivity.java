@@ -59,7 +59,7 @@ public class BudgetDetailActivity extends AbstractEpsilonActivity
 
     @Click(R.id.refresh)
     void refreshButton() {
-        new OneBudgetAsyncLoader(accessService, this, progressBar).execute(token(), budget.getId());
+        new OneBudgetAsyncLoader(accessService, this, progressBar).execute(budget.getId());
     }
 
     @Override

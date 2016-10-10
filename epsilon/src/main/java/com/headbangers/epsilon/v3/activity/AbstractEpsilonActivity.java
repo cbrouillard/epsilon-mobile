@@ -35,10 +35,6 @@ public abstract class AbstractEpsilonActivity extends AppCompatActivity{
         AuthActivity_.intent(this).startForResult(AuthActivity.AUTH_RESULT);
     }
 
-    protected String token(){
-        return epsilonPrefs.token().get();
-    }
-
     @StringRes(R.string.opened_at)
     protected String openedAt;
     @StringRes(R.string.operation_added)

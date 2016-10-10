@@ -75,12 +75,12 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
 
         // charge les opérations du mois
         new OperationsListAsyncLoader(accessService, this, progressBar).execute(
-                OperationsSelectMode.BYMONTH.name(), token(), account.getId());
+                OperationsSelectMode.BYMONTH.name(), account.getId());
     }
 
     @OnActivityResult(OPERATION_ADD_DONE)
     void addDone() {
-        new OneAccountAsyncLoader(accessService, this, progressBar).execute(token(), account.getId());
+        new OneAccountAsyncLoader(accessService, this, progressBar).execute(account.getId());
     }
 
     @Click(R.id.refresh)
@@ -138,6 +138,6 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
 
     @Override
     public void afterOperationEdition() {
-        new OneAccountAsyncLoader(accessService, this, progressBar).execute(token(), account.getId());
+        new OneAccountAsyncLoader(accessService, this, progressBar).execute(account.getId());
     }
 }

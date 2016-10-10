@@ -78,7 +78,6 @@ public class DialogEditOperationFragment extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
 
                         new EditOperationAsyncLoader(accessService, getActivity(), progressBar).execute(
-                                epsilonPrefs.token().get(),
                                 operation.getId(),
                                 category.getText().toString(),
                                 tiers.getText().toString(),
@@ -91,8 +90,7 @@ public class DialogEditOperationFragment extends DialogFragment {
                 .setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        new DeleteOperationAsyncLoader(accessService, getActivity(), progressBar).execute(
-                                epsilonPrefs.token().get(), operation.getId());
+                        new DeleteOperationAsyncLoader(accessService, getActivity(), progressBar).execute(operation.getId());
 
                         dismiss();
                     }

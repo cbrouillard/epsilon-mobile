@@ -65,7 +65,7 @@ public class BudgetsActivity extends AbstractEpsilonActivity implements Refresha
     }
 
     private void init() {
-        new BudgetsListAsyncLoader(accessService, this, progressBar).execute(token());
+        new BudgetsListAsyncLoader(accessService, this, progressBar).execute();
     }
 
     @Override

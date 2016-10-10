@@ -17,7 +17,7 @@ public class OneBudgetAsyncLoader extends GenericAsyncLoader<String, Budget> {
 
     @Override
     protected Budget doInBackground(String... params) {
-        return data.getBudget(params[1]);
+        return data.getBudget(params[0]);
     }
 
     @Override

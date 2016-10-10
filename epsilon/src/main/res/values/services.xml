@@ -17,4 +17,6 @@
     <string name="ws_edit_operation">/operations/{id}/e</string>
     <string name="ws_delete_operation">/operations/{id}</string>
     <string name="ws_chart_category">/data/categorychart</string>
+    <string name="ws_categories">/categories</string>
+    <string name="ws_tierses">/tiers</string>
 </resources>

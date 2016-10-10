@@ -166,7 +166,7 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
 
     void init() {
         if (isLogged()) {
-            new AccountsListAsyncLoader(this.accessService, this, progressBar).execute(token());
+            new AccountsListAsyncLoader(this.accessService, this, progressBar).execute();
         }
     }
 
@@ -201,7 +201,7 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
         chart.getLegend().setDrawInside(false);
         chart.invalidate();
 
-        new ChartCategoryDataAsyncLoader(accessService, this, progressBar).execute(token());
+        new ChartCategoryDataAsyncLoader(accessService, this, progressBar).execute();
     }
 
     public void showChartAfterData(ChartData result) {

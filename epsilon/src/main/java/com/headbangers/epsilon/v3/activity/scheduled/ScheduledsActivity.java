@@ -49,7 +49,7 @@ public class ScheduledsActivity extends AbstractEpsilonActivity implements Refre
     }
 
     private void init() {
-        new ScheduledsListAsyncLoader(accessService, this, progressBar).execute(token());
+        new ScheduledsListAsyncLoader(accessService, this, progressBar).execute();
     }
 
     @Override
