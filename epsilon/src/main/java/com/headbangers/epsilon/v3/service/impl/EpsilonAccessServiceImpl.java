@@ -63,6 +63,8 @@ public class EpsilonAccessServiceImpl extends WebService implements
     String allCategoriesUrl;
     @StringRes(R.string.ws_tierses)
     String allTiersUrl;
+    @StringRes(R.string.ws_solds_stats)
+    String retrieveSoldStats;
 
     // from SharedPrefs
     private String server;
@@ -132,6 +134,20 @@ public class EpsilonAccessServiceImpl extends WebService implements
             return data;
         }
 
+        return null;
+    }
+
+    @Override
+    public Map<String, Double> retrieveSoldStats() {
+        String completeUrl = this.server + this.retrieveSoldStats;
+        String json = get(completeUrl);
+
+        if (json!=null){
+            Map<String, Double> data = this.<Map<String, Double>> parseJson(json,
+                    new TypeReference<Map<String, Double>>() {
+                    });
+            return data;
+        }
         return null;
     }
 

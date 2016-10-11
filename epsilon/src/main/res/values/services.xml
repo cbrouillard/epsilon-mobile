@@ -19,4 +19,5 @@
     <string name="ws_chart_category">/data/categorychart</string>
     <string name="ws_categories">/categories</string>
     <string name="ws_tierses">/tiers</string>
+    <string name="ws_solds_stats">/data/soldstats</string>
 </resources>

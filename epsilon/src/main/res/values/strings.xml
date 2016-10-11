@@ -41,4 +41,8 @@
     <string name="see_budgets">Voir les budgets</string>
     <string name="operation_contentDescription">+ or -</string>
     <string name="budget_used_amount">Total actuellement utilisé</string>
+    <string name="future_spent">Echéances prévues</string>
+    <string name="future_revenue">Revenus prévus</string>
+    <string name="future_spent_threshold">Total dépenses / mois</string>
+    <string name="future_saving">Potentiel épargne</string>
 </resources>

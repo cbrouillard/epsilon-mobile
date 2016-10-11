@@ -10,6 +10,7 @@ import com.headbangers.epsilon.v3.model.SimpleResult;
 import com.headbangers.epsilon.v3.model.Tiers;
 
 import java.util.List;
+import java.util.Map;
 
 public interface EpsilonAccessService {
 
@@ -55,4 +56,6 @@ public interface EpsilonAccessService {
     SimpleResult deleteOperation(String operationId);
 
     ChartData retrieveChartByCategoryData();
+
+    Map<String, Double> retrieveSoldStats();
 }
