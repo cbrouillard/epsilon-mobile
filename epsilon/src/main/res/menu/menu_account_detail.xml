@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuAddDepense"
+        android:enabled="true"
+        android:icon="@drawable/adddepense"
+        android:title="@string/add_depense" />
+
+    <item
+        android:id="@+id/menuAddRevenue"
+        android:enabled="true"
+        android:icon="@drawable/addrevenue"
+        android:title="@string/add_revenue" />
+
+    <item
+        android:id="@+id/menuAddVirement"
+        android:enabled="true"
+        android:icon="@drawable/addvirement"
+        android:title="@string/add_virement" />
+
+    <item
+        android:id="@+id/menuSetDefault"
+        android:enabled="true"
+        android:checkable="true"
+        android:title="@string/set_account_default"/>
+</menu>

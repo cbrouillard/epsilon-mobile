@@ -65,6 +65,8 @@ public class EpsilonAccessServiceImpl extends WebService implements
     String allTiersUrl;
     @StringRes(R.string.ws_solds_stats)
     String retrieveSoldStats;
+    @StringRes(R.string.ws_set_account_default)
+    String setAccountDefaultUrl;
 
     // from SharedPrefs
     private String server;
@@ -142,12 +144,28 @@ public class EpsilonAccessServiceImpl extends WebService implements
         String completeUrl = this.server + this.retrieveSoldStats;
         String json = get(completeUrl);
 
-        if (json!=null){
-            Map<String, Double> data = this.<Map<String, Double>> parseJson(json,
+        if (json != null) {
+            Map<String, Double> data = this.<Map<String, Double>>parseJson(json,
                     new TypeReference<Map<String, Double>>() {
                     });
             return data;
         }
+        return null;
+    }
+
+    @Override
+    public SimpleResult setAccountDefault(String accountId, String isDefault) {
+        String completeUrl = this.server + this.setAccountDefaultUrl
+                .replace("{id}", accountId).replace("{value}", isDefault);
+        String json = post(completeUrl, new HashMap<String, String>());
+
+        if (json != null) {
+            SimpleResult result = this.<SimpleResult>parseJson(json,
+                    new TypeReference<SimpleResult>() {
+                    });
+            return result;
+        }
+
         return null;
     }
 

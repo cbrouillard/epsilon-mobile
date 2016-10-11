@@ -20,4 +20,5 @@
     <string name="ws_categories">/categories</string>
     <string name="ws_tierses">/tiers</string>
     <string name="ws_solds_stats">/data/soldstats</string>
+    <string name="ws_set_account_default">/accounts/{id}/default/{value}</string>
 </resources>

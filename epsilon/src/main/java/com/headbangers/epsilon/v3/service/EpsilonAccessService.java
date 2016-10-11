@@ -58,4 +58,6 @@ public interface EpsilonAccessService {
     ChartData retrieveChartByCategoryData();
 
     Map<String, Double> retrieveSoldStats();
+
+    SimpleResult setAccountDefault(String accountId, String isDefault);
 }

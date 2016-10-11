@@ -1,6 +1,7 @@
 package com.headbangers.epsilon.v3.activity.account;
 
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import com.headbangers.epsilon.v3.activity.operation.DialogEditOperationFragment
 import com.headbangers.epsilon.v3.activity.operation.DialogEditOperationFragment_;
 import com.headbangers.epsilon.v3.adapter.OperationsAdapter;
 import com.headbangers.epsilon.v3.async.account.OneAccountAsyncLoader;
+import com.headbangers.epsilon.v3.async.account.SetDefaultAsyncLoader;
 import com.headbangers.epsilon.v3.async.operation.OperationsListAsyncLoader;
 import com.headbangers.epsilon.v3.async.enums.OperationType;
 import com.headbangers.epsilon.v3.async.enums.OperationsSelectMode;
@@ -30,6 +32,7 @@ import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.OnActivityResult;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
+import org.androidannotations.annotations.OptionsMenuItem;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
@@ -37,7 +40,7 @@ import java.util.List;
 import static com.headbangers.epsilon.v3.activity.operation.AddOperationActivity.OPERATION_ADD_DONE;
 
 @EActivity(R.layout.account_detail)
-@OptionsMenu(R.menu.menu_add_operations)
+@OptionsMenu(R.menu.menu_account_detail)
 public class AccountDetailActivity extends AbstractEpsilonActivity
         implements Refreshable<List<Operation>>, Reloadable<Account>, OperationEditable {
 
@@ -78,6 +81,20 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
                 OperationsSelectMode.BYMONTH.name(), account.getId());
     }
 
+    @OptionsMenuItem(R.id.menuSetDefault)
+    MenuItem setDefaultItem;
+
+    @OptionsMenuItem(R.id.menuSetDefault)
+    void initMenuDefault(MenuItem setDefault) {
+        setDefault.setChecked(account.isMobileDefault());
+    }
+
+    @OptionsItem(R.id.menuSetDefault)
+    void setDefault() {
+        setDefaultItem.setChecked(!setDefaultItem.isChecked());
+        new SetDefaultAsyncLoader(accessService, this, progressBar).execute(account.getId(), Boolean.toString(setDefaultItem.isChecked()));
+    }
+
     @OnActivityResult(OPERATION_ADD_DONE)
     void addDone() {
         new OneAccountAsyncLoader(accessService, this, progressBar).execute(account.getId());
@@ -112,6 +129,14 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
                 .startForResult(OPERATION_ADD_DONE);
     }
 
+    @ItemClick(R.id.operations)
+    void listClick(Operation operation) {
+        DialogEditOperationFragment fragment = new DialogEditOperationFragment_();
+        fragment.setOperation(operation);
+        fragment.setProgressBar(progressBar);
+        fragment.show(this.getFragmentManager(), "EDITOPERATION");
+    }
+
     @Override
     public void refresh(List<Operation> result) {
         if (result != null && result.size() > 5) {
@@ -126,14 +151,6 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
             this.account = obj;
             init();
         }
-    }
-
-    @ItemClick(R.id.operations)
-    void listClick(Operation operation) {
-        DialogEditOperationFragment fragment = new DialogEditOperationFragment_();
-        fragment.setOperation(operation);
-        fragment.setProgressBar(progressBar);
-        fragment.show(this.getFragmentManager(), "EDITOPERATION");
     }
 
     @Override
