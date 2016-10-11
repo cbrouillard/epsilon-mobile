@@ -1,16 +1,19 @@
 package com.headbangers.epsilon.v3.activity.scheduled;
 
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.activity.AbstractEpsilonActivity;
 import com.headbangers.epsilon.v3.adapter.ScheduledsAdapter;
-import com.headbangers.epsilon.v3.async.scheduled.ScheduledsListAsyncLoader;
+import com.headbangers.epsilon.v3.async.data.SoldStatsDataAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
-import com.headbangers.epsilon.v3.model.Operation;
+import com.headbangers.epsilon.v3.async.scheduled.ScheduledsListAsyncLoader;
 import com.headbangers.epsilon.v3.model.Scheduled;
 
 import org.androidannotations.annotations.AfterViews;
@@ -19,6 +22,7 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
+import java.util.Map;
 
 @EActivity(R.layout.scheduleds)
 public class ScheduledsActivity extends AbstractEpsilonActivity implements Refreshable<List<Scheduled>> {
@@ -31,6 +35,18 @@ public class ScheduledsActivity extends AbstractEpsilonActivity implements Refre
 
     @ViewById(R.id.list)
     ListView list;
+
+    @ViewById(R.id.soldStats)
+    LinearLayout soldStats;
+
+    @ViewById(R.id.spent)
+    TextView spent;
+    @ViewById(R.id.revenue)
+    TextView revenue;
+    @ViewById(R.id.threshold)
+    TextView threshold;
+    @ViewById(R.id.saving)
+    TextView saving;
 
     @AfterViews
     void bindToolbar() {
@@ -57,9 +73,31 @@ public class ScheduledsActivity extends AbstractEpsilonActivity implements Refre
         if (result != null) {
             ScheduledsAdapter scheduledsAdapter = new ScheduledsAdapter(this, result);
             list.setAdapter(scheduledsAdapter);
+
+            new SoldStatsDataAsyncLoader(accessService, this, progressBar).execute();
         } else {
             Toast.makeText(this, errorLoading, Toast.LENGTH_LONG)
                     .show();
         }
+    }
+
+    public void refresh(Map<String, Double> soldStats) {
+        Double spent = soldStats.get("spent");
+        Double revenue = soldStats.get("revenue");
+        Double threshold = soldStats.get("threshold");
+        Double saving = soldStats.get("saving");
+
+        this.spent.setText(df.format(spent) + "€");
+        this.revenue.setText(df.format(revenue) + "€");
+        this.threshold.setText(df.format(threshold) + "€");
+        this.saving.setText(df.format(saving) + "€");
+
+        if (saving > 0){
+            this.saving.setBackgroundResource(R.drawable.span_ok);
+        } else {
+            this.saving.setBackgroundResource(R.drawable.span_ko);
+        }
+
+        this.soldStats.setVisibility(View.VISIBLE);
     }
 }
