@@ -182,7 +182,7 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
         chart.setScaleEnabled(true);
         chart.setPinchZoom(true);
         chart.setDrawGridBackground(false);
-
+        chart.setExtraOffsets(0, 0, 20f, 0);
         chart.getAxisRight().setEnabled(false);
         chart.getAxisLeft().setDrawGridLines(false);
 
