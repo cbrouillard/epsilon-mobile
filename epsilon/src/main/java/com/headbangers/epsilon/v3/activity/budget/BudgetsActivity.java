@@ -81,7 +81,7 @@ public class BudgetsActivity extends AbstractEpsilonActivity implements Refresha
                 totalMaxAmount += budget.getMaxAmount();
             }
 
-            usedAmount.setText(currentUsedAmount + " / " + totalMaxAmount + "€");
+            usedAmount.setText(df.format(currentUsedAmount) + " / " + df.format(totalMaxAmount) + "€");
             infosSold.setVisibility(View.VISIBLE);
 
         } else {
