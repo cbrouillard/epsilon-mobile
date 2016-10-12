@@ -60,34 +60,47 @@
 
         </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="4">
+            android:orientation="vertical">
 
-            <ListView
-                android:id="@+id/operations"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent" />
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:visibility="gone" />
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/addFacture"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/operations"
-                android:layout_alignEnd="@id/operations"
-                android:layout_marginBottom="80dp"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/adddepense" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4">
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/refresh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/operations"
-                android:layout_alignEnd="@id/operations"
-                android:layout_margin="16dp"
-                android:src="@drawable/refresh" />
-        </RelativeLayout>
+                <ListView
+                    android:id="@+id/operations"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/addFacture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/operations"
+                    android:layout_alignEnd="@id/operations"
+                    android:layout_marginBottom="80dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/adddepense" />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/refresh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/operations"
+                    android:layout_alignEnd="@id/operations"
+                    android:layout_margin="16dp"
+                    android:src="@drawable/refresh" />
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

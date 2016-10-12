@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -21,6 +22,7 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.activity.AbstractEpsilonActivity;
 import com.headbangers.epsilon.v3.activity.AuthActivity;
+import com.headbangers.epsilon.v3.activity.account.chart.MyMarkerView;
 import com.headbangers.epsilon.v3.activity.budget.BudgetsActivity_;
 import com.headbangers.epsilon.v3.activity.operation.AddOperationActivity_;
 import com.headbangers.epsilon.v3.activity.scheduled.ScheduledsActivity_;
@@ -51,7 +53,7 @@ import static com.headbangers.epsilon.v3.activity.operation.AddOperationActivity
 
 @EActivity(R.layout.accounts)
 @OptionsMenu(R.menu.menu_welcome)
-public class AccountsActivity extends AbstractEpsilonActivity implements Refreshable<List<Account>>, OnChartValueSelectedListener {
+public class AccountsActivity extends AbstractEpsilonActivity implements Refreshable<List<Account>> {
 
     @ViewById(R.id.toolbar)
     Toolbar toolbar;
@@ -95,8 +97,8 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
 
             this.defaultAccount = null;
             addFactureOnDefaultAccountButton.setVisibility(View.GONE);
-            for (Account account : result){
-                if (account.isMobileDefault()){
+            for (Account account : result) {
+                if (account.isMobileDefault()) {
                     this.defaultAccount = account;
                     addFactureOnDefaultAccountButton.setVisibility(View.VISIBLE);
                 }
@@ -188,8 +190,6 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
         chart.setEntryLabelColor(R.color.colorAmount);
         chart.setEntryLabelTextSize(12f);
 
-        chart.setOnChartValueSelectedListener(this);
-
         chart.getLegend().setEnabled(true);
         chart.getLegend().setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         chart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
@@ -200,8 +200,11 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
         new ChartCategoryDataAsyncLoader(accessService, this, progressBar).execute();
     }
 
-    public void showChartAfterData(ChartData result) {
+    public void fillChartWithData(ChartData result) {
         if (result != null && result.getData() != null && !result.getData().isEmpty()) {
+
+            MarkerView mv = new MyMarkerView(this, R.layout.custom_marker_view, result);
+            chart.setMarkerView(mv);
 
             ArrayList<PieEntry> entries = new ArrayList<>();
             for (GraphData oneData : result.getData()) {
@@ -229,16 +232,5 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
             chart.invalidate();
             chart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
         }
-    }
-
-    @Override
-    public void onValueSelected(Entry e, Highlight h) {
-        PieEntry entry = (PieEntry) e;
-        Toast.makeText(this, entry.getLabel() + " : " + entry.getValue() + "€", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onNothingSelected() {
-        // nothing to do.
     }
 }

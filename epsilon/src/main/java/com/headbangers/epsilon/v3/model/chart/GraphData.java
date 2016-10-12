@@ -9,6 +9,8 @@ public class GraphData {
     private String key;
     @JsonProperty("value")
     private Double value;
+    @JsonProperty("index")
+    private Integer index;
 
     public String getKey() {
         return key;
@@ -24,5 +26,13 @@ public class GraphData {
 
     public void setValue(Double value) {
         this.value = value;
+    }
+
+    public Integer getIndex() {
+        return index;
+    }
+
+    public void setIndex(Integer index) {
+        this.index = index;
     }
 }

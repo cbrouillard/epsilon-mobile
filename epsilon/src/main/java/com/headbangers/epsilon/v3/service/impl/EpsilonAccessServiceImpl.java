@@ -67,6 +67,9 @@ public class EpsilonAccessServiceImpl extends WebService implements
     String retrieveSoldStats;
     @StringRes(R.string.ws_set_account_default)
     String setAccountDefaultUrl;
+    @StringRes(R.string.ws_chart_account_future)
+    String retrieveAccountFutureDataUrl;
+
 
     // from SharedPrefs
     private String server;
@@ -127,6 +130,21 @@ public class EpsilonAccessServiceImpl extends WebService implements
     public ChartData retrieveChartByCategoryData() {
 
         String completeUrl = this.server + this.retrieveChartByCategoryUrl;
+        String json = get(completeUrl);
+
+        if (json != null) {
+            ChartData data = this.<ChartData>parseJson(json,
+                    new TypeReference<ChartData>() {
+                    });
+            return data;
+        }
+
+        return null;
+    }
+
+    @Override
+    public ChartData retrieveAccountFutureData(String accountId) {
+        String completeUrl = this.server + this.retrieveAccountFutureDataUrl.replace("{id}", accountId);
         String json = get(completeUrl);
 
         if (json != null) {
