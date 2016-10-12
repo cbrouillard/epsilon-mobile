@@ -266,11 +266,13 @@ public class EpsilonAccessServiceImpl extends WebService implements
 
     @Override
     public SimpleResult addDepense(String accountId,
-                                   String amount, String category, String tiers) {
+                                   String amount, String category, String tiers, String latitude, String longitude) {
         Map<String, String> params = new HashMap<String, String>();
         params.put("amount", amount);
         params.put("tiers", tiers);
         params.put("category", category);
+        params.put("latitude", latitude);
+        params.put("longitude", longitude);
 
         String completeUrl = this.server + this.addDepenseUrl.replace("{id}", accountId);
         String json = post(completeUrl, params);

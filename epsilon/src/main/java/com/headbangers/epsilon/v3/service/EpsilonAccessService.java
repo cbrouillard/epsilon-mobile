@@ -29,7 +29,7 @@ public interface EpsilonAccessService {
     List<String> findTiersName();
 
     SimpleResult addDepense(String accountId, String amount,
-                            String category, String tiers);
+                            String category, String tiers, String latitude, String longitude);
 
     SimpleResult addRevenue(String accountId, String amount,
                             String category, String tiers);

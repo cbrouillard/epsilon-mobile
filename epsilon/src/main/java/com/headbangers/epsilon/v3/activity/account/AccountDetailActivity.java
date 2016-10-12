@@ -194,7 +194,7 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
         if (result != null && result.getData() != null && !result.getData().isEmpty()) {
 
             XAxis xAxis = chart.getXAxis();
-            xAxis.setPosition(XAxis.XAxisPosition.TOP);
+            xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
             xAxis.setTextSize(7f);
             xAxis.setTextColor(Color.BLACK);
             xAxis.setDrawGridLines(false);

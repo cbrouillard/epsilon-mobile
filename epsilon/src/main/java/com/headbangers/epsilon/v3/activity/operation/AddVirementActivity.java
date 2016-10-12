@@ -116,7 +116,7 @@ public class AddVirementActivity extends AbstractEpsilonActivity implements Refr
             Account accountTo = this.accounts.get(this.accountTo.getSelectedItemPosition());
             Account accountFrom = this.accounts.get(this.accountFrom.getSelectedItemPosition());
 
-            new AddOperationAsyncLoader(accessService, this, progressBar).execute(OperationType.VIREMENT.name(),
+            new AddOperationAsyncLoader(accessService, this, progressBar, null).execute(OperationType.VIREMENT.name(),
                     accountTo.getId(), accountFrom.getId(), amount, category);
         }
     }

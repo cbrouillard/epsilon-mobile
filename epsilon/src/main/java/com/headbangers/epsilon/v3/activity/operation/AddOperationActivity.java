@@ -7,12 +7,13 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.headbangers.epsilon.v3.tool.GPSTracker;
 import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.activity.AbstractEpsilonActivity;
-import com.headbangers.epsilon.v3.async.operation.AddOperationAsyncLoader;
 import com.headbangers.epsilon.v3.async.data.AutoCompleteDataAsyncLoader;
 import com.headbangers.epsilon.v3.async.enums.OperationType;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
+import com.headbangers.epsilon.v3.async.operation.AddOperationAsyncLoader;
 import com.headbangers.epsilon.v3.model.Account;
 import com.headbangers.epsilon.v3.model.AutoCompleteData;
 
@@ -23,6 +24,8 @@ import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
+
+import java.text.DecimalFormat;
 
 @EActivity(R.layout.add_operation)
 @OptionsMenu(R.menu.menu_ok)
@@ -54,6 +57,8 @@ public class AddOperationActivity extends AbstractEpsilonActivity implements Ref
     @Extra("operationType")
     OperationType type;
 
+    private GPSTracker gpsTracker;
+
     @AfterViews
     void showDetails() {
         toolbar.setTitle(account.getName());
@@ -71,6 +76,8 @@ public class AddOperationActivity extends AbstractEpsilonActivity implements Ref
         sold.setText(df.format(account.getSold()) + "€");
 
         init();
+
+        gpsTracker = new GPSTracker(this);
     }
 
     private void init() {
@@ -92,12 +99,12 @@ public class AddOperationActivity extends AbstractEpsilonActivity implements Ref
     }
 
     @EditorAction(R.id.tiers)
-    void tiersOk(){
+    void tiersOk() {
         category.requestFocus();
     }
 
     @EditorAction(R.id.category)
-    void categoryOk(){
+    void categoryOk() {
         amount.requestFocus();
     }
 
@@ -110,8 +117,16 @@ public class AddOperationActivity extends AbstractEpsilonActivity implements Ref
             String category = this.category.getText().toString();
             String tiers = this.tiers.getText().toString();
 
-            new AddOperationAsyncLoader(accessService, this, progressBar).execute(type.name(),
-                    account.getId(), amount, category, tiers);
+            String latitude = null;
+            String longitude = null;
+            if (gpsTracker.canGetLocation()){
+                DecimalFormat gpsDf = new DecimalFormat("0.0000000");
+                latitude = gpsDf.format(gpsTracker.getLatitude());
+                longitude = gpsDf.format(gpsTracker.getLongitude());
+            }
+
+            new AddOperationAsyncLoader(accessService, this, progressBar, gpsTracker).execute(type.name(),
+                    account.getId(), amount, category, tiers, latitude, longitude);
         }
     }
 
