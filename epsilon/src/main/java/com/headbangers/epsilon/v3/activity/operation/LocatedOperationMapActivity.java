@@ -1,7 +1,9 @@
 package com.headbangers.epsilon.v3.activity.operation;
 
 import android.app.FragmentTransaction;
+import android.content.res.Configuration;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -56,6 +58,12 @@ public class LocatedOperationMapActivity extends FragmentActivity implements OnM
         fragmentTransaction.commit();
 
         mMapFragment.getMapAsync(this);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        init();
     }
 
     @Override
