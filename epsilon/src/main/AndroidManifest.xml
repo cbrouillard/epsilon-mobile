@@ -5,51 +5,60 @@
     <uses-sdk />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+        android:allowBackup="false"
         android:icon="@drawable/money"
         android:label="@string/app_name"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
-        android:allowBackup="false"
-        android:supportsRtl="true">
-
+        android:name="android.support.multidex.MultiDexApplication">
         <activity
-            android:name="com.headbangers.epsilon.v3.activity.account.AccountsActivity_"
+            android:name=".activity.account.AccountsActivity_"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.headbangers.epsilon.v3.activity.AuthActivity_"
+            android:name=".activity.AuthActivity_"
             android:label="@string/authenticate" />
-
         <activity
-            android:name="com.headbangers.epsilon.v3.activity.account.AccountDetailActivity_"
+            android:name=".activity.account.AccountDetailActivity_"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".activity.budget.BudgetDetailActivity_"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".activity.operation.AddOperationActivity_"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".activity.operation.AddVirementActivity_"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".activity.scheduled.ScheduledsActivity_"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".activity.budget.BudgetsActivity_"
             android:label="@string/app_name" />
 
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
         <activity
-            android:name="com.headbangers.epsilon.v3.activity.budget.BudgetDetailActivity_"
-            android:label="@string/app_name" />
-
-        <activity
-            android:name="com.headbangers.epsilon.v3.activity.operation.AddOperationActivity_"
-            android:label="@string/app_name" />
-
-        <activity
-            android:name="com.headbangers.epsilon.v3.activity.operation.AddVirementActivity_"
-            android:label="@string/app_name" />
-
-        <activity
-            android:name="com.headbangers.epsilon.v3.activity.scheduled.ScheduledsActivity_"
-            android:label="@string/app_name" />
-
-        <activity
-            android:name="com.headbangers.epsilon.v3.activity.budget.BudgetsActivity_"
-            android:label="@string/app_name" />
-
+            android:name=".activity.operation.LocatedOperationMapActivity_"
+            android:label="@string/app_name"></activity>
     </application>
+
 </manifest>

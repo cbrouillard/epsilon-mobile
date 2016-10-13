@@ -47,4 +47,5 @@
     <string name="future_saving">Potentiel épargne</string>
     <string name="set_account_default">Compte par défaut</string>
     <string name="account_set_default">Le compte a été modifié : </string>
+    <string name="operation_location">Localisation opération</string>
 </resources>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -56,6 +57,10 @@ public class ScheduledsAdapter extends ArrayAdapter<Scheduled>{
         TextView amount = (TextView) row.findViewById(R.id.amount);
         amount.setText(operation.getSign()+df.format(operation.getAmount())
                 + "€");
+
+        // no location for scheduleds.
+        ImageButton showLocation = (ImageButton) row.findViewById(R.id.showLocation);
+        showLocation.setVisibility(View.GONE);
 
         return row;
     }

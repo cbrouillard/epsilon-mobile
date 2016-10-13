@@ -5,10 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.headbangers.epsilon.v3.R;
+import com.headbangers.epsilon.v3.activity.operation.LocatedOperationMapActivity_;
 import com.headbangers.epsilon.v3.model.Operation;
 
 import java.text.DecimalFormat;
@@ -34,7 +36,7 @@ public class OperationsAdapter extends ArrayAdapter<Operation>{
             LayoutInflater inflater = context.getLayoutInflater();
             row = inflater.inflate(R.layout.one_operation, null);
         }
-        Operation operation = operations.get(position);
+        final Operation operation = operations.get(position);
 
         ImageView icon = (ImageView) row.findViewById (R.id.icon);
         if (operation.getSign().equals("+")){
@@ -55,6 +57,19 @@ public class OperationsAdapter extends ArrayAdapter<Operation>{
         TextView amount = (TextView) row.findViewById(R.id.amount);
         amount.setText(operation.getSign()+df.format(operation.getAmount())
                 + "€");
+
+        ImageButton showLocation = (ImageButton) row.findViewById(R.id.showLocation);
+        showLocation.setVisibility(View.GONE);
+        if (operation.getLatitude() != null && operation.getLongitude() != null){
+            showLocation.setVisibility(View.VISIBLE);
+            showLocation.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LocatedOperationMapActivity_.intent(context).extra("operation", operation).start();
+                }
+            });
+        }
+        showLocation.setFocusable(false);
 
         return row;
     }
