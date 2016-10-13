@@ -41,3 +41,4 @@ captures/
 *.jks
 
 googleApiKey
+epsilon/src/main/res/values/google_maps_api.xml
