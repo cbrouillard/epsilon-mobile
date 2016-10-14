@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <item
-      android:enabled="true"
-      android:title="@string/authentification"
-      android:id="@+id/menuAuth"
-      android:icon="@drawable/auth" />
+    <item
+        android:id="@+id/menuAuth"
+        android:enabled="true"
+        android:icon="@drawable/auth"
+        android:title="@string/authentification"
+        app:showAsAction="always" />
 
-  <item
-      android:enabled="true"
-      android:title="@string/see_scheduleds"
-      android:id="@+id/menuScheduled"
-      android:icon="@drawable/next" />
+    <item
+        android:id="@+id/menuScheduled"
+        android:enabled="true"
+        android:icon="@drawable/next"
+        android:title="@string/see_scheduleds" />
 
-  <item
-      android:enabled="true"
-      android:title="@string/see_budgets"
-      android:id="@+id/menuBudgets"
-      android:icon="@drawable/registre" />
+    <item
+        android:id="@+id/menuBudgets"
+        android:enabled="true"
+        android:icon="@drawable/registre"
+        android:title="@string/see_budgets" />
 
 </menu>

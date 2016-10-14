@@ -59,7 +59,8 @@
                 android:padding="10dp"
                 android:text="1900,00€"
                 android:textColor="#ffffff"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
         </LinearLayout>
 
@@ -79,8 +80,8 @@
 
         <ListView
             android:id="@+id/operations"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/addFacture"

@@ -40,7 +40,7 @@
     <string name="see_scheduleds">Voir les échéances</string>
     <string name="see_budgets">Voir les budgets</string>
     <string name="operation_contentDescription">+ or -</string>
-    <string name="budget_used_amount">Total actuellement utilisé</string>
+    <string name="budget_used_amount">Actuellement utilisé</string>
     <string name="future_spent">Echéances prévues</string>
     <string name="future_revenue">Revenus prévus</string>
     <string name="future_spent_threshold">Total dépenses / mois</string>
@@ -48,4 +48,5 @@
     <string name="set_account_default">Compte par défaut</string>
     <string name="account_set_default">Le compte a été modifié : </string>
     <string name="operation_location">Localisation opération</string>
+    <string name="scheduled_isautomatic">Is automatic ?</string>
 </resources>

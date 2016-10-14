@@ -56,7 +56,8 @@
                 android:padding="10dp"
                 android:text="1900,00€"
                 android:textColor="#ffffff"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -75,14 +76,14 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/info_label"
                     android:gravity="fill"
                     android:padding="10dp"
                     android:text="@string/add_virement_hint"
-                    android:textColor="@color/colorInfoText"/>
+                    android:textColor="@color/colorInfoText" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -98,8 +99,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp" />
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -115,8 +116,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp" />
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -131,8 +132,8 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
                     android:focusable="true"
                     android:hint="@string/category_hint"
                     android:inputType="textCapSentences" />
@@ -150,8 +151,8 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
                     android:focusable="true"
                     android:hint="@string/amount_hint"
                     android:inputType="numberDecimal" />

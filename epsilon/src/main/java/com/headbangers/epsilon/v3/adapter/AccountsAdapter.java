@@ -1,6 +1,7 @@
 package com.headbangers.epsilon.v3.adapter;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,11 +58,14 @@ public class AccountsAdapter extends ArrayAdapter<Account> {
         if (account.getType().equalsIgnoreCase("CHEQUES")) {
             if (account.getSold() > 0) {
                 status.setBackgroundResource(R.drawable.span_ok);
+                sold.setTextColor(Color.parseColor("#459645"));
             } else {
                 status.setBackgroundResource(R.drawable.span_ko);
+                sold.setTextColor(Color.RED);
             }
         } else {
             status.setBackgroundResource(R.drawable.span_ok);
+            sold.setTextColor(Color.DKGRAY);
         }
 
         return row;
