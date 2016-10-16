@@ -1,6 +1,7 @@
 package com.headbangers.epsilon.v3.adapter;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,8 +46,10 @@ public class BudgetsAdapter extends ArrayAdapter<Budget> {
         TextView status = (TextView) row.findViewById(R.id.status);
         if (budget.getUsedAmound() <= budget.getMaxAmount()) {
             status.setBackgroundResource(R.drawable.span_ok);
+            amount.setTextColor(Color.parseColor("#459645"));
         } else {
             status.setBackgroundResource(R.drawable.span_ko);
+            amount.setTextColor(Color.RED);
         }
 
         TextView note = (TextView) row.findViewById(R.id.note);

@@ -68,6 +68,7 @@ public class AddVirementActivity extends AbstractEpsilonActivity implements Refr
         setSupportActionBar(toolbar);
 
         sold.setText(df.format(account.getSold()) + "€");
+        colorizeAmount (this.sold, account.getSold(), 0D);
 
         init();
     }

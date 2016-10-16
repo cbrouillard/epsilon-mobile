@@ -92,16 +92,7 @@ public class ScheduledsActivity extends AbstractEpsilonActivity implements Refre
         this.threshold.setText(df.format(threshold) + "€");
         this.saving.setText(df.format(saving) + "€");
 
-        int pL = this.saving.getPaddingLeft();
-        int pT = this.saving.getPaddingTop();
-        int pR = this.saving.getPaddingRight();
-        int pB = this.saving.getPaddingBottom();
-        if (saving > 0){
-            this.saving.setBackgroundResource(R.drawable.span_ok);
-        } else {
-            this.saving.setBackgroundResource(R.drawable.span_ko);
-        }
-        this.saving.setPadding(pL, pT, pR, pB);
+        colorizeAmount(this.saving, saving, 0D);
 
         this.soldStats.setVisibility(View.VISIBLE);
     }

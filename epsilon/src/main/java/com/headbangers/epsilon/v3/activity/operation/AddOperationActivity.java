@@ -74,6 +74,7 @@ public class AddOperationActivity extends AbstractEpsilonActivity implements Ref
         setSupportActionBar(toolbar);
 
         sold.setText(df.format(account.getSold()) + "€");
+        colorizeAmount (this.sold, account.getSold(), 0D);
 
         init();
 

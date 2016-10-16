@@ -2,6 +2,7 @@ package com.headbangers.epsilon.v3.activity;
 
 
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.preferences.EpsilonPrefs_;
@@ -33,6 +34,19 @@ public abstract class AbstractEpsilonActivity extends AppCompatActivity{
 
     protected void startAuth(){
         AuthActivity_.intent(this).startForResult(AuthActivity.AUTH_RESULT);
+    }
+
+    protected void colorizeAmount (TextView toColorize, Double valueToCheck, Double max){
+        int pL = toColorize.getPaddingLeft();
+        int pT = toColorize.getPaddingTop();
+        int pR = toColorize.getPaddingRight();
+        int pB = toColorize.getPaddingBottom();
+        if (valueToCheck < max){
+            toColorize.setBackgroundResource(R.drawable.span_ko);
+        }else {
+            toColorize.setBackgroundResource(R.drawable.span_ok);
+        }
+        toColorize.setPadding(pL, pT, pR, pB);
     }
 
     @StringRes(R.string.opened_at)

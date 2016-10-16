@@ -90,6 +90,7 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
 
     void init() {
         sold.setText(df.format(account.getSold()) + "€");
+        colorizeAmount (this.sold, account.getSold(), 0D);
 
         OperationsAdapter fiveLastOperations = new OperationsAdapter(this, account.getLastFiveOperations());
         list.setAdapter(fiveLastOperations);

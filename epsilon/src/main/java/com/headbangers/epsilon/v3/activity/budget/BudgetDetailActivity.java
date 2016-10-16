@@ -52,6 +52,7 @@ public class BudgetDetailActivity extends AbstractEpsilonActivity
         toolbar.setTitle(budget.getName());
         toolbar.setSubtitle(budget.getNote());
         sold.setText(df.format(budget.getUsedAmound()) + " / " + df.format(budget.getMaxAmount()) + "€");
+        colorizeAmount(this.sold, budget.getMaxAmount(), budget.getUsedAmound());
 
         OperationsAdapter budgetOperations = new OperationsAdapter(this, budget.getOperations());
         list.setAdapter(budgetOperations);
