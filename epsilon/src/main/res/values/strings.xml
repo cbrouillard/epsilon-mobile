@@ -52,4 +52,14 @@
     <string name="see_wishes">Voir les souhaits d\'achat</string>
     <string name="wish_list">Liste des souhaits d\'achat</string>
     <string name="wish_list_subtitle">Ce que vous désirez acheter</string>
+    <string name="add_wish_hint">Saisissez les informations concernant votre nouveau souhait d\'achat. N\'oubliez pas de prendre une photo pour illustrer votre objet !</string>
+    <string name="name">Nom</string>
+    <string name="wish_name_hint">Le nom de l\'objet désiré</string>
+    <string name="price">Prix</string>
+    <string name="wish_price_hint">Le prix de l\'objet désiré</string>
+    <string name="wish_account">Sur le compte</string>
+    <string name="add_wish_title">Ajouter un souhait d\'achat</string>
+    <string name="add_whish_subtitle">Enregistrer ses envies pour plus tard</string>
+    <string name="ws_add_wish">/wishes</string>
+    <string name="wish_added">Souhait d\'achat ajouté</string>
 </resources>

@@ -65,4 +65,6 @@ public interface EpsilonAccessService {
     SimpleResult setAccountDefault(String accountId, String isDefault);
 
     List<Wish> findWishes ();
+
+    SimpleResult addWish(String accountId, String name, String price, String category);
 }

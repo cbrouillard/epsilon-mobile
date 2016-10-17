@@ -62,4 +62,6 @@ public abstract class AbstractEpsilonActivity extends AppCompatActivity{
     protected String errorFormTiers;
     @StringRes(R.string.error_form_category)
     protected String errorFormCategory;
+    @StringRes(R.string.error_form_name)
+    protected String errorFormName;
 }

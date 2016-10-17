@@ -72,6 +72,8 @@ public class EpsilonAccessServiceImpl extends WebService implements
     String retrieveAccountFutureDataUrl;
     @StringRes(R.string.ws_wishes)
     String allWishesUrl;
+    @StringRes(R.string.ws_add_wish)
+    String addWishUrl;
 
     // from SharedPrefs
     private String server;
@@ -91,6 +93,8 @@ public class EpsilonAccessServiceImpl extends WebService implements
             List<Account> accounts = this.<List<Account>>parseJson(json,
                     new TypeReference<List<Account>>() {
                     });
+
+
             return accounts;
         }
 
@@ -199,6 +203,27 @@ public class EpsilonAccessServiceImpl extends WebService implements
                     new TypeReference<List<Wish>>() {
                     });
             return wishes;
+        }
+
+        return null;
+    }
+
+    @Override
+    public SimpleResult addWish(String accountId, String name, String price, String category) {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("name", name);
+        params.put("account", accountId);
+        params.put("category", category);
+        params.put("price", price);
+
+        String completeUrl = this.server + this.addWishUrl;
+        String json = post(completeUrl, params);
+
+        if (json != null) {
+            SimpleResult result = this.<SimpleResult>parseJson(json,
+                    new TypeReference<SimpleResult>() {
+                    });
+            return result;
         }
 
         return null;

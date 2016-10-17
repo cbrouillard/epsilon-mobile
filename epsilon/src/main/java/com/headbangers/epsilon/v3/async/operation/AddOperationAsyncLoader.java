@@ -45,6 +45,7 @@ public class AddOperationAsyncLoader extends
     @Override
     @SuppressWarnings("static-access")
     protected void onPostExecute(SimpleResult result) {
+        super.onPostExecute(result);
 
         if (result != null && result.isOk()) {
             if (fromContext != null) {
@@ -59,7 +60,6 @@ public class AddOperationAsyncLoader extends
             Toast.makeText(fromContext, errorOperationAdd, Toast.LENGTH_LONG).show();
         }
 
-        super.onPostExecute(result);
     }
 
 }

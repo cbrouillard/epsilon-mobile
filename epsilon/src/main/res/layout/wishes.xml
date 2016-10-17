@@ -37,8 +37,17 @@
             android:id="@+id/list"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-
             android:drawSelectorOnTop="false" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/addWish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/add"
+            android:layout_alignEnd="@id/list"
+            android:layout_alignBottom="@id/list"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="80dp"/>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/refresh"

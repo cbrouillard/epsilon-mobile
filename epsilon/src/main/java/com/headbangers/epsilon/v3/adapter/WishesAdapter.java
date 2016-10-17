@@ -38,10 +38,10 @@ public class WishesAdapter extends ArrayAdapter<Wish> {
         Wish wish = wishes.get(position);
 
         ImageView image = (ImageView) row.findViewById(R.id.image);
+        image.setImageBitmap(null);
+        image.setImageResource(R.drawable.noimage);
         if (wish.getThumbnailUrl() != null && !wish.getThumbnailUrl().isEmpty()) {
             new ImageLoadTask(wish.getThumbnailUrl(), image).execute();
-        } else {
-            image.setImageResource(R.drawable.noimage);
         }
 
         TextView name = (TextView) row.findViewById(R.id.name);

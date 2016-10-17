@@ -9,4 +9,6 @@
     <string name="error_form_login">Le login est requis.</string>
     <string name="error_form_password">Le mot de passe est requis.</string>
     <string name="error_operation_add">Impossible d\'ajouter l\'opération.</string>
+    <string name="error_form_name">Le nom est obligatoire</string>
+    <string name="error_wish_add">Erreur lors de l\'ajout du souhait</string>
 </resources>
