@@ -21,4 +21,10 @@
         android:icon="@drawable/registre"
         android:title="@string/see_budgets" />
 
+    <item
+        android:id="@+id/menuWishes"
+        android:enabled="true"
+        android:icon="@drawable/registre"
+        android:title="@string/see_wishes" />
+
 </menu>

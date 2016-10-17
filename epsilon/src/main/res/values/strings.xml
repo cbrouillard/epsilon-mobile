@@ -49,4 +49,7 @@
     <string name="account_set_default">Le compte a été modifié : </string>
     <string name="operation_location">Localisation opération</string>
     <string name="scheduled_isautomatic">Is automatic ?</string>
+    <string name="see_wishes">Voir les souhaits d\'achat</string>
+    <string name="wish_list">Liste des souhaits d\'achat</string>
+    <string name="wish_list_subtitle">Ce que vous désirez acheter</string>
 </resources>

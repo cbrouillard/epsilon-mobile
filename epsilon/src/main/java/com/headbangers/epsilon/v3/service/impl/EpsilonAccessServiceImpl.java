@@ -7,6 +7,7 @@ import com.headbangers.epsilon.v3.model.Account;
 import com.headbangers.epsilon.v3.model.Budget;
 import com.headbangers.epsilon.v3.model.Category;
 import com.headbangers.epsilon.v3.model.Scheduled;
+import com.headbangers.epsilon.v3.model.Wish;
 import com.headbangers.epsilon.v3.model.chart.ChartData;
 import com.headbangers.epsilon.v3.model.Operation;
 import com.headbangers.epsilon.v3.model.SimpleResult;
@@ -69,7 +70,8 @@ public class EpsilonAccessServiceImpl extends WebService implements
     String setAccountDefaultUrl;
     @StringRes(R.string.ws_chart_account_future)
     String retrieveAccountFutureDataUrl;
-
+    @StringRes(R.string.ws_wishes)
+    String allWishesUrl;
 
     // from SharedPrefs
     private String server;
@@ -182,6 +184,21 @@ public class EpsilonAccessServiceImpl extends WebService implements
                     new TypeReference<SimpleResult>() {
                     });
             return result;
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<Wish> findWishes() {
+        String completeUrl = this.server + this.allWishesUrl;
+        String json = get(completeUrl);
+
+        if (json != null) {
+            List<Wish> wishes = this.<List<Wish>>parseJson(json,
+                    new TypeReference<List<Wish>>() {
+                    });
+            return wishes;
         }
 
         return null;

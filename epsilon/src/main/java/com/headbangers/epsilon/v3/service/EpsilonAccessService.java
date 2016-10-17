@@ -4,6 +4,7 @@ import com.headbangers.epsilon.v3.model.Account;
 import com.headbangers.epsilon.v3.model.Budget;
 import com.headbangers.epsilon.v3.model.Category;
 import com.headbangers.epsilon.v3.model.Scheduled;
+import com.headbangers.epsilon.v3.model.Wish;
 import com.headbangers.epsilon.v3.model.chart.ChartData;
 import com.headbangers.epsilon.v3.model.Operation;
 import com.headbangers.epsilon.v3.model.SimpleResult;
@@ -62,4 +63,6 @@ public interface EpsilonAccessService {
     Map<String, Double> retrieveSoldStats();
 
     SimpleResult setAccountDefault(String accountId, String isDefault);
+
+    List<Wish> findWishes ();
 }

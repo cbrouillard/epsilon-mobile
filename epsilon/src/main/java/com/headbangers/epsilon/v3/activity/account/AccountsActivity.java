@@ -23,6 +23,8 @@ import com.headbangers.epsilon.v3.activity.account.chart.MyMarkerView;
 import com.headbangers.epsilon.v3.activity.budget.BudgetsActivity_;
 import com.headbangers.epsilon.v3.activity.operation.AddOperationActivity_;
 import com.headbangers.epsilon.v3.activity.scheduled.ScheduledsActivity_;
+import com.headbangers.epsilon.v3.activity.wish.WishesActivity;
+import com.headbangers.epsilon.v3.activity.wish.WishesActivity_;
 import com.headbangers.epsilon.v3.adapter.AccountsAdapter;
 import com.headbangers.epsilon.v3.async.account.AccountsListAsyncLoader;
 import com.headbangers.epsilon.v3.async.data.ChartCategoryDataAsyncLoader;
@@ -126,6 +128,11 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
     @OptionsItem(R.id.menuBudgets)
     void showBudgets() {
         BudgetsActivity_.intent(this).start();
+    }
+
+    @OptionsItem(R.id.menuWishes)
+    void showWishes () {
+        WishesActivity_.intent(this).start();
     }
 
     @OnActivityResult(AuthActivity.AUTH_RESULT)

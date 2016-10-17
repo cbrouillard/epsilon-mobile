@@ -22,4 +22,5 @@
     <string name="ws_solds_stats">/data/soldstats</string>
     <string name="ws_set_account_default">/accounts/{id}/default/{value}</string>
     <string name="ws_chart_account_future">/accounts/{id}/chart/future</string>
+    <string name="ws_wishes">/wishes</string>
 </resources>
