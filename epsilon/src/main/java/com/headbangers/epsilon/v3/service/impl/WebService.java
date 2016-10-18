@@ -14,12 +14,6 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -34,12 +28,6 @@ import java.util.Map;
 @EBean
 public abstract class WebService {
 
-    String attachmentName = "bitmap";
-    String attachmentFileName = "bitmap.bmp";
-    String crlf = "\r\n";
-    String twoHyphens = "--";
-    String boundary =  "*****";
-
     public static String TAG = "WEBSERVICE";
 
     protected ObjectMapper jsonMapper;
@@ -52,26 +40,22 @@ public abstract class WebService {
     }
 
     protected String post(String url, Map<String, String> postParams) {
-        return callHttp(url, "POST", postParams, null);
-    }
-
-    protected String post(String url, Map<String, String> postParams, String filename, File file){
-        return callHttp(url, "POST", postParams, file);
+        return callHttp(url, "POST", postParams);
     }
 
     protected String put(String url, Map<String, String> putParams) {
-        return callHttp(url, "PUT", putParams, null);
+        return callHttp(url, "PUT", putParams);
     }
 
     protected String delete(String url) {
-        return callHttp(url, "DELETE", null, null);
+        return callHttp(url, "DELETE", null);
     }
 
     protected String get(String url) {
-        return callHttp(url, "GET", null, null);
+        return callHttp(url, "GET", null);
     }
 
-    private String callHttp(String url, String method, Map<String, String> params, File file) {
+    private String callHttp(String url, String method, Map<String, String> params) {
         Log.i(TAG, "CALL " + method + " " + url);
         HttpURLConnection urlConnection = null;
         try {
@@ -94,34 +78,6 @@ public abstract class WebService {
                 writer.flush();
                 writer.close();
                 os.close();
-            }
-
-            if (file != null){
-                urlConnection.setRequestProperty(
-                        "Content-Type", "multipart/form-data;boundary=" + this.boundary);
-                DataOutputStream request = new DataOutputStream(
-                        urlConnection.getOutputStream());
-
-                request.writeBytes(this.twoHyphens + this.boundary + this.crlf);
-                request.writeBytes("Content-Disposition: form-data; name=\"photo\";filename=\"" +
-                        file.getName() + "\"" + this.crlf);
-                request.writeBytes(this.crlf);
-
-                //write file
-                byte[] buffer = new byte[2048];
-                DataInputStream in = new DataInputStream(new FileInputStream(file));
-                while (in.available()>0){
-                    in.read(buffer);
-                    request.write(buffer);
-                }
-
-                request.writeBytes(this.crlf);
-                request.writeBytes(this.twoHyphens + this.boundary +
-                        this.twoHyphens + this.crlf);
-                request.flush();
-
-                request.close();
-                in.close();
             }
 
             return callAndGetResponse(urlConnection);

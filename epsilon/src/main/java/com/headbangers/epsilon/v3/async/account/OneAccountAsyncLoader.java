@@ -24,10 +24,10 @@ public class OneAccountAsyncLoader extends GenericAsyncLoader<String, Account> {
     @Override
     @SuppressWarnings("unchecked")
     protected void onPostExecute(Account result) {
+        super.onPostExecute(result);
         if (fromContext != null && fromContext instanceof Reloadable) {
             ((Reloadable<Account>) fromContext).reload(result);
         }
-        super.onPostExecute(result);
     }
 
 }

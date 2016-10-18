@@ -223,7 +223,7 @@ public class EpsilonAccessServiceImpl extends WebService implements
         String json;
         if (photoPath != null) {
             File file = new File(URI.create(photoPath));
-            json = post(completeUrl, params, "photo", file);
+            json = post(completeUrl, params);//, "photo", file);
         } else {
             json = post(completeUrl, params);
         }
