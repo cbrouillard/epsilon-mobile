@@ -18,6 +18,8 @@ import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.res.StringRes;
 
+import java.io.File;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -209,7 +211,7 @@ public class EpsilonAccessServiceImpl extends WebService implements
     }
 
     @Override
-    public SimpleResult addWish(String accountId, String name, String price, String category) {
+    public SimpleResult addWish(String accountId, String name, String price, String category, String photoPath) {
         Map<String, String> params = new HashMap<String, String>();
         params.put("name", name);
         params.put("account", accountId);
@@ -217,7 +219,14 @@ public class EpsilonAccessServiceImpl extends WebService implements
         params.put("price", price);
 
         String completeUrl = this.server + this.addWishUrl;
-        String json = post(completeUrl, params);
+
+        String json;
+        if (photoPath != null) {
+            File file = new File(URI.create(photoPath));
+            json = post(completeUrl, params, "photo", file);
+        } else {
+            json = post(completeUrl, params);
+        }
 
         if (json != null) {
             SimpleResult result = this.<SimpleResult>parseJson(json,

@@ -20,12 +20,13 @@ public class AddWishAsyncLoader extends GenericAsyncLoader<String, SimpleResult>
 
     @Override
     protected SimpleResult doInBackground(String... params) {
-        // name, price, cateogory, accountId
+        // name, price, cateogory, accountId, photoPath
         String name = params[0];
         String price = params[1];
         String category = params[2];
         String accountId = params[3];
-        return this.data.addWish (accountId, name, price, category);
+        String photoPath = params[4];
+        return this.data.addWish (accountId, name, price, category, photoPath);
     }
 
     @Override

@@ -35,7 +35,6 @@ import org.androidannotations.annotations.ViewById;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -102,7 +101,7 @@ public class AddWishActivity extends AbstractEpsilonActivity implements Refresha
             String account = this.accounts.get(this.account.getSelectedItemPosition()).getId();
 
             new AddWishAsyncLoader(accessService, this, progressBar).execute(name,
-                    price, category, account);
+                    price, category, account, photoPath);
         }
     }
 

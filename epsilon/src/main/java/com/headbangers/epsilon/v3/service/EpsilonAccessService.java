@@ -66,5 +66,5 @@ public interface EpsilonAccessService {
 
     List<Wish> findWishes ();
 
-    SimpleResult addWish(String accountId, String name, String price, String category);
+    SimpleResult addWish(String accountId, String name, String price, String category, String photoPath);
 }
