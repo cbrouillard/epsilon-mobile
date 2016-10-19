@@ -28,7 +28,7 @@ public class MultipartUtility {
      *
      * @param requestURL
      * @param charset
-     * @param s
+     * @param token
      * @throws IOException
      */
     public MultipartUtility(String requestURL, String charset, String token)
