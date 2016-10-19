@@ -56,7 +56,7 @@ public abstract class WebService {
             multipart.addFilePart(fileFieldName, file);
 
             List<String> response = multipart.finish();
-            Log.i("TEST", response.toString());
+            return response.get(0);
 
         } catch (IOException e) {
             e.printStackTrace();
