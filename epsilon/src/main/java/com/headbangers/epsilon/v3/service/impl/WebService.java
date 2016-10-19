@@ -14,6 +14,7 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -23,6 +24,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.List;
 import java.util.Map;
 
 @EBean
@@ -41,6 +43,26 @@ public abstract class WebService {
 
     protected String post(String url, Map<String, String> postParams) {
         return callHttp(url, "POST", postParams);
+    }
+
+    protected String post(String url, Map<String, String> params, String fileFieldName, File file) {
+        try {
+            MultipartUtility multipart = new MultipartUtility(url, "UTF-8",  epsilonPrefs.token().get());
+
+            for (Map.Entry<String, String> entry : params.entrySet()) {
+                multipart.addFormField(entry.getKey(), entry.getValue());
+            }
+
+            multipart.addFilePart(fileFieldName, file);
+
+            List<String> response = multipart.finish();
+            Log.i("TEST", response.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     protected String put(String url, Map<String, String> putParams) {
