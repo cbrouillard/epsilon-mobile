@@ -1,6 +1,7 @@
 package com.headbangers.epsilon.v3.adapter;
 
 import android.app.Activity;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.async.ImageLoadTask;
 import com.headbangers.epsilon.v3.model.Wish;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -41,7 +43,7 @@ public class WishesAdapter extends ArrayAdapter<Wish> {
         image.setImageBitmap(null);
         image.setImageResource(R.drawable.noimage);
         if (wish.getThumbnailUrl() != null && !wish.getThumbnailUrl().isEmpty()) {
-            new ImageLoadTask(wish.getThumbnailUrl(), image).execute();
+            new ImageLoadTask(this.context, wish.getId(), wish.getThumbnailUrl(), image).execute();
         }
 
         TextView name = (TextView) row.findViewById(R.id.name);
