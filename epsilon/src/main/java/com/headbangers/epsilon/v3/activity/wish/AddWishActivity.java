@@ -3,6 +3,7 @@ package com.headbangers.epsilon.v3.activity.wish;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -142,10 +143,11 @@ public class AddWishActivity extends AbstractEpsilonActivity implements Refresha
         if (photoPath != null) {
             try {
                 Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(new File(URI.create(photoPath))));
-                Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, 600, 600, true);
-                scaledBitmap.compress(Bitmap.CompressFormat.PNG, 0, new FileOutputStream(new File(URI.create(photoPath))));
+                bitmap = resize(bitmap, 500, 500);
+                bitmap = rotate(bitmap, 90);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 0, new FileOutputStream(new File(URI.create(photoPath))));
 
-                photo.setImageURI(Uri.parse(photoPath));
+                photo.setImageBitmap(bitmap);
                 photo.setVisibility(View.VISIBLE);
 
             } catch (FileNotFoundException e) {
@@ -156,6 +158,35 @@ public class AddWishActivity extends AbstractEpsilonActivity implements Refresha
         } else {
             photo.setVisibility(View.GONE);
         }
+    }
+
+    private static Bitmap resize(Bitmap image, int maxWidth, int maxHeight) {
+        if (maxHeight > 0 && maxWidth > 0) {
+            int width = image.getWidth();
+            int height = image.getHeight();
+            float ratioBitmap = (float) width / (float) height;
+            float ratioMax = (float) maxWidth / (float) maxHeight;
+
+            int finalWidth = maxWidth;
+            int finalHeight = maxHeight;
+            if (ratioMax > 1) {
+                finalWidth = (int) ((float)maxHeight * ratioBitmap);
+            } else {
+                finalHeight = (int) ((float)maxWidth / ratioBitmap);
+            }
+            image = Bitmap.createScaledBitmap(image, finalWidth, finalHeight, true);
+            return image;
+        } else {
+            return image;
+        }
+    }
+
+    private static Bitmap rotate(Bitmap img, int degree) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(degree);
+        Bitmap rotatedImg = Bitmap.createBitmap(img, 0, 0, img.getWidth(), img.getHeight(), matrix, true);
+        img.recycle();
+        return rotatedImg;
     }
 
     private File createImageFile() throws IOException {
