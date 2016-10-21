@@ -1,6 +1,7 @@
 package com.headbangers.epsilon.v3.activity.wish;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -157,6 +158,16 @@ public class AddWishActivity extends AbstractEpsilonActivity implements Refresha
 
         } else {
             photo.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        this.setContentView(R.layout.add_wish);
+        if (this.photoPath != null) {
+            photo.setImageURI(Uri.parse(photoPath));
+            photo.setVisibility(View.VISIBLE);
         }
     }
 
