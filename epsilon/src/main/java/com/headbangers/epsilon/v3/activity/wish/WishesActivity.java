@@ -7,18 +7,23 @@ import android.widget.Toast;
 
 import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.activity.AbstractEpsilonActivity;
+import com.headbangers.epsilon.v3.activity.account.AccountDetailActivity_;
 import com.headbangers.epsilon.v3.adapter.WishesAdapter;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.async.wish.WishListAsyncLoader;
+import com.headbangers.epsilon.v3.model.Account;
 import com.headbangers.epsilon.v3.model.Wish;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.OnActivityResult;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
+
+import static com.headbangers.epsilon.v3.activity.account.AccountDetailActivity.FROM_DETAILS_ACTIVITY;
 
 @EActivity(R.layout.wishes)
 public class WishesActivity extends AbstractEpsilonActivity implements Refreshable<List<Wish>> {
@@ -53,8 +58,13 @@ public class WishesActivity extends AbstractEpsilonActivity implements Refreshab
     }
 
     @OnActivityResult(AddWishActivity.ADD_WISH_DONE)
-    void wishAdded (){
+    void wishAdded() {
         init();
+    }
+
+    @ItemClick(R.id.list)
+    void listClick(Wish wish) {
+        WishDetailActivity_.intent(this).extra("wish", wish).start();
     }
 
     private void init() {
