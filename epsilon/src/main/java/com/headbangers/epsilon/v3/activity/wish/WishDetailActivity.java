@@ -1,6 +1,7 @@
 package com.headbangers.epsilon.v3.activity.wish;
 
 import android.support.v7.widget.Toolbar;
+import android.text.method.LinkMovementMethod;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -27,11 +28,17 @@ public class WishDetailActivity extends AbstractEpsilonActivity {
     @ViewById(R.id.photo)
     ImageView photo;
 
-    @ViewById(R.id.name)
-    TextView name;
+    @ViewById(R.id.price)
+    TextView price;
 
-    @ViewById(R.id.infos)
-    TextView infos;
+    @ViewById(R.id.category)
+    TextView category;
+
+    @ViewById(R.id.previsionDate)
+    TextView previsionDate;
+
+    @ViewById(R.id.link)
+    TextView link;
 
     @Extra("wish")
     Wish wish;
@@ -39,11 +46,15 @@ public class WishDetailActivity extends AbstractEpsilonActivity {
     @AfterViews
     void details() {
         toolbar.setTitle(wish.getName());
-        toolbar.setSubtitle(wish.getCategory());
+        toolbar.setSubtitle(wish.getAccount());
         setSupportActionBar(toolbar);
 
-        name.setText(wish.getName());
-        infos.setText(wish.getCategory() + " - " + df.format(wish.getPrice()) + "€");
+        price.setText(df.format(wish.getPrice()) + "€");
+        category.setText(wish.getCategory());
         new ImageLoadTask(this, wish.getId(), wish.getThumbnailUrl(), photo).execute();
+        previsionDate.setText(wish.getPrevisionBuyFormated());
+
+        link.setText(wish.getWebShopUrl());
+        link.setMovementMethod(LinkMovementMethod.getInstance());
     }
 }

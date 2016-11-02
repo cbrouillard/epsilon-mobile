@@ -14,7 +14,7 @@ import java.util.Locale;
 public class Account implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
+    protected static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
 
     @JsonProperty("id")
     private String id;

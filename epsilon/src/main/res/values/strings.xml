@@ -62,4 +62,5 @@
     <string name="add_whish_subtitle">Enregistrer ses envies pour plus tard</string>
     <string name="ws_add_wish">/wishes</string>
     <string name="wish_added">Souhait d\'achat ajouté</string>
+    <string name="prevision_date">Date prévue d\'achat</string>
 </resources>

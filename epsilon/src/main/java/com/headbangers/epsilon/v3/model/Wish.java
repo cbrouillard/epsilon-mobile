@@ -119,4 +119,11 @@ public class Wish implements Serializable {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public String getPrevisionBuyFormated() {
+        if (previsionBuy != null) {
+            return Account.sdf.format(this.previsionBuy);
+        }
+        return "n/a";
+    }
 }
