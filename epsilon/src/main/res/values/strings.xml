@@ -42,7 +42,7 @@
     <string name="operation_contentDescription">+ or -</string>
     <string name="budget_used_amount">Actuellement utilisé</string>
     <string name="future_spent">Echéances prévues</string>
-    <string name="future_revenue">Revenus prévus</string>
+    <string name="future_revenue">Revenus acquis</string>
     <string name="future_spent_threshold">Total dépenses / mois</string>
     <string name="future_saving">Potentiel épargne</string>
     <string name="set_account_default">Compte par défaut</string>
