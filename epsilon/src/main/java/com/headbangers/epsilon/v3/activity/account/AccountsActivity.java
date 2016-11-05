@@ -2,6 +2,8 @@ package com.headbangers.epsilon.v3.activity.account;
 
 import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
@@ -23,9 +25,9 @@ import com.headbangers.epsilon.v3.activity.account.chart.MyMarkerView;
 import com.headbangers.epsilon.v3.activity.budget.BudgetsActivity_;
 import com.headbangers.epsilon.v3.activity.operation.AddOperationActivity_;
 import com.headbangers.epsilon.v3.activity.scheduled.ScheduledsActivity_;
-import com.headbangers.epsilon.v3.activity.wish.WishesActivity;
 import com.headbangers.epsilon.v3.activity.wish.WishesActivity_;
 import com.headbangers.epsilon.v3.adapter.AccountsAdapter;
+import com.headbangers.epsilon.v3.adapter.NavigationAdapter;
 import com.headbangers.epsilon.v3.async.account.AccountsListAsyncLoader;
 import com.headbangers.epsilon.v3.async.data.ChartCategoryDataAsyncLoader;
 import com.headbangers.epsilon.v3.async.enums.OperationType;
@@ -45,6 +47,7 @@ import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.headbangers.epsilon.v3.activity.account.AccountDetailActivity.FROM_DETAILS_ACTIVITY;
@@ -69,13 +72,31 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
     @ViewById(R.id.addFacture)
     FloatingActionButton addFactureOnDefaultAccountButton;
 
+    @ViewById(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
+
+    @ViewById(R.id.navigationList)
+    ListView drawerList;
+
+    private ActionBarDrawerToggle actionBarDrawerToggle;
+
     private Account defaultAccount;
 
     @AfterViews
     void bindToolbar() {
         toolbar.setTitle(R.string.account_list);
         toolbar.setSubtitle(R.string.account_list_subtitle);
+
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
+
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, this.drawerLayout, toolbar, R.string.action_ok, R.string.action_ok);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+
+        drawerList.setAdapter(new NavigationAdapter(this));
 
         init();
     }

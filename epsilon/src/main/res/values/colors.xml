@@ -13,4 +13,5 @@
     <color name="colorFailDark">#b61241</color>
     <color name="colorSuccess">#5cb85c</color>
     <color name="colorSuccessDark">#459645</color>
+    <color name="colorNavigationDrawerBackground">#e0e0e0</color>
 </resources>
