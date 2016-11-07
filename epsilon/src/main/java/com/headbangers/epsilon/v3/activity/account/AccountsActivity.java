@@ -6,6 +6,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -78,6 +80,9 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
     @ViewById(R.id.navigationList)
     ListView drawerList;
 
+    @ViewById(R.id.drawerInsideLayout)
+    LinearLayout drawerInsideLayout;
+
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
     private Account defaultAccount;
@@ -97,6 +102,7 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
 
         drawerList.setAdapter(new NavigationAdapter(this));
+        drawerList.setOnItemClickListener(new DrawerClickListener());
 
         init();
     }
@@ -139,21 +145,6 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
     @OptionsItem(R.id.menuAuth)
     void menuAuth() {
         startAuth();
-    }
-
-    @OptionsItem(R.id.menuScheduled)
-    void showScheduleds() {
-        ScheduledsActivity_.intent(this).start();
-    }
-
-    @OptionsItem(R.id.menuBudgets)
-    void showBudgets() {
-        BudgetsActivity_.intent(this).start();
-    }
-
-    @OptionsItem(R.id.menuWishes)
-    void showWishes () {
-        WishesActivity_.intent(this).start();
     }
 
     @OnActivityResult(AuthActivity.AUTH_RESULT)
@@ -256,6 +247,36 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
             chart.setVisibility(View.VISIBLE);
             chart.invalidate();
             chart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
+        }
+    }
+
+    void showScheduleds() {
+        ScheduledsActivity_.intent(this).start();
+    }
+
+    void showBudgets() {
+        BudgetsActivity_.intent(this).start();
+    }
+
+    void showWishes() {
+        WishesActivity_.intent(this).start();
+    }
+
+    private class DrawerClickListener implements android.widget.AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            drawerLayout.closeDrawer(drawerInsideLayout);
+            switch (position) {
+                case 0:
+                    showScheduleds();
+                    return;
+                case 1:
+                    showBudgets();
+                    return;
+                case 2:
+                    showWishes();
+                    return;
+            }
         }
     }
 }

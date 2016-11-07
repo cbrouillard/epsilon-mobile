@@ -37,8 +37,6 @@
     <string name="edit_operation">Edition de l\'opération :</string>
     <string name="suppress_operation">Suppression de l\'opération :</string>
     <string name="authentification">Authentification</string>
-    <string name="see_scheduleds">Voir les échéances</string>
-    <string name="see_budgets">Voir les budgets</string>
     <string name="operation_contentDescription">+ or -</string>
     <string name="budget_used_amount">Actuellement utilisé</string>
     <string name="future_spent">Echéances prévues</string>
@@ -49,7 +47,6 @@
     <string name="account_set_default">Le compte a été modifié : </string>
     <string name="operation_location">Localisation opération</string>
     <string name="scheduled_isautomatic">Is automatic ?</string>
-    <string name="see_wishes">Voir les souhaits d\'achat</string>
     <string name="wish_list">Liste des souhaits d\'achat</string>
     <string name="wish_list_subtitle">Ce que vous désirez acheter</string>
     <string name="add_wish_hint">Saisissez les informations concernant votre nouveau souhait d\'achat. N\'oubliez pas de prendre une photo pour illustrer votre objet !</string>
@@ -63,4 +60,13 @@
     <string name="ws_add_wish">/wishes</string>
     <string name="wish_added">Souhait d\'achat ajouté</string>
     <string name="prevision_date">Date prévue d\'achat</string>
+    <string name="menu">Menu</string>
+    <string name="see_scheduleds">Voir les échéances</string>
+    <string name="see_budgets">Voir les budgets</string>
+    <string name="see_wishes">Voir les souhaits d\'achat</string>
+    <array name="navigation_menus">
+        <item>@string/see_scheduleds</item>
+        <item>@string/see_budgets</item>
+        <item>@string/see_wishes</item>
+    </array>
 </resources>

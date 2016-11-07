@@ -9,22 +9,4 @@
         android:title="@string/authentification"
         app:showAsAction="always" />
 
-    <item
-        android:id="@+id/menuScheduled"
-        android:enabled="true"
-        android:icon="@drawable/next"
-        android:title="@string/see_scheduleds" />
-
-    <item
-        android:id="@+id/menuBudgets"
-        android:enabled="true"
-        android:icon="@drawable/registre"
-        android:title="@string/see_budgets" />
-
-    <item
-        android:id="@+id/menuWishes"
-        android:enabled="true"
-        android:icon="@drawable/registre"
-        android:title="@string/see_wishes" />
-
 </menu>

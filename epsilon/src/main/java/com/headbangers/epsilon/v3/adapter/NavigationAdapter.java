@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.headbangers.epsilon.v3.R;
@@ -17,11 +18,13 @@ public class NavigationAdapter extends ArrayAdapter<String> {
     private Activity context;
     private List<String> menus;
 
-    public NavigationAdapter(Activity context){
+    private List<Integer> icons = Arrays.asList(R.drawable.scheduled, R.drawable.budget, R.drawable.wish);
+
+    public NavigationAdapter(Activity context) {
         super(context, R.layout.one_navigation);
         this.context = context;
 
-        this.menus = Arrays.asList("Test 1", "Test 2", "Test 3");
+        this.menus = Arrays.asList(context.getResources().getStringArray(R.array.navigation_menus));
         this.addAll(menus);
     }
 
@@ -36,6 +39,9 @@ public class NavigationAdapter extends ArrayAdapter<String> {
 
         TextView menuText = (TextView) row.findViewById(R.id.menuText);
         menuText.setText(menu);
+
+        ImageView icon = (ImageView) row.findViewById (R.id.icon);
+        icon.setImageResource(icons.get(position));
 
         return row;
     }
