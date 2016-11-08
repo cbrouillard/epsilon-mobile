@@ -62,11 +62,19 @@
     <string name="prevision_date">Date prévue d\'achat</string>
     <string name="menu">Menu</string>
     <string name="see_scheduleds">Voir les échéances</string>
-    <string name="see_budgets">Voir les budgets</string>
-    <string name="see_wishes">Voir les souhaits d\'achat</string>
+    <string name="see_budgets">Liste des budgets</string>
+    <string name="see_wishes">Souhaits d\'achat</string>
+    <string name="see_categories">Liste des catégories</string>
+    <string name="see_tiers">Liste des tiers</string>
+    <string name="category_list">Catégories</string>
+    <string name="category_list_subtitle">Liste des catégories du système</string>
+    <string name="tiers_list">Tiers</string>
+    <string name="tiers_list_subtitle">Liste des tiers du système</string>
     <array name="navigation_menus">
         <item>@string/see_scheduleds</item>
         <item>@string/see_budgets</item>
         <item>@string/see_wishes</item>
+        <item>@string/see_categories</item>
+        <item>@string/see_tiers</item>
     </array>
 </resources>

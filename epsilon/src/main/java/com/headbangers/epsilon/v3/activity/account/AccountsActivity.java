@@ -25,8 +25,10 @@ import com.headbangers.epsilon.v3.activity.AbstractEpsilonActivity;
 import com.headbangers.epsilon.v3.activity.AuthActivity;
 import com.headbangers.epsilon.v3.activity.account.chart.MyMarkerView;
 import com.headbangers.epsilon.v3.activity.budget.BudgetsActivity_;
+import com.headbangers.epsilon.v3.activity.category.CategoriesActivity_;
 import com.headbangers.epsilon.v3.activity.operation.AddOperationActivity_;
 import com.headbangers.epsilon.v3.activity.scheduled.ScheduledsActivity_;
+import com.headbangers.epsilon.v3.activity.tiers.TiersesActivity_;
 import com.headbangers.epsilon.v3.activity.wish.WishesActivity_;
 import com.headbangers.epsilon.v3.adapter.AccountsAdapter;
 import com.headbangers.epsilon.v3.adapter.NavigationAdapter;
@@ -262,6 +264,14 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
         WishesActivity_.intent(this).start();
     }
 
+    void showCategories() {
+        CategoriesActivity_.intent(this).start();
+    }
+
+    void showTierses () {
+        TiersesActivity_.intent(this).start();
+    }
+
     private class DrawerClickListener implements android.widget.AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -275,6 +285,12 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
                     return;
                 case 2:
                     showWishes();
+                    return;
+                case 3:
+                    showCategories();
+                    return;
+                case 4:
+                    showTierses();
                     return;
             }
         }

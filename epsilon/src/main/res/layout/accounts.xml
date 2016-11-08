@@ -92,7 +92,8 @@
             android:gravity="center"
             android:textColor="@android:color/white"
             android:textSize="20sp"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp"
+            android:textStyle="bold"/>
 
         <ListView
             android:id="@+id/navigationList"

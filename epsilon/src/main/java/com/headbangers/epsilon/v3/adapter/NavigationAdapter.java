@@ -18,7 +18,11 @@ public class NavigationAdapter extends ArrayAdapter<String> {
     private Activity context;
     private List<String> menus;
 
-    private List<Integer> icons = Arrays.asList(R.drawable.scheduled, R.drawable.budget, R.drawable.wish);
+    private List<Integer> icons = Arrays.asList(R.drawable.scheduled,
+            R.drawable.budget,
+            R.drawable.wish,
+            R.drawable.category,
+            R.drawable.tiers);
 
     public NavigationAdapter(Activity context) {
         super(context, R.layout.one_navigation);
@@ -40,8 +44,19 @@ public class NavigationAdapter extends ArrayAdapter<String> {
         TextView menuText = (TextView) row.findViewById(R.id.menuText);
         menuText.setText(menu);
 
-        ImageView icon = (ImageView) row.findViewById (R.id.icon);
+        ImageView icon = (ImageView) row.findViewById(R.id.icon);
         icon.setImageResource(icons.get(position));
+
+        View divider = row.findViewById(R.id.divider);
+        switch (position) {
+            case 2:
+            case 4:
+                divider.setVisibility(View.VISIBLE);
+                break;
+            default:
+                divider.setVisibility(View.GONE);
+                break;
+        }
 
         return row;
     }

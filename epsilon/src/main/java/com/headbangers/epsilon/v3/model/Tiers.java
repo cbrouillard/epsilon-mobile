@@ -16,6 +16,8 @@ public class Tiers implements Serializable {
     private String name;
     @JsonProperty("description")
     private String description;
+    @JsonProperty("color")
+    private String color;
 
     public String getId() {
         return id;
@@ -41,4 +43,11 @@ public class Tiers implements Serializable {
         this.description = description;
     }
 
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 }
