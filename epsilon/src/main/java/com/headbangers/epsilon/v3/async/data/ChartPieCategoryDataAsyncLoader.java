@@ -8,10 +8,10 @@ import com.headbangers.epsilon.v3.async.GenericAsyncLoader;
 import com.headbangers.epsilon.v3.model.chart.ChartData;
 import com.headbangers.epsilon.v3.service.EpsilonAccessService;
 
-public class ChartCategoryDataAsyncLoader extends
+public class ChartPieCategoryDataAsyncLoader extends
         GenericAsyncLoader<String, ChartData> {
 
-    public ChartCategoryDataAsyncLoader(EpsilonAccessService dataService, Activity context, ProgressBar progressBar) {
+    public ChartPieCategoryDataAsyncLoader(EpsilonAccessService dataService, Activity context, ProgressBar progressBar) {
         super(dataService, context, progressBar);
     }
 

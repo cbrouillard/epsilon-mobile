@@ -28,6 +28,16 @@
         android:progress="0"
         android:visibility="gone" />
 
+    <AutoCompleteTextView
+        android:id="@+id/search"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:focusable="true"
+        android:hint="@string/search_hint"
+        android:inputType="textCapSentences"
+        android:visibility="gone" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -38,6 +48,15 @@
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:drawSelectorOnTop="false" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/list"
+            android:layout_alignEnd="@id/list"
+            android:layout_margin="16dp"
+            android:src="@drawable/refresh" />
 
     </RelativeLayout>
 </LinearLayout>

@@ -23,4 +23,8 @@
     <string name="ws_set_account_default">/accounts/{id}/default/{value}</string>
     <string name="ws_chart_account_future">/accounts/{id}/chart/future</string>
     <string name="ws_wishes">/wishes</string>
+    <string name="ws_one_category">/categories/{id}</string>
+    <string name="ws_one_tiers">/tiers/{id}</string>
+    <string name="ws_chart_category_operations">/categories/{id}/chart/operations</string>
+    <string name="ws_chart_tiers_operations">/tiers/{id}/chart/operations</string>
 </resources>

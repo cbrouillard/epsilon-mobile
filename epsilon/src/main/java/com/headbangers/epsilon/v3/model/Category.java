@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
+import java.util.List;
 
 @JsonIgnoreProperties({"class"})
 public class Category implements Serializable {
@@ -19,6 +20,8 @@ public class Category implements Serializable {
     private String description;
     @JsonProperty("color")
     private String color;
+    @JsonProperty("operations")
+    private List<Operation> operations;
 
     public String getId() {
         return id;
@@ -60,4 +63,11 @@ public class Category implements Serializable {
         this.color = color;
     }
 
+    public List<Operation> getOperations() {
+        return operations;
+    }
+
+    public void setOperations(List<Operation> operations) {
+        this.operations = operations;
+    }
 }

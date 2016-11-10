@@ -50,6 +50,10 @@ public class EpsilonAccessServiceImpl extends WebService implements
     String addVirementUrl;
     @StringRes(R.string.ws_one_account)
     String oneAccountUrl;
+    @StringRes(R.string.ws_one_category)
+    String oneCategoryUrl;
+    @StringRes(R.string.ws_one_tiers)
+    String oneTiersUrl;
     @StringRes(R.string.ws_scheduleds)
     String scheduledsUrl;
     @StringRes(R.string.ws_budgets)
@@ -76,6 +80,10 @@ public class EpsilonAccessServiceImpl extends WebService implements
     String allWishesUrl;
     @StringRes(R.string.ws_add_wish)
     String addWishUrl;
+    @StringRes(R.string.ws_chart_category_operations)
+    String retrieveCategoryOperationsDataUrl;
+    @StringRes(R.string.ws_chart_tiers_operations)
+    String retrieveTiersOperationsDataUrl;
 
     // from SharedPrefs
     private String server;
@@ -239,6 +247,36 @@ public class EpsilonAccessServiceImpl extends WebService implements
     }
 
     @Override
+    public ChartData retrieveCategoriesOperationChart(String categoryId) {
+        String completeUrl = this.server + this.retrieveCategoryOperationsDataUrl.replace("{id}", categoryId);
+        String json = get(completeUrl);
+
+        if (json != null) {
+            ChartData data = this.<ChartData>parseJson(json,
+                    new TypeReference<ChartData>() {
+                    });
+            return data;
+        }
+
+        return null;
+    }
+
+    @Override
+    public ChartData retrieveTiersesOperationChart(String tiersId) {
+        String completeUrl = this.server + this.retrieveTiersOperationsDataUrl.replace("{id}", tiersId);
+        String json = get(completeUrl);
+
+        if (json != null) {
+            ChartData data = this.<ChartData>parseJson(json,
+                    new TypeReference<ChartData>() {
+                    });
+            return data;
+        }
+
+        return null;
+    }
+
+    @Override
     public Account getAccount(String accountId) {
         String completeUrl = this.server + this.oneAccountUrl.replace("{id}", accountId);
         String json = get(completeUrl);
@@ -269,15 +307,45 @@ public class EpsilonAccessServiceImpl extends WebService implements
     }
 
     @Override
+    public Category getCategory(String categoryId) {
+        String completeUrl = this.server + this.oneCategoryUrl.replace("{id}", categoryId);
+        String json = get(completeUrl);
+
+        if (json != null) {
+            Category category = this.parseJson(json,
+                    new TypeReference<Category>() {
+                    });
+            return category;
+        }
+
+        return null;
+    }
+
+    @Override
     public List<Tiers> findTiers() {
         String completeUrl = this.server + this.allTiersUrl;
         String json = get(completeUrl);
 
         if (json != null) {
-            List<Tiers> tierses = this.<List<Tiers>>parseJson(json,
+            List<Tiers> tierses = this.parseJson(json,
                     new TypeReference<List<Tiers>>() {
                     });
             return tierses;
+        }
+
+        return null;
+    }
+
+    @Override
+    public Tiers getTiers(String tiersId) {
+        String completeUrl = this.server + this.oneTiersUrl.replace("{id}", tiersId);
+        String json = get(completeUrl);
+
+        if (json != null) {
+            Tiers tiers = this.parseJson(json,
+                    new TypeReference<Tiers>() {
+                    });
+            return tiers;
         }
 
         return null;

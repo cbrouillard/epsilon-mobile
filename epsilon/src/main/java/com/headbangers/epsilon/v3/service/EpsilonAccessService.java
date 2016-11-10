@@ -23,7 +23,11 @@ public interface EpsilonAccessService {
 
     List<Category> findCategories();
 
+    Category getCategory (String categoryId);
+
     List<Tiers> findTiers();
+
+    Tiers getTiers (String tiersId);
 
     List<String> findCategoriesName();
 
@@ -67,4 +71,8 @@ public interface EpsilonAccessService {
     List<Wish> findWishes ();
 
     SimpleResult addWish(String accountId, String name, String price, String category, String photoPath);
+
+    ChartData retrieveCategoriesOperationChart(String categoryId);
+
+    ChartData retrieveTiersesOperationChart(String tiersId);
 }

@@ -8,6 +8,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.components.XAxis;
@@ -230,7 +231,7 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
 
             chart.setVisibility(View.VISIBLE);
             chart.invalidate();
-            chart.animateXY(800, 800);
+            chart.animateY(800, Easing.EasingOption.EaseInOutQuad);
         }
 
     }

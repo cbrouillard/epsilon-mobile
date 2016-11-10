@@ -33,7 +33,7 @@ import com.headbangers.epsilon.v3.activity.wish.WishesActivity_;
 import com.headbangers.epsilon.v3.adapter.AccountsAdapter;
 import com.headbangers.epsilon.v3.adapter.NavigationAdapter;
 import com.headbangers.epsilon.v3.async.account.AccountsListAsyncLoader;
-import com.headbangers.epsilon.v3.async.data.ChartCategoryDataAsyncLoader;
+import com.headbangers.epsilon.v3.async.data.ChartPieCategoryDataAsyncLoader;
 import com.headbangers.epsilon.v3.async.enums.OperationType;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.Account;
@@ -51,7 +51,6 @@ import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static com.headbangers.epsilon.v3.activity.account.AccountDetailActivity.FROM_DETAILS_ACTIVITY;
@@ -215,7 +214,7 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
         chart.getLegend().setDrawInside(false);
         chart.invalidate();
 
-        new ChartCategoryDataAsyncLoader(accessService, this, progressBar).execute();
+        new ChartPieCategoryDataAsyncLoader(accessService, this, progressBar).execute();
     }
 
     public void fillChartWithData(ChartData result) {
@@ -248,7 +247,7 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
             chart.highlightValues(null);
             chart.setVisibility(View.VISIBLE);
             chart.invalidate();
-            chart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
+            chart.animateY(800, Easing.EasingOption.EaseInOutQuad);
         }
     }
 

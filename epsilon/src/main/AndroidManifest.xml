@@ -69,6 +69,12 @@
             android:name=".activity.wish.WishDetailActivity_"
             android:label="@string/app_name" />
         <activity
+            android:name=".activity.category.CategoryDetailActivity_"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".activity.tiers.TiersDetailActivity_"
+            android:label="@string/app_name" />
+        <activity
             android:name=".activity.wish.AddWishActivity_"
             android:label="@string/app_name" android:configChanges="screenSize|orientation"/>
         <!--

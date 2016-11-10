@@ -13,10 +13,14 @@ import com.headbangers.epsilon.v3.async.tiers.TiersesListAsyncLoader;
 import com.headbangers.epsilon.v3.model.Tiers;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
+
+import static com.headbangers.epsilon.v3.activity.account.AccountDetailActivity.FROM_DETAILS_ACTIVITY;
 
 @EActivity(R.layout.tierses)
 public class TiersesActivity extends AbstractEpsilonActivity implements Refreshable<List<Tiers>> {
@@ -38,6 +42,16 @@ public class TiersesActivity extends AbstractEpsilonActivity implements Refresha
         setSupportActionBar(toolbar);
 
         init();
+    }
+
+    @Click(R.id.refresh)
+    void refreshButton() {
+        init();
+    }
+
+    @ItemClick(R.id.list)
+    void listClick(Tiers tiers) {
+        TiersDetailActivity_.intent(this).extra("tiers", tiers).startForResult(FROM_DETAILS_ACTIVITY);
     }
 
     private void init() {

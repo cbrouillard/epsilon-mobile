@@ -28,15 +28,21 @@
         android:progress="0"
         android:visibility="gone" />
 
-    <AutoCompleteTextView
-        android:id="@+id/search"
-        android:layout_width="fill_parent"
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/noOperationsWarn"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:focusable="true"
-        android:hint="@string/search_hint"
-        android:inputType="textCapSentences"
-        android:visibility="gone" />
+        android:gravity="center"
+        android:text="@string/no_month_operations"
+        android:textStyle="italic" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -57,6 +63,5 @@
             android:layout_alignEnd="@id/list"
             android:layout_margin="16dp"
             android:src="@drawable/refresh" />
-
     </RelativeLayout>
 </LinearLayout>
