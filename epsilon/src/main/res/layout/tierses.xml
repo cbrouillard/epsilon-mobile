@@ -35,8 +35,7 @@
         android:layout_margin="10dp"
         android:focusable="true"
         android:hint="@string/search_hint"
-        android:inputType="textCapSentences"
-        android:visibility="gone" />
+        android:inputType="textCapSentences"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
