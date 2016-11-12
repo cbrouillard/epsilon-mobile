@@ -36,6 +36,9 @@ public class TiersDetailActivity extends AbstractBarChartEpsilonActivity impleme
     @ViewById(R.id.noOperationsWarn)
     TextView noOperationsWarn;
 
+    @ViewById(R.id.listOperationsTitle)
+    TextView listOperationsTitle;
+
     @Extra("tiers")
     Tiers tiers;
 
@@ -68,8 +71,9 @@ public class TiersDetailActivity extends AbstractBarChartEpsilonActivity impleme
             OperationsAdapter operationsAdapter = new OperationsAdapter(this, tiers.getOperations());
             list.setAdapter(operationsAdapter);
 
-            if (!tiers.getOperations().isEmpty()) {
-                noOperationsWarn.setVisibility(View.GONE);
+            if (tiers.getOperations().isEmpty()) {
+                noOperationsWarn.setVisibility(View.VISIBLE);
+                listOperationsTitle.setVisibility(View.GONE);
             }
 
             super.initChart();

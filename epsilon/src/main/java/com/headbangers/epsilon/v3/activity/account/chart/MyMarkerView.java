@@ -1,6 +1,10 @@
 package com.headbangers.epsilon.v3.activity.account.chart;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.components.MarkerView;
@@ -17,18 +21,24 @@ public class MyMarkerView extends MarkerView {
     private TextView amount;
     private TextView day;
 
+    private static DisplayMetrics metrics = new DisplayMetrics();
+
     public MyMarkerView(Context context, int layoutResource, ChartData result) {
         super(context, layoutResource);
         amount = (TextView) findViewById(R.id.tvContent);
         day = (TextView) findViewById(R.id.tvDay);
         this.result = result;
+
+        if (context instanceof Activity){
+            ((Activity)context).getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        }
     }
 
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
-        if (e instanceof PieEntry){
-            day.setText(((PieEntry)e).getLabel());
-        }else {
+        if (e instanceof PieEntry) {
+            day.setText(((PieEntry) e).getLabel());
+        } else {
             day.setText(result.getData().get((int) e.getX()).getKey());
         }
         amount.setText(Utils.formatNumber(e.getY(), 2, false) + "€");
@@ -36,6 +46,15 @@ public class MyMarkerView extends MarkerView {
 
     @Override
     public int getXOffset(float xpos) {
+        float threshold = (metrics.widthPixels/4);
+        if (xpos > (metrics.widthPixels - threshold)){
+            return -getWidth();
+        }
+
+        if (xpos < threshold) {
+            return 0;
+        }
+
         return -(getWidth() / 2);
     }
 

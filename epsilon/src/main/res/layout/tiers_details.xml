@@ -28,6 +28,15 @@
         android:progress="0"
         android:visibility="gone" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="14dp"
+        android:text="@string/year_operations"
+        android:textColor="@color/lightBlue"
+        android:textStyle="italic" />
+
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/chart"
         android:layout_width="match_parent"
@@ -36,13 +45,24 @@
         android:visibility="gone" />
 
     <TextView
+        android:id="@+id/listOperationsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="14dp"
+        android:text="@string/month_operations"
+        android:textColor="@color/lightBlue"
+        android:textStyle="italic" />
+
+    <TextView
         android:id="@+id/noOperationsWarn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="14dp"
         android:text="@string/no_month_operations"
-        android:textStyle="italic" />
+        android:textStyle="italic"
+        android:visibility="gone"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

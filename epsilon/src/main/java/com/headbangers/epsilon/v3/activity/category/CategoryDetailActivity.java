@@ -36,6 +36,9 @@ public class CategoryDetailActivity extends AbstractBarChartEpsilonActivity impl
     @ViewById(R.id.noOperationsWarn)
     TextView noOperationsWarn;
 
+    @ViewById(R.id.listOperationsTitle)
+    TextView listOperationsTitle;
+
     @Extra("category")
     Category category;
 
@@ -68,8 +71,9 @@ public class CategoryDetailActivity extends AbstractBarChartEpsilonActivity impl
             OperationsAdapter operationsAdapter = new OperationsAdapter(this, category.getOperations());
             list.setAdapter(operationsAdapter);
 
-            if (!category.getOperations().isEmpty()) {
-                noOperationsWarn.setVisibility(View.GONE);
+            if (category.getOperations().isEmpty()) {
+                noOperationsWarn.setVisibility(View.VISIBLE);
+                listOperationsTitle.setVisibility(View.GONE);
             }
 
             super.initChart();

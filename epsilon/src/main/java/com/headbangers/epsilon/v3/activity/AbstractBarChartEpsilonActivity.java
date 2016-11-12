@@ -31,12 +31,14 @@ public abstract class AbstractBarChartEpsilonActivity extends AbstractEpsilonAct
 
     protected void initChart() {
         chart.setDescription("");
-        chart.setDrawValueAboveBar(false);
+        chart.setDrawValueAboveBar(true);
         chart.setDrawGridBackground(false);
         chart.setDrawBarShadow(false);
         chart.setTouchEnabled(true);
         chart.setPinchZoom(true);
         chart.getLegend().setEnabled(false);
+        chart.setFitBars(true);
+        chart.setMinOffset(0f);
 
         YAxis leftAxis = chart.getAxisLeft();
         leftAxis.setDrawGridLines(false);
