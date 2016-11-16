@@ -37,6 +37,8 @@ public class Operation implements Serializable {
     private String latitude;
     @JsonProperty("longitude")
     private String longitude;
+    @JsonProperty("isFromScheduled")
+    private boolean isFromScheduled;
 
     private String formatedDateApplication;
 
@@ -132,5 +134,13 @@ public class Operation implements Serializable {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public boolean isFromScheduled() {
+        return isFromScheduled;
+    }
+
+    public void setFromScheduled(boolean fromScheduled) {
+        isFromScheduled = fromScheduled;
     }
 }
