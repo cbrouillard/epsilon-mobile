@@ -77,8 +77,10 @@ public class BudgetsActivity extends AbstractEpsilonActivity implements Refresha
             Double currentUsedAmount = 0D;
             Double totalMaxAmount = 0D;
             for (Budget budget : result) {
-                currentUsedAmount += budget.getUsedAmound();
-                totalMaxAmount += budget.getMaxAmount();
+                if(!budget.getId().equals("out")) {
+                    currentUsedAmount += budget.getUsedAmound();
+                    totalMaxAmount += budget.getMaxAmount();
+                }
             }
 
             usedAmount.setText(df.format(currentUsedAmount) + " / " + df.format(totalMaxAmount) + "€");

@@ -58,6 +58,10 @@ public class BudgetDetailActivity extends AbstractEpsilonActivity
 
         OperationsAdapter budgetOperations = new OperationsAdapter(this, budget.getOperations());
         list.setAdapter(budgetOperations);
+
+        if (budget.getId().equals("out")){
+            refreshButton();
+        }
     }
 
     @Click(R.id.refresh)
