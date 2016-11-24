@@ -70,6 +70,11 @@ public class AuthActivity extends AppCompatActivity implements Refreshable<Simpl
         }
     }
 
+    @OptionsItem(android.R.id.home)
+    public void back() {
+        this.finish();
+    }
+
     private String cleanAndCompleteServerUrl() {
         String server = this.server.getText().toString();
 
