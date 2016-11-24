@@ -10,6 +10,7 @@ import com.headbangers.epsilon.v3.service.impl.EpsilonAccessServiceImpl;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.res.StringRes;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
@@ -49,6 +50,12 @@ public abstract class AbstractEpsilonActivity extends AppCompatActivity{
         toColorize.setPadding(pL, pT, pR, pB);
     }
 
+    protected void setupDefaultBackNavigationOnToolbar(){
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+    }
+
     @StringRes(R.string.opened_at)
     protected String openedAt;
     @StringRes(R.string.operation_added)
@@ -64,4 +71,9 @@ public abstract class AbstractEpsilonActivity extends AppCompatActivity{
     protected String errorFormCategory;
     @StringRes(R.string.error_form_name)
     protected String errorFormName;
+
+    @OptionsItem(android.R.id.home)
+    public void back() {
+        this.finish();
+    }
 }

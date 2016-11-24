@@ -53,6 +53,9 @@ public class AuthActivity extends AppCompatActivity implements Refreshable<Simpl
     @AfterViews
     protected void bindActionBar() {
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
     }
 
     @OptionsItem(R.id.action_ok)

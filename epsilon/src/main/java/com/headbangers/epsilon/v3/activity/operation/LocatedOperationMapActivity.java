@@ -3,19 +3,15 @@ package com.headbangers.epsilon.v3.activity.operation;
 import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -32,7 +28,7 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 
 @EActivity(R.layout.located_operation_map)
-public class LocatedOperationMapActivity extends FragmentActivity implements OnMapReadyCallback {
+public class LocatedOperationMapActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
 
     private GoogleMap mMap;
 
@@ -51,6 +47,9 @@ public class LocatedOperationMapActivity extends FragmentActivity implements OnM
         toolbar.setTitle(R.string.operation_location);
         toolbar.setSubtitle(operation.getCategory() + " - " + operation.getTiers() + " - " + df.format(operation.getAmount()) + "€");
 
+        toolbar.setNavigationIcon(R.drawable.ic_back);
+        toolbar.setNavigationOnClickListener(this);
+
         mMapFragment = MapFragment.newInstance();
         FragmentTransaction fragmentTransaction =
                 getFragmentManager().beginTransaction();
@@ -58,6 +57,7 @@ public class LocatedOperationMapActivity extends FragmentActivity implements OnM
         fragmentTransaction.commit();
 
         mMapFragment.getMapAsync(this);
+
     }
 
     @Override
@@ -97,5 +97,10 @@ public class LocatedOperationMapActivity extends FragmentActivity implements OnM
         }
 
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        this.finish();
     }
 }

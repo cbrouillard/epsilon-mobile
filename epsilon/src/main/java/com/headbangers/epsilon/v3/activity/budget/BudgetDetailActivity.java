@@ -45,7 +45,13 @@ public class BudgetDetailActivity extends AbstractEpsilonActivity
     @AfterViews
     void showDetails() {
         setSupportActionBar(toolbar);
+        this.setupDefaultBackNavigationOnToolbar();
+
         init();
+
+        if (budget.getId().equals("out")){
+            new OneBudgetAsyncLoader(accessService, this, progressBar).execute(budget.getId());
+        }
     }
 
     void init() {
@@ -58,10 +64,6 @@ public class BudgetDetailActivity extends AbstractEpsilonActivity
 
         OperationsAdapter budgetOperations = new OperationsAdapter(this, budget.getOperations());
         list.setAdapter(budgetOperations);
-
-        if (budget.getId().equals("out")){
-            refreshButton();
-        }
     }
 
     @Click(R.id.refresh)

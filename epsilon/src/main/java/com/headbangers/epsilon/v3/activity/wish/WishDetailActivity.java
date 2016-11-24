@@ -48,6 +48,7 @@ public class WishDetailActivity extends AbstractEpsilonActivity {
         toolbar.setTitle(wish.getName());
         toolbar.setSubtitle(wish.getAccount());
         setSupportActionBar(toolbar);
+        this.setupDefaultBackNavigationOnToolbar();
 
         price.setText(df.format(wish.getPrice()) + "€");
         category.setText(wish.getCategory());

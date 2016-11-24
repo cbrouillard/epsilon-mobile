@@ -46,6 +46,7 @@ public class BudgetsActivity extends AbstractEpsilonActivity implements Refresha
         toolbar.setTitle(R.string.budget_list);
         toolbar.setSubtitle(R.string.budget_list_subtitle);
         setSupportActionBar(toolbar);
+        this.setupDefaultBackNavigationOnToolbar();
 
         usedAmount.setText("");
 

@@ -50,6 +50,9 @@ public class CategoriesActivity extends AbstractEpsilonActivity implements Refre
 
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
         init();
     }
 

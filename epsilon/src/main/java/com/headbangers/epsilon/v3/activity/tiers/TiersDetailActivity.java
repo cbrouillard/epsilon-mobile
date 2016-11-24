@@ -48,6 +48,7 @@ public class TiersDetailActivity extends AbstractBarChartEpsilonActivity impleme
         toolbar.setSubtitle(tiers.getDescription());
         toolbar.setBackgroundColor(Color.parseColor(tiers.getColor()));
         setSupportActionBar(toolbar);
+        this.setupDefaultBackNavigationOnToolbar();
 
         init();
     }

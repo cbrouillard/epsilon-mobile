@@ -44,18 +44,26 @@ public class BudgetsAdapter extends ArrayAdapter<Budget> {
                 + df.format(budget.getMaxAmount()) + "€");
 
         TextView status = (TextView) row.findViewById(R.id.status);
-        if (budget.getUsedAmound() <= budget.getMaxAmount()) {
-            status.setBackgroundResource(R.drawable.span_ok);
-            amount.setTextColor(Color.parseColor("#459645"));
+        TextView note = (TextView) row.findViewById(R.id.note);
+
+        if (budget.getId().equals("out")) {
+            status.setBackgroundResource(R.drawable.span_grey);
+            amount.setTextColor(Color.parseColor("#777777"));
+            note.setVisibility(View.GONE);
         } else {
-            status.setBackgroundResource(R.drawable.span_ko);
-            amount.setTextColor(Color.RED);
+            if (budget.getUsedAmound() <= budget.getMaxAmount()) {
+                status.setBackgroundResource(R.drawable.span_ok);
+                amount.setTextColor(Color.parseColor("#459645"));
+            } else {
+                status.setBackgroundResource(R.drawable.span_ko);
+                amount.setTextColor(Color.RED);
+            }
+            note.setVisibility(View.VISIBLE);
         }
 
-        TextView note = (TextView) row.findViewById(R.id.note);
         StringBuffer buffer = new StringBuffer();
-        for (Category category : budget.getCategories()){
-            buffer.append(category.getName()).append (" / ");
+        for (Category category : budget.getCategories()) {
+            buffer.append(category.getName()).append(" / ");
         }
         note.setText(buffer);
 

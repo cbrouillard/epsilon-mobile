@@ -42,6 +42,7 @@ public class WishesActivity extends AbstractEpsilonActivity implements Refreshab
         toolbar.setTitle(R.string.wish_list);
         toolbar.setSubtitle(R.string.wish_list_subtitle);
         setSupportActionBar(toolbar);
+        this.setupDefaultBackNavigationOnToolbar();
 
         init();
     }

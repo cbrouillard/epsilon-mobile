@@ -49,8 +49,8 @@ public class TiersesActivity extends AbstractEpsilonActivity implements Refresha
     void bindToolbar() {
         toolbar.setTitle(R.string.tiers_list);
         toolbar.setSubtitle(R.string.tiers_list_subtitle);
-
         setSupportActionBar(toolbar);
+        this.setupDefaultBackNavigationOnToolbar();
 
         init();
     }

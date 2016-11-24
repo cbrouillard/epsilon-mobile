@@ -48,6 +48,7 @@ public class CategoryDetailActivity extends AbstractBarChartEpsilonActivity impl
         toolbar.setSubtitle(category.getDescription());
         toolbar.setBackgroundColor(Color.parseColor(category.getColor()));
         setSupportActionBar(toolbar);
+        this.setupDefaultBackNavigationOnToolbar();
 
         init();
     }

@@ -85,13 +85,14 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
         toolbar.setTitle(account.getName());
         toolbar.setSubtitle(openedAt + " " + account.getFormatedDateOpened());
         setSupportActionBar(toolbar);
+        this.setupDefaultBackNavigationOnToolbar();
 
         init();
     }
 
     void init() {
         sold.setText(df.format(account.getSold()) + "€");
-        colorizeAmount (this.sold, account.getSold(), 0D);
+        colorizeAmount(this.sold, account.getSold(), 0D);
 
         OperationsAdapter fiveLastOperations = new OperationsAdapter(this, account.getLastFiveOperations());
         list.setAdapter(fiveLastOperations);
@@ -116,6 +117,7 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
         setDefaultItem.setChecked(!setDefaultItem.isChecked());
         new SetDefaultAsyncLoader(accessService, this, progressBar).execute(account.getId(), Boolean.toString(setDefaultItem.isChecked()));
     }
+
 
     @Override
     @OnActivityResult(OPERATION_ADD_DONE)

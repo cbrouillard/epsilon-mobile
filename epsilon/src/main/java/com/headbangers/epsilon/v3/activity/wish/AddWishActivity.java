@@ -84,6 +84,7 @@ public class AddWishActivity extends AbstractEpsilonActivity implements Refresha
         toolbar.setTitle(R.string.add_wish_title);
         toolbar.setSubtitle(R.string.add_whish_subtitle);
         setSupportActionBar(toolbar);
+        this.setupDefaultBackNavigationOnToolbar();
 
         init();
     }

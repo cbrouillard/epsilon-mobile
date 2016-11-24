@@ -53,6 +53,7 @@ public class ScheduledsActivity extends AbstractEpsilonActivity implements Refre
         toolbar.setTitle(R.string.scheduled_list);
         toolbar.setSubtitle(R.string.scheduled_list_subtitle);
         setSupportActionBar(toolbar);
+        this.setupDefaultBackNavigationOnToolbar();
 
         if (isLogged()) {
             init();

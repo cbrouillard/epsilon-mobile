@@ -48,6 +48,7 @@ import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.OnActivityResult;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
+import org.androidannotations.annotations.OptionsMenuItem;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
@@ -267,7 +268,7 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
         CategoriesActivity_.intent(this).start();
     }
 
-    void showTierses () {
+    void showTierses() {
         TiersesActivity_.intent(this).start();
     }
 
