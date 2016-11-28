@@ -89,9 +89,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/operations"
                     android:layout_alignEnd="@id/operations"
-                    android:layout_marginBottom="80dp"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/adddepense" />
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="80dp"
+                    android:src="@drawable/adddepense"
+                    android:alpha="0.80"/>
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/refresh"
@@ -100,7 +101,8 @@
                     android:layout_alignBottom="@id/operations"
                     android:layout_alignEnd="@id/operations"
                     android:layout_margin="16dp"
-                    android:src="@drawable/refresh" />
+                    android:src="@drawable/refresh"
+                    android:alpha="0.80"/>
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

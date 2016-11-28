@@ -43,11 +43,12 @@
             android:id="@+id/addWish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/add"
-            android:layout_alignEnd="@id/list"
             android:layout_alignBottom="@id/list"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="80dp"/>
+            android:layout_alignEnd="@id/list"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="80dp"
+            android:alpha="0.80"
+            android:src="@drawable/add" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/refresh"
@@ -56,6 +57,7 @@
             android:layout_alignBottom="@id/list"
             android:layout_alignEnd="@id/list"
             android:layout_margin="16dp"
+            android:alpha="0.80"
             android:src="@drawable/refresh" />
     </RelativeLayout>
 </LinearLayout>

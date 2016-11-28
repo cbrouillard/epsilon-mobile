@@ -20,6 +20,7 @@ import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.model.Operation;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;

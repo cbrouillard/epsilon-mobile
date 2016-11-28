@@ -82,6 +82,7 @@
                 android:layout_alignEnd="@id/list"
                 android:layout_gravity="bottom|end"
                 android:layout_margin="16dp"
+                android:alpha="0.80"
                 android:src="@drawable/refresh" />
         </RelativeLayout>
     </LinearLayout>

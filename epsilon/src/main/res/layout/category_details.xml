@@ -31,8 +31,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="14dp"
+        android:layout_marginTop="10dp"
         android:text="@string/year_operations"
         android:textColor="@color/lightBlue"
         android:textStyle="italic" />
@@ -48,8 +48,8 @@
         android:id="@+id/listOperationsTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="14dp"
+        android:layout_marginTop="10dp"
         android:text="@string/month_operations"
         android:textColor="@color/lightBlue"
         android:textStyle="italic" />
@@ -58,11 +58,11 @@
         android:id="@+id/noOperationsWarn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="14dp"
+        android:layout_marginTop="10dp"
         android:text="@string/no_month_operations"
         android:textStyle="italic"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -82,6 +82,7 @@
             android:layout_alignBottom="@id/list"
             android:layout_alignEnd="@id/list"
             android:layout_margin="16dp"
+            android:alpha="0.80"
             android:src="@drawable/refresh" />
     </RelativeLayout>
 </LinearLayout>
