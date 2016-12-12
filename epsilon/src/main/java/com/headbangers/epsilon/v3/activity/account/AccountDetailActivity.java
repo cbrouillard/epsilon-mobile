@@ -2,6 +2,7 @@ package com.headbangers.epsilon.v3.activity.account;
 
 import android.graphics.Color;
 import android.support.v7.widget.Toolbar;
+import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
@@ -77,6 +78,9 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
     @ViewById(R.id.chart)
     LineChart chart;
 
+    @ViewById(R.id.link)
+    TextView link;
+
     @Extra("account")
     Account account;
 
@@ -93,6 +97,14 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
     void init() {
         sold.setText(df.format(account.getSold()) + "€");
         colorizeAmount(this.sold, account.getSold(), 0D);
+
+        if (account.getUrl() !=null){
+            link.setVisibility(View.VISIBLE);
+            link.setText(account.getUrl());
+            link.setMovementMethod(LinkMovementMethod.getInstance());
+        }else {
+            this.link.setVisibility(View.GONE);
+        }
 
         OperationsAdapter fiveLastOperations = new OperationsAdapter(this, account.getLastFiveOperations());
         list.setAdapter(fiveLastOperations);

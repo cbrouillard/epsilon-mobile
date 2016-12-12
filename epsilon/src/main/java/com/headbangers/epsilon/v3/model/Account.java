@@ -20,6 +20,8 @@ public class Account implements Serializable {
     private String id;
     @JsonProperty("bank")
     private String bank;
+    @JsonProperty("url")
+    private String url;
     @JsonProperty("name")
     private String name;
     @JsonProperty("type")
@@ -114,4 +116,11 @@ public class Account implements Serializable {
         this.lastFiveOperations = lastFiveOperations;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 }
