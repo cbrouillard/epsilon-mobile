@@ -60,8 +60,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
                 android:focusable="true"
                 android:hint="@string/server_hint"
                 android:inputType="text" />
@@ -79,8 +79,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
                 android:focusable="true"
                 android:hint="@string/login_hint"
                 android:inputType="text" />
@@ -93,17 +93,30 @@
                 android:textColor="@color/lightBlue"
                 android:textStyle="italic" />
 
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="fill_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:hint="@string/password_hint"
-                android:inputType="textPassword" />
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/password_hint"
+                    android:inputType="textPassword" android:layout_weight="1"/>
+
+                <ImageButton
+                    android:id="@+id/showPass"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/eye"/>
+            </LinearLayout>
 
         </LinearLayout>
 

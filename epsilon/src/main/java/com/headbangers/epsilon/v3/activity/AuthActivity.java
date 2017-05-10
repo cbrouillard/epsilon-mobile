@@ -2,7 +2,9 @@ package com.headbangers.epsilon.v3.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.method.PasswordTransformationMethod;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -15,6 +17,7 @@ import com.headbangers.epsilon.v3.service.impl.EpsilonAccessServiceImpl;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.EditorAction;
 import org.androidannotations.annotations.OptionsItem;
@@ -47,6 +50,9 @@ public class AuthActivity extends AppCompatActivity implements Refreshable<Simpl
     @ViewById(R.id.password)
     EditText password;
 
+    @ViewById(R.id.showPass)
+    ImageButton showPass;
+
     @Bean
     EpsilonAccessServiceImpl accessService;
 
@@ -56,6 +62,22 @@ public class AuthActivity extends AppCompatActivity implements Refreshable<Simpl
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+
+        String storedServer = this.epsilonPrefs.server().getOr(null);
+        if (storedServer != null){
+            this.server.setText(storedServer);
+            this.login.requestFocus();
+        }
+    }
+
+
+    @Click(R.id.showPass)
+    void showOrHidePass() {
+        if (this.password.getTransformationMethod() != null) {
+            this.password.setTransformationMethod(null);
+        } else {
+            this.password.setTransformationMethod(new PasswordTransformationMethod());
+        }
     }
 
     @OptionsItem(R.id.action_ok)
@@ -86,7 +108,11 @@ public class AuthActivity extends AppCompatActivity implements Refreshable<Simpl
             server = server.substring(0, server.length() - 1);
         }
 
-        return server + "/api";
+        if (!server.endsWith("/api")){
+            server += "/api";
+        }
+
+        return server;
     }
 
     private boolean validateForm() {

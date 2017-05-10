@@ -4,7 +4,7 @@ def AAVersion = '4.1.0'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "23.0.3"
+    buildToolsVersion "25.0.3"
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId 'com.headbangers.epsilon.v3'

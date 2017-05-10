@@ -100,7 +100,7 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
 
         if (account.getUrl() !=null){
             link.setVisibility(View.VISIBLE);
-            link.setText(account.getUrl());
+            link.setText("Web: " + account.getUrl());
             link.setMovementMethod(LinkMovementMethod.getInstance());
         }else {
             this.link.setVisibility(View.GONE);
