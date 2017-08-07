@@ -15,6 +15,9 @@ android {
         // Enabling multidex support.
         multiDexEnabled true
     }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+    }
     buildTypes {
         release {
             minifyEnabled false

@@ -83,7 +83,7 @@
             android:layout_alignBottom="@id/operations"
             android:layout_alignEnd="@id/operations"
             android:layout_margin="16dp"
-            android:src="@drawable/refresh" android:alpha="0.80"/>
+            android:src="@drawable/refresh" android:alpha="0.60"/>
     </RelativeLayout>
 
 </LinearLayout>

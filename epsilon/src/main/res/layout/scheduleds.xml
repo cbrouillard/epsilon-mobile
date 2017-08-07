@@ -186,6 +186,6 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
             android:src="@drawable/refresh"
-            android:alpha="0.80"/>
+            android:alpha="0.60"/>
     </RelativeLayout>
 </LinearLayout>
