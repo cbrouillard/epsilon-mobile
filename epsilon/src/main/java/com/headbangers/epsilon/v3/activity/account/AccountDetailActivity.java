@@ -192,7 +192,7 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
 
     private void initChart() {
 
-        chart.setDescription("");
+        chart.getDescription().setEnabled(false);
         chart.setTouchEnabled(true);
         chart.setDragEnabled(true);
         chart.setScaleEnabled(true);

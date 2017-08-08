@@ -11,6 +11,7 @@ import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.utils.Utils;
 import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.model.chart.ChartData;
@@ -45,7 +46,11 @@ public class MyMarkerView extends MarkerView {
     }
 
     @Override
-    public int getXOffset(float xpos) {
+    public MPPointF getOffsetForDrawingAtPoint(float posX, float posY) {
+        return new MPPointF(getXOffset(posX), getYOffset(posY));
+    }
+
+    public float getXOffset(float xpos) {
         float threshold = (metrics.widthPixels/4);
         if (xpos > (metrics.widthPixels - threshold)){
             return -getWidth();
@@ -58,8 +63,7 @@ public class MyMarkerView extends MarkerView {
         return -(getWidth() / 2);
     }
 
-    @Override
     public int getYOffset(float ypos) {
-        return -getHeight();
+        return -(getHeight() / 2);
     }
 }

@@ -1,5 +1,7 @@
 package com.headbangers.epsilon.v3.activity.account;
 
+import android.app.Activity;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.data.PieData;
@@ -188,32 +191,18 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
 
     private void initChart() {
         chart.setUsePercentValues(true);
-        chart.setDescription("");
-        chart.setDragDecelerationFrictionCoef(0.95f);
+        chart.getDescription().setEnabled(false);
 
-        chart.setDrawHoleEnabled(true);
-        chart.setHoleColor(Color.TRANSPARENT);
+        //chart.setMaxAngle(180f);
+        //chart.setRotationAngle(180f);
 
-        chart.setTransparentCircleColor(Color.WHITE);
-        chart.setTransparentCircleAlpha(110);
-
-        chart.setHoleRadius(30f);
-        chart.setTransparentCircleRadius(35f);
-
-        chart.setRotationAngle(0);
         chart.setRotationEnabled(true);
-        chart.setHighlightPerTapEnabled(true);
         chart.setDrawEntryLabels(false);
-
-        chart.setEntryLabelColor(R.color.colorAmount);
-        chart.setEntryLabelTextSize(12f);
 
         chart.getLegend().setEnabled(true);
         chart.getLegend().setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         chart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
         chart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
-        chart.getLegend().setDrawInside(false);
-        chart.invalidate();
 
         new ChartPieCategoryDataAsyncLoader(accessService, this, progressBar).execute();
     }
@@ -222,7 +211,7 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
         if (result != null && result.getData() != null && !result.getData().isEmpty()) {
 
             MarkerView mv = new MyMarkerView(this, R.layout.custom_marker_view, result);
-            chart.setMarkerView(mv);
+            chart.setMarker(mv);
 
             ArrayList<PieEntry> entries = new ArrayList<>();
             for (GraphData oneData : result.getData()) {
@@ -235,19 +224,21 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
             }
 
             PieDataSet dataSet = new PieDataSet(entries, "");
-            dataSet.setSliceSpace(3f);
-            dataSet.setSelectionShift(10f);
             dataSet.setColors(colors);
+            if (this.getResources().getConfiguration().orientation ==  Configuration.ORIENTATION_PORTRAIT) {
+                dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+            }
 
             PieData data = new PieData(dataSet);
             data.setValueFormatter(new PercentFormatter());
-            data.setValueTextSize(11f);
-            data.setValueTextColor(Color.WHITE);
+            data.setValueTextSize(8f);
+            if (this.getResources().getConfiguration().orientation ==  Configuration.ORIENTATION_PORTRAIT) {
+                data.setValueTextColor(R.color.colorAmount);
+            } else {
+                data.setValueTextColor(Color.WHITE);
+            }
             chart.setData(data);
-
-            chart.highlightValues(null);
             chart.setVisibility(View.VISIBLE);
-            chart.invalidate();
             chart.animateY(800, Easing.EasingOption.EaseInOutQuad);
         }
     }

@@ -4,11 +4,11 @@
     android:layout_height="wrap_content"
     android:background="@drawable/span_ok"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="5dp">
 
     <TextView
         android:id="@+id/tvDay"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginEnd="5dp"
@@ -16,12 +16,13 @@
         android:ellipsize="end"
         android:text="7 novembre"
         android:textColor="@android:color/white"
-        android:textSize="12sp"
-        android:textStyle="bold"/>
+        android:textSize="8sp"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/tvContent"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginEnd="5dp"
@@ -30,7 +31,8 @@
         android:ellipsize="end"
         android:text="1600 €"
         android:textColor="@android:color/white"
-        android:textSize="15sp"
-        android:textStyle="bold"/>
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
 
 </LinearLayout>

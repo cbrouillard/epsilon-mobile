@@ -1,12 +1,10 @@
 package com.headbangers.epsilon.v3.activity.account.chart;
 
-import android.util.Log;
-
 import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.formatter.AxisValueFormatter;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.headbangers.epsilon.v3.model.chart.ChartData;
 
-public class MyAxisValueFormatter implements AxisValueFormatter {
+public class MyAxisValueFormatter implements IAxisValueFormatter {
 
     private final ChartData result;
 
@@ -25,8 +23,4 @@ public class MyAxisValueFormatter implements AxisValueFormatter {
         }
     }
 
-    @Override
-    public int getDecimalDigits() {
-        return 0;
-    }
 }

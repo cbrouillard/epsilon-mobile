@@ -30,7 +30,7 @@ public abstract class AbstractBarChartEpsilonActivity extends AbstractEpsilonAct
     protected BarChart chart;
 
     protected void initChart() {
-        chart.setDescription("");
+        chart.getDescription().setEnabled(false);
         chart.setDrawValueAboveBar(true);
         chart.setDrawGridBackground(false);
         chart.setDrawBarShadow(false);
