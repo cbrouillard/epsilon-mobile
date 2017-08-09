@@ -1,6 +1,9 @@
 package com.headbangers.epsilon.v3.activity.account;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
@@ -79,7 +82,7 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
     LineChart chart;
 
     @ViewById(R.id.link)
-    TextView link;
+    FloatingActionButton link;
 
     @Extra("account")
     Account account;
@@ -100,8 +103,6 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
 
         if (account.getUrl() !=null){
             link.setVisibility(View.VISIBLE);
-            link.setText("Web: " + account.getUrl());
-            link.setMovementMethod(LinkMovementMethod.getInstance());
         }else {
             this.link.setVisibility(View.GONE);
         }
@@ -149,6 +150,14 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
                 .extra("account", account)
                 .extra("operationType", OperationType.DEPENSE)
                 .startForResult(OPERATION_ADD_DONE);
+    }
+
+    @Click(R.id.link)
+    void showAccountOnWeb (){
+        String url = account.getUrl();
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
 
     @OptionsItem(R.id.menuAddRevenue)

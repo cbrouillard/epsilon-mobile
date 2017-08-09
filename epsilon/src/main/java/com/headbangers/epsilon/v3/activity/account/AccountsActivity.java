@@ -193,6 +193,9 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
         chart.setUsePercentValues(true);
         chart.getDescription().setEnabled(false);
 
+        chart.setHoleRadius(30f);
+        chart.setTransparentCircleRadius(35f);
+
         //chart.setMaxAngle(180f);
         //chart.setRotationAngle(180f);
 
@@ -225,18 +228,18 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
 
             PieDataSet dataSet = new PieDataSet(entries, "");
             dataSet.setColors(colors);
-            if (this.getResources().getConfiguration().orientation ==  Configuration.ORIENTATION_PORTRAIT) {
-                dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
-            }
+            //if (this.getResources().getConfiguration().orientation ==  Configuration.ORIENTATION_PORTRAIT) {
+            //    dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+            //}
 
             PieData data = new PieData(dataSet);
             data.setValueFormatter(new PercentFormatter());
             data.setValueTextSize(8f);
-            if (this.getResources().getConfiguration().orientation ==  Configuration.ORIENTATION_PORTRAIT) {
-                data.setValueTextColor(R.color.colorAmount);
-            } else {
+            //if (this.getResources().getConfiguration().orientation ==  Configuration.ORIENTATION_PORTRAIT) {
+            //    data.setValueTextColor(R.color.colorAmount);
+            //} else {
                 data.setValueTextColor(Color.WHITE);
-            }
+            //}
             chart.setData(data);
             chart.setVisibility(View.VISIBLE);
             chart.animateY(800, Easing.EasingOption.EaseInOutQuad);

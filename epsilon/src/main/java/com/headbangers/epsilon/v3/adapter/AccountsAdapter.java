@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.headbangers.epsilon.v3.R;
@@ -41,11 +42,14 @@ public class AccountsAdapter extends ArrayAdapter<Account> {
         Account account = accounts.get(position);
 
         TextView name = (TextView) row.findViewById(R.id.name);
+        LinearLayout globalLayout = (LinearLayout) row.findViewById(R.id.oneAccount);
         name.setText(account.getName());
         if (account.isMobileDefault()) {
             name.setTypeface(null, Typeface.BOLD);
+            globalLayout.setBackgroundColor(context.getResources().getColor(R.color.lighterBlue));
         } else {
             name.setTypeface(null, Typeface.NORMAL);
+            globalLayout.setBackgroundColor(Color.TRANSPARENT);
         }
 
         TextView sold = (TextView) row.findViewById(R.id.sold);
