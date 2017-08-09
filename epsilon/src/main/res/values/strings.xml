@@ -74,6 +74,7 @@
     <string name="no_month_operations">Pas d\'opérations pour le mois en cours</string>
     <string name="year_operations">Graphique des opérations sur l\'année</string>
     <string name="month_operations">Liste des opérations pour le mois en cours</string>
+    <string name="minimal_amount">Seuil bas</string>
     <array name="navigation_menus">
         <item>@string/see_scheduleds</item>
         <item>@string/see_budgets</item>

@@ -75,6 +75,9 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
     @ViewById(R.id.sold)
     TextView sold;
 
+    @ViewById(R.id.minimalSold)
+    TextView minimalSold;
+
     @ViewById(R.id.operations)
     ListView list;
 
@@ -231,9 +234,17 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
             int color = Color.parseColor(result.getColors().get(0));
 
             List<Entry> entries = new ArrayList<>();
+            Float minimalValue = null;
             for (GraphData oneData : result.getData()) {
-                entries.add(new Entry(oneData.getIndex(), oneData.getValue().floatValue()));
+                float value = oneData.getValue().floatValue();
+                if (minimalValue == null || value < minimalValue){
+                    minimalValue = value;
+                }
+
+                entries.add(new Entry(oneData.getIndex(), value));
             }
+
+            this.minimalSold.setText( df.format(minimalValue != null ? minimalValue : 0) + "€");
 
             LineDataSet dataSet = new LineDataSet(entries, "");
             dataSet.setColor(color);
