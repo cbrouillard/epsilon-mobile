@@ -174,7 +174,8 @@
             android:id="@+id/footer"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorToolbar" />
 
         <ListView
             android:id="@+id/list"

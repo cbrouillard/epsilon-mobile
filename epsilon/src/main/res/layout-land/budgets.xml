@@ -78,7 +78,8 @@
                 android:id="@+id/footer"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:background="@color/colorToolbar" />
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/refresh"
