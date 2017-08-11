@@ -23,6 +23,8 @@ public class MyMarkerView extends MarkerView {
     private TextView amount;
     private TextView day;
 
+    private boolean isAverageLine = false;
+
     private static DisplayMetrics metrics = new DisplayMetrics();
 
     public MyMarkerView(Context context, int layoutResource, ChartData result) {
@@ -31,19 +33,27 @@ public class MyMarkerView extends MarkerView {
         day = (TextView) findViewById(R.id.tvDay);
         this.result = result;
 
-        if (context instanceof Activity){
-            ((Activity)context).getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        if (context instanceof Activity) {
+            ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(metrics);
         }
+    }
+
+    public void setAverageLine(boolean averageLine) {
+        isAverageLine = averageLine;
     }
 
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
         if (e instanceof PieEntry) {
             day.setText(((PieEntry) e).getLabel());
-        } else if (e instanceof BarEntry){
+        } else if (e instanceof BarEntry) {
             day.setText(result.getData().get((int) e.getX()).getKey());
         } else {
-            day.setText("Moyenne");
+            if (isAverageLine) {
+                day.setText("Moyenne");
+            } else {
+                day.setText(result.getData().get((int) e.getX()).getKey());
+            }
         }
         amount.setText(Utils.formatNumber(e.getY(), 2, false) + "€");
     }
@@ -54,8 +64,8 @@ public class MyMarkerView extends MarkerView {
     }
 
     public float getXOffset(float xpos) {
-        float threshold = (metrics.widthPixels/4);
-        if (xpos > (metrics.widthPixels - threshold)){
+        float threshold = (metrics.widthPixels / 4);
+        if (xpos > (metrics.widthPixels - threshold)) {
             return -getWidth();
         }
 

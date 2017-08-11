@@ -62,7 +62,7 @@ public abstract class AbstractBarChartEpsilonActivity extends AbstractEpsilonAct
         startLoadChartData();
     }
 
-    protected abstract void startLoadChartData ();
+    protected abstract void startLoadChartData();
 
     public void fillChart(ChartData result) {
         if (result != null && result.getData() != null && !result.getData().isEmpty()) {
@@ -75,7 +75,7 @@ public abstract class AbstractBarChartEpsilonActivity extends AbstractEpsilonAct
                 sumEntries += oneData.getValue().floatValue();
             }
             Double avgValue = (sumEntries / entries.size());
-            for(GraphData oneData : result.getData()){
+            for (GraphData oneData : result.getData()) {
                 avgEntries.add(new Entry(oneData.getIndex(), avgValue.floatValue()));
             }
 
@@ -93,6 +93,7 @@ public abstract class AbstractBarChartEpsilonActivity extends AbstractEpsilonAct
             xAxis.setValueFormatter(new MyAxisValueFormatter(result));
 
             MarkerView mv = new MyMarkerView(this, R.layout.custom_marker_view, result);
+            ((MyMarkerView) mv).setAverageLine(true);
             chart.setMarker(mv);
 
             BarDataSet dataSet = new BarDataSet(entries, "");
