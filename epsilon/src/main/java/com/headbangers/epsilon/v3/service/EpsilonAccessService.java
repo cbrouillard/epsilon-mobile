@@ -75,4 +75,6 @@ public interface EpsilonAccessService {
     ChartData retrieveCategoriesOperationChart(String categoryId);
 
     ChartData retrieveTiersesOperationChart(String tiersId);
+
+    ChartData retrieveBudgetOperationChart(String budgetId);
 }

@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.headbangers.epsilon.v3.R;
+import com.headbangers.epsilon.v3.activity.AbstractBarChartEpsilonActivity;
 import com.headbangers.epsilon.v3.activity.AbstractEpsilonActivity;
 import com.headbangers.epsilon.v3.activity.operation.DialogEditOperationFragment;
 import com.headbangers.epsilon.v3.activity.operation.DialogEditOperationFragment_;
@@ -14,6 +15,7 @@ import com.headbangers.epsilon.v3.activity.shared.swipeinlist.OperationsListSwip
 import com.headbangers.epsilon.v3.activity.shared.swipeinlist.OperationsListSwipeMenuCreator;
 import com.headbangers.epsilon.v3.adapter.OperationsAdapter;
 import com.headbangers.epsilon.v3.async.budget.OneBudgetAsyncLoader;
+import com.headbangers.epsilon.v3.async.data.ChartOperationsAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.OperationEditable;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.Budget;
@@ -27,7 +29,7 @@ import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.budget_detail)
-public class BudgetDetailActivity extends AbstractEpsilonActivity
+public class BudgetDetailActivity extends AbstractBarChartEpsilonActivity
         implements Refreshable<Budget>, OperationEditable {
 
     @ViewById(R.id.toolbar)
@@ -71,6 +73,8 @@ public class BudgetDetailActivity extends AbstractEpsilonActivity
         OperationsListSwipeMenuCreator operationsListSwipeMenuCreator = new OperationsListSwipeMenuCreator(this);
         list.setMenuCreator(operationsListSwipeMenuCreator);
         list.setOnMenuItemClickListener(new OperationsListSwipeDeleteListener(accessService, this, this.progressBar, budget.getOperations()));
+
+        super.initChart();
     }
 
     @Click(R.id.refresh)
@@ -95,5 +99,11 @@ public class BudgetDetailActivity extends AbstractEpsilonActivity
         fragment.setOperation(operation);
         fragment.setProgressBar(progressBar);
         fragment.show(this.getFragmentManager(), "EDITOPERATION");
+    }
+
+    @Override
+    protected void startLoadChartData() {
+        new ChartOperationsAsyncLoader(accessService, this, progressBar, ChartOperationsAsyncLoader.LoadFor.BUDGET)
+                .execute(this.budget.getId());
     }
 }

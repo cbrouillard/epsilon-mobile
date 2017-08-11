@@ -27,4 +27,5 @@
     <string name="ws_one_tiers">/tiers/{id}</string>
     <string name="ws_chart_category_operations">/categories/{id}/chart/operations</string>
     <string name="ws_chart_tiers_operations">/tiers/{id}/chart/operations</string>
+    <string name="ws_chart_budget_operations">/budget/{id}/chart/operations</string>
 </resources>

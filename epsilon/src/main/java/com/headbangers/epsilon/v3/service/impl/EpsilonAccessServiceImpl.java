@@ -84,6 +84,8 @@ public class EpsilonAccessServiceImpl extends WebService implements
     String retrieveCategoryOperationsDataUrl;
     @StringRes(R.string.ws_chart_tiers_operations)
     String retrieveTiersOperationsDataUrl;
+    @StringRes(R.string.ws_chart_budget_operations)
+    String retrieveBudgetOperationsDataUrl;
 
     // from SharedPrefs
     private String server;
@@ -264,6 +266,21 @@ public class EpsilonAccessServiceImpl extends WebService implements
     @Override
     public ChartData retrieveTiersesOperationChart(String tiersId) {
         String completeUrl = this.server + this.retrieveTiersOperationsDataUrl.replace("{id}", tiersId);
+        String json = get(completeUrl);
+
+        if (json != null) {
+            ChartData data = this.<ChartData>parseJson(json,
+                    new TypeReference<ChartData>() {
+                    });
+            return data;
+        }
+
+        return null;
+    }
+
+    @Override
+    public ChartData retrieveBudgetOperationChart(String budgetId) {
+        String completeUrl = this.server + this.retrieveBudgetOperationsDataUrl.replace("{id}", budgetId);
         String json = get(completeUrl);
 
         if (json != null) {

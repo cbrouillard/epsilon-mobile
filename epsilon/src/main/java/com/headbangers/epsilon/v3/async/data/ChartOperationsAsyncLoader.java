@@ -12,7 +12,7 @@ public class ChartOperationsAsyncLoader extends
         GenericAsyncLoader<String, ChartData> {
 
     public enum LoadFor {
-        CATEGORIES, TIERSES;
+        CATEGORIES, TIERSES, BUDGET;
     }
 
     private LoadFor loadFor;
@@ -29,6 +29,8 @@ public class ChartOperationsAsyncLoader extends
                 return data.retrieveCategoriesOperationChart(params[0]);
             case TIERSES:
                 return data.retrieveTiersesOperationChart(params[0]);
+            case BUDGET:
+                return data.retrieveBudgetOperationChart(params[0]);
         }
         return null;
     }

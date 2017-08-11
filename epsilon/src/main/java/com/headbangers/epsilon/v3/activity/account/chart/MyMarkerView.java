@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.components.MarkerView;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.highlight.Highlight;
@@ -39,8 +40,10 @@ public class MyMarkerView extends MarkerView {
     public void refreshContent(Entry e, Highlight highlight) {
         if (e instanceof PieEntry) {
             day.setText(((PieEntry) e).getLabel());
-        } else {
+        } else if (e instanceof BarEntry){
             day.setText(result.getData().get((int) e.getX()).getKey());
+        } else {
+            day.setText("Moyenne");
         }
         amount.setText(Utils.formatNumber(e.getY(), 2, false) + "€");
     }
