@@ -68,7 +68,7 @@
                 android:layout_alignBottom="@id/footer"
                 android:layout_alignEnd="@id/footer"
                 android:layout_marginBottom="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="80dp"
                 android:src="@drawable/adddepense"/>
 
             <android.support.design.widget.FloatingActionButton
@@ -78,7 +78,7 @@
                 android:layout_alignEnd="@id/footer"
                 android:layout_alignBottom="@id/footer"
                 android:layout_marginBottom="16dp"
-                android:layout_marginEnd="80dp"
+                android:layout_marginEnd="16dp"
                 android:src="@drawable/refresh" />
 
 

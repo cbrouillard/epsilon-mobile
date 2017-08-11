@@ -76,7 +76,7 @@
             android:layout_alignParentBottom="true"
             android:background="@color/colorToolbar" />
 
-        <ListView
+        <com.baoyz.swipemenulistview.SwipeMenuListView
             android:id="@+id/list"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"

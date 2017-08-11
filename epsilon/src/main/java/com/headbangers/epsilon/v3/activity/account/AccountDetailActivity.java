@@ -5,13 +5,12 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
-import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.MarkerView;
@@ -28,6 +27,8 @@ import com.headbangers.epsilon.v3.activity.operation.AddOperationActivity_;
 import com.headbangers.epsilon.v3.activity.operation.AddVirementActivity_;
 import com.headbangers.epsilon.v3.activity.operation.DialogEditOperationFragment;
 import com.headbangers.epsilon.v3.activity.operation.DialogEditOperationFragment_;
+import com.headbangers.epsilon.v3.activity.shared.swipeinlist.OperationsListSwipeDeleteListener;
+import com.headbangers.epsilon.v3.activity.shared.swipeinlist.OperationsListSwipeMenuCreator;
 import com.headbangers.epsilon.v3.adapter.OperationsAdapter;
 import com.headbangers.epsilon.v3.async.account.OneAccountAsyncLoader;
 import com.headbangers.epsilon.v3.async.account.SetDefaultAsyncLoader;
@@ -79,7 +80,7 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
     TextView minimalSold;
 
     @ViewById(R.id.operations)
-    ListView list;
+    SwipeMenuListView list;
 
     @ViewById(R.id.chart)
     LineChart chart;
@@ -104,14 +105,17 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
         sold.setText(df.format(account.getSold()) + "€");
         colorizeAmount(this.sold, account.getSold(), 0D);
 
-        if (account.getUrl() !=null){
+        if (account.getUrl() != null) {
             link.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             this.link.setVisibility(View.GONE);
         }
 
         OperationsAdapter fiveLastOperations = new OperationsAdapter(this, account.getLastFiveOperations());
         list.setAdapter(fiveLastOperations);
+
+        OperationsListSwipeMenuCreator operationsListSwipeMenuCreator = new OperationsListSwipeMenuCreator(this);
+        list.setMenuCreator(operationsListSwipeMenuCreator);
 
         // charge les opérations du mois
         new OperationsListAsyncLoader(accessService, this, progressBar).execute(
@@ -156,7 +160,7 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
     }
 
     @Click(R.id.link)
-    void showAccountOnWeb (){
+    void showAccountOnWeb() {
         String url = account.getUrl();
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
@@ -187,10 +191,11 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
     }
 
     @Override
-    public void refresh(List<Operation> result) {
+    public void refresh(final List<Operation> result) {
         if (result != null && result.size() > 5) {
             OperationsAdapter allOperations = new OperationsAdapter(this, result);
             list.setAdapter(allOperations);
+            list.setOnMenuItemClickListener(new OperationsListSwipeDeleteListener(accessService, this, this.progressBar, result));
         }
     }
 
@@ -237,14 +242,14 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
             Float minimalValue = null;
             for (GraphData oneData : result.getData()) {
                 float value = oneData.getValue().floatValue();
-                if (minimalValue == null || value < minimalValue){
+                if (minimalValue == null || value < minimalValue) {
                     minimalValue = value;
                 }
 
                 entries.add(new Entry(oneData.getIndex(), value));
             }
 
-            this.minimalSold.setText( df.format(minimalValue != null ? minimalValue : 0) + "€");
+            this.minimalSold.setText(df.format(minimalValue != null ? minimalValue : 0) + "€");
 
             LineDataSet dataSet = new LineDataSet(entries, "");
             dataSet.setColor(color);

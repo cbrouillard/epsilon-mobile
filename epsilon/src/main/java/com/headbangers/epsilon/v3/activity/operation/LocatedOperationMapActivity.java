@@ -72,17 +72,17 @@ public class LocatedOperationMapActivity extends FragmentActivity implements OnM
         mMap = googleMap;
 
         try {
-            Double latitude = (Double) gpsDf.parse(operation.getLatitude());
-            Double longitude = (Double) gpsDf.parse(operation.getLongitude());
+            Number latitude = gpsDf.parse(operation.getLatitude());
+            Number longitude = gpsDf.parse(operation.getLongitude());
 
-            LatLng opLocation = new LatLng(latitude, longitude);
+            LatLng opLocation = new LatLng(latitude.doubleValue(), longitude.doubleValue());
             Marker marker = mMap.addMarker(new MarkerOptions()
                     .position(opLocation)
                     .title(operation.getFormatedDateApplication())
                     .snippet(operation.getCategory() + " - " + operation.getTiers() + " - " + df.format(operation.getAmount()) + "€"));
 
             CircleOptions circleOptions = new CircleOptions()
-                    .center(new LatLng(latitude, longitude))
+                    .center(new LatLng(latitude.doubleValue(), longitude.doubleValue()))
                     .strokeColor(Color.parseColor("#3F51B5"))
                     .fillColor(Color.argb(100, 127, 173, 242))
                     .radius(100);//meters

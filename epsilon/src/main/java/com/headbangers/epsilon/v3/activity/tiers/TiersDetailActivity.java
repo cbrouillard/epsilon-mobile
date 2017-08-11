@@ -7,8 +7,11 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.activity.AbstractBarChartEpsilonActivity;
+import com.headbangers.epsilon.v3.activity.shared.swipeinlist.OperationsListSwipeDeleteListener;
+import com.headbangers.epsilon.v3.activity.shared.swipeinlist.OperationsListSwipeMenuCreator;
 import com.headbangers.epsilon.v3.adapter.OperationsAdapter;
 import com.headbangers.epsilon.v3.async.data.ChartOperationsAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
@@ -31,7 +34,7 @@ public class TiersDetailActivity extends AbstractBarChartEpsilonActivity impleme
     ProgressBar progressBar;
 
     @ViewById(R.id.list)
-    ListView list;
+    SwipeMenuListView list;
 
     @ViewById(R.id.noOperationsWarn)
     TextView noOperationsWarn;
@@ -71,6 +74,10 @@ public class TiersDetailActivity extends AbstractBarChartEpsilonActivity impleme
             toolbar.setBackgroundColor(Color.parseColor(tiers.getColor()));
             OperationsAdapter operationsAdapter = new OperationsAdapter(this, tiers.getOperations());
             list.setAdapter(operationsAdapter);
+
+            OperationsListSwipeMenuCreator operationsListSwipeMenuCreator = new OperationsListSwipeMenuCreator(this);
+            list.setMenuCreator(operationsListSwipeMenuCreator);
+            list.setOnMenuItemClickListener(new OperationsListSwipeDeleteListener(accessService, this, this.progressBar, tiers.getOperations()));
 
             if (tiers.getOperations().isEmpty()) {
                 noOperationsWarn.setVisibility(View.VISIBLE);

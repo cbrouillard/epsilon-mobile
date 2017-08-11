@@ -86,7 +86,7 @@ public class DialogEditOperationFragment extends DialogFragment {
                         dismiss();
                     }
                 })
-
+                /**
                 .setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
@@ -94,7 +94,7 @@ public class DialogEditOperationFragment extends DialogFragment {
 
                         dismiss();
                     }
-                });
+                })**/;
 
         return builder.create();
     }

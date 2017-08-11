@@ -5,10 +5,13 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.activity.AbstractEpsilonActivity;
 import com.headbangers.epsilon.v3.activity.operation.DialogEditOperationFragment;
 import com.headbangers.epsilon.v3.activity.operation.DialogEditOperationFragment_;
+import com.headbangers.epsilon.v3.activity.shared.swipeinlist.OperationsListSwipeDeleteListener;
+import com.headbangers.epsilon.v3.activity.shared.swipeinlist.OperationsListSwipeMenuCreator;
 import com.headbangers.epsilon.v3.adapter.OperationsAdapter;
 import com.headbangers.epsilon.v3.async.budget.OneBudgetAsyncLoader;
 import com.headbangers.epsilon.v3.async.interfaces.OperationEditable;
@@ -37,7 +40,7 @@ public class BudgetDetailActivity extends AbstractEpsilonActivity
     TextView sold;
 
     @ViewById(R.id.operations)
-    ListView list;
+    SwipeMenuListView list;
 
     @Extra("budget")
     Budget budget;
@@ -49,7 +52,7 @@ public class BudgetDetailActivity extends AbstractEpsilonActivity
 
         init();
 
-        if (budget.getId().equals("out")){
+        if (budget.getId().equals("out")) {
             new OneBudgetAsyncLoader(accessService, this, progressBar).execute(budget.getId());
         }
     }
@@ -64,6 +67,10 @@ public class BudgetDetailActivity extends AbstractEpsilonActivity
 
         OperationsAdapter budgetOperations = new OperationsAdapter(this, budget.getOperations());
         list.setAdapter(budgetOperations);
+
+        OperationsListSwipeMenuCreator operationsListSwipeMenuCreator = new OperationsListSwipeMenuCreator(this);
+        list.setMenuCreator(operationsListSwipeMenuCreator);
+        list.setOnMenuItemClickListener(new OperationsListSwipeDeleteListener(accessService, this, this.progressBar, budget.getOperations()));
     }
 
     @Click(R.id.refresh)
