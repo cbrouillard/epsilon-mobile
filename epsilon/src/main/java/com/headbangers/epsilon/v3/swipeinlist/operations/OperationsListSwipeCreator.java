@@ -1,4 +1,4 @@
-package com.headbangers.epsilon.v3.activity.shared.swipeinlist;
+package com.headbangers.epsilon.v3.swipeinlist.operations;
 
 import android.app.Activity;
 import android.content.res.Resources;
@@ -11,13 +11,13 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.headbangers.epsilon.v3.R;
 
-public class OperationsListSwipeMenuCreator implements SwipeMenuCreator {
+public class OperationsListSwipeCreator implements SwipeMenuCreator {
 
     public static final int DELETE_BTN_POSITION = 0;
 
     private Activity context;
 
-    public OperationsListSwipeMenuCreator(Activity context) {
+    public OperationsListSwipeCreator(Activity context) {
         this.context = context;
     }
 

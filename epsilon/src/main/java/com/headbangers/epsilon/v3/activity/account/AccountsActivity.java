@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
@@ -42,6 +43,9 @@ import com.headbangers.epsilon.v3.async.interfaces.Refreshable;
 import com.headbangers.epsilon.v3.model.Account;
 import com.headbangers.epsilon.v3.model.chart.ChartData;
 import com.headbangers.epsilon.v3.model.chart.GraphData;
+import com.headbangers.epsilon.v3.swipeinlist.accounts.AccountsListSwipeCreator;
+import com.headbangers.epsilon.v3.swipeinlist.accounts.AccountsListSwipeListener;
+import com.headbangers.epsilon.v3.swipeinlist.operations.OperationsListSwipeListener;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -71,7 +75,7 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
     ProgressBar progressBar;
 
     @ViewById(R.id.list)
-    ListView list;
+    SwipeMenuListView list;
 
     @ViewById(R.id.chart)
     PieChart chart;
@@ -125,6 +129,10 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
         if (result != null) {
             AccountsAdapter accountsAdapter = new AccountsAdapter(this, result);
             list.setAdapter(accountsAdapter);
+
+            AccountsListSwipeCreator accountsListSwipeCreator = new AccountsListSwipeCreator(this);
+            list.setMenuCreator(accountsListSwipeCreator);
+            list.setOnMenuItemClickListener(new AccountsListSwipeListener(this, result));
 
             this.defaultAccount = null;
             addFactureOnDefaultAccountButton.setVisibility(View.GONE);

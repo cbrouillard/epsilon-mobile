@@ -1,10 +1,9 @@
-package com.headbangers.epsilon.v3.activity.shared.swipeinlist;
+package com.headbangers.epsilon.v3.swipeinlist.operations;
 
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
@@ -14,14 +13,14 @@ import com.headbangers.epsilon.v3.service.impl.EpsilonAccessServiceImpl;
 
 import java.util.List;
 
-public class OperationsListSwipeDeleteListener implements SwipeMenuListView.OnMenuItemClickListener {
+public class OperationsListSwipeListener implements SwipeMenuListView.OnMenuItemClickListener {
 
     private EpsilonAccessServiceImpl accessService;
     private Activity context;
     private ProgressBar progressBar;
     private List<Operation> operations;
 
-    public OperationsListSwipeDeleteListener(EpsilonAccessServiceImpl accessService, Activity context, ProgressBar progressBar, List<Operation> operations) {
+    public OperationsListSwipeListener(EpsilonAccessServiceImpl accessService, Activity context, ProgressBar progressBar, List<Operation> operations) {
         this.accessService = accessService;
         this.context = context;
         this.progressBar = progressBar;
@@ -31,7 +30,7 @@ public class OperationsListSwipeDeleteListener implements SwipeMenuListView.OnMe
     @Override
     public boolean onMenuItemClick(final int position, SwipeMenu menu, int index) {
         switch (index) {
-            case OperationsListSwipeMenuCreator.DELETE_BTN_POSITION:
+            case OperationsListSwipeCreator.DELETE_BTN_POSITION:
 
                 new AlertDialog.Builder(this.context)
                         .setTitle("Suppression")

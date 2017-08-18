@@ -3,15 +3,14 @@ package com.headbangers.epsilon.v3.activity.category;
 import android.graphics.Color;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.activity.AbstractBarChartEpsilonActivity;
-import com.headbangers.epsilon.v3.activity.shared.swipeinlist.OperationsListSwipeDeleteListener;
-import com.headbangers.epsilon.v3.activity.shared.swipeinlist.OperationsListSwipeMenuCreator;
+import com.headbangers.epsilon.v3.swipeinlist.operations.OperationsListSwipeListener;
+import com.headbangers.epsilon.v3.swipeinlist.operations.OperationsListSwipeCreator;
 import com.headbangers.epsilon.v3.adapter.OperationsAdapter;
 import com.headbangers.epsilon.v3.async.category.OneCategoryAsyncLoader;
 import com.headbangers.epsilon.v3.async.data.ChartOperationsAsyncLoader;
@@ -75,9 +74,9 @@ public class CategoryDetailActivity extends AbstractBarChartEpsilonActivity impl
             OperationsAdapter operationsAdapter = new OperationsAdapter(this, category.getOperations());
             list.setAdapter(operationsAdapter);
 
-            OperationsListSwipeMenuCreator operationsListSwipeMenuCreator = new OperationsListSwipeMenuCreator(this);
-            list.setMenuCreator(operationsListSwipeMenuCreator);
-            list.setOnMenuItemClickListener(new OperationsListSwipeDeleteListener(accessService, this, this.progressBar, category.getOperations()));
+            OperationsListSwipeCreator operationsListSwipeCreator = new OperationsListSwipeCreator(this);
+            list.setMenuCreator(operationsListSwipeCreator);
+            list.setOnMenuItemClickListener(new OperationsListSwipeListener(accessService, this, this.progressBar, category.getOperations()));
 
             if (category.getOperations().isEmpty()) {
                 noOperationsWarn.setVisibility(View.VISIBLE);

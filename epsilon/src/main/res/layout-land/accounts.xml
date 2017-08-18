@@ -110,7 +110,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <ListView
+        <com.baoyz.swipemenulistview.SwipeMenuListView
             android:id="@+id/navigationList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

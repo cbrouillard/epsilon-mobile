@@ -1,18 +1,16 @@
 package com.headbangers.epsilon.v3.activity.budget;
 
 import android.support.v7.widget.Toolbar;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.headbangers.epsilon.v3.R;
 import com.headbangers.epsilon.v3.activity.AbstractBarChartEpsilonActivity;
-import com.headbangers.epsilon.v3.activity.AbstractEpsilonActivity;
 import com.headbangers.epsilon.v3.activity.operation.DialogEditOperationFragment;
 import com.headbangers.epsilon.v3.activity.operation.DialogEditOperationFragment_;
-import com.headbangers.epsilon.v3.activity.shared.swipeinlist.OperationsListSwipeDeleteListener;
-import com.headbangers.epsilon.v3.activity.shared.swipeinlist.OperationsListSwipeMenuCreator;
+import com.headbangers.epsilon.v3.swipeinlist.operations.OperationsListSwipeListener;
+import com.headbangers.epsilon.v3.swipeinlist.operations.OperationsListSwipeCreator;
 import com.headbangers.epsilon.v3.adapter.OperationsAdapter;
 import com.headbangers.epsilon.v3.async.budget.OneBudgetAsyncLoader;
 import com.headbangers.epsilon.v3.async.data.ChartOperationsAsyncLoader;
@@ -70,9 +68,9 @@ public class BudgetDetailActivity extends AbstractBarChartEpsilonActivity
         OperationsAdapter budgetOperations = new OperationsAdapter(this, budget.getOperations());
         list.setAdapter(budgetOperations);
 
-        OperationsListSwipeMenuCreator operationsListSwipeMenuCreator = new OperationsListSwipeMenuCreator(this);
-        list.setMenuCreator(operationsListSwipeMenuCreator);
-        list.setOnMenuItemClickListener(new OperationsListSwipeDeleteListener(accessService, this, this.progressBar, budget.getOperations()));
+        OperationsListSwipeCreator operationsListSwipeCreator = new OperationsListSwipeCreator(this);
+        list.setMenuCreator(operationsListSwipeCreator);
+        list.setOnMenuItemClickListener(new OperationsListSwipeListener(accessService, this, this.progressBar, budget.getOperations()));
 
         super.initChart();
     }

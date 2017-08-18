@@ -27,8 +27,8 @@ import com.headbangers.epsilon.v3.activity.operation.AddOperationActivity_;
 import com.headbangers.epsilon.v3.activity.operation.AddVirementActivity_;
 import com.headbangers.epsilon.v3.activity.operation.DialogEditOperationFragment;
 import com.headbangers.epsilon.v3.activity.operation.DialogEditOperationFragment_;
-import com.headbangers.epsilon.v3.activity.shared.swipeinlist.OperationsListSwipeDeleteListener;
-import com.headbangers.epsilon.v3.activity.shared.swipeinlist.OperationsListSwipeMenuCreator;
+import com.headbangers.epsilon.v3.swipeinlist.operations.OperationsListSwipeListener;
+import com.headbangers.epsilon.v3.swipeinlist.operations.OperationsListSwipeCreator;
 import com.headbangers.epsilon.v3.adapter.OperationsAdapter;
 import com.headbangers.epsilon.v3.async.account.OneAccountAsyncLoader;
 import com.headbangers.epsilon.v3.async.account.SetDefaultAsyncLoader;
@@ -114,8 +114,8 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
         OperationsAdapter fiveLastOperations = new OperationsAdapter(this, account.getLastFiveOperations());
         list.setAdapter(fiveLastOperations);
 
-        OperationsListSwipeMenuCreator operationsListSwipeMenuCreator = new OperationsListSwipeMenuCreator(this);
-        list.setMenuCreator(operationsListSwipeMenuCreator);
+        OperationsListSwipeCreator operationsListSwipeCreator = new OperationsListSwipeCreator(this);
+        list.setMenuCreator(operationsListSwipeCreator);
 
         // charge les opérations du mois
         new OperationsListAsyncLoader(accessService, this, progressBar).execute(
@@ -195,7 +195,7 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
         if (result != null && result.size() > 5) {
             OperationsAdapter allOperations = new OperationsAdapter(this, result);
             list.setAdapter(allOperations);
-            list.setOnMenuItemClickListener(new OperationsListSwipeDeleteListener(accessService, this, this.progressBar, result));
+            list.setOnMenuItemClickListener(new OperationsListSwipeListener(accessService, this, this.progressBar, result));
         }
     }
 
