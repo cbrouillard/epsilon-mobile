@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -55,8 +56,13 @@ import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.OptionsMenuItem;
 import org.androidannotations.annotations.ViewById;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import static com.headbangers.epsilon.v3.activity.operation.AddOperationActivity.OPERATION_ADD_DONE;
 
@@ -226,6 +232,9 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
 
         if (result != null && result.getData() != null && !result.getData().isEmpty()) {
 
+            SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM", Locale.FRANCE);
+            Date now = new Date();
+
             XAxis xAxis = chart.getXAxis();
             xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
             xAxis.setTextSize(7f);
@@ -242,7 +251,17 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
             Float minimalValue = null;
             for (GraphData oneData : result.getData()) {
                 float value = oneData.getValue().floatValue();
-                if (minimalValue == null || value < minimalValue) {
+
+                Date parse = now;
+                try {
+                    parse = sdf.parse(oneData.getKey());
+                    parse.setYear(now.getYear());
+                    //Log.d("TEST", parse.toString());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                if ((minimalValue == null || value < minimalValue) && parse.after(now)) {
                     minimalValue = value;
                 }
 
