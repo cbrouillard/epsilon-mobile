@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -130,7 +131,7 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_alignParentBottom="true"
-            android:background="@color/colorToolbar"/>
+            android:background="@color/colorToolbar" />
 
         <com.baoyz.swipemenulistview.SwipeMenuListView
             android:id="@+id/operations"
@@ -150,6 +151,18 @@
             android:layout_marginEnd="144dp"
             android:src="@drawable/web"
             android:visibility="gone" />
+
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/listAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="16dp"
+            android:layout_alignBottom="@id/footer"
+            android:layout_alignEnd="@id/footer"
+            fab:fab_labelStyle="@style/menu_labels_style"
+            fab:fab_labelsPosition="right"
+            fab:fab_addButtonSize="mini"/>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/addFacture"

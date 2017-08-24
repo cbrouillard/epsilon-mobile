@@ -95,6 +95,7 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
     private Account defaultAccount;
+    private List<Account> accounts;
 
     @AfterViews
     void bindToolbar() {
@@ -143,6 +144,8 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
                 }
             }
 
+            this.accounts = result;
+
             initChart();
         } else {
             Toast.makeText(this, errorLoading, Toast.LENGTH_LONG)
@@ -178,7 +181,9 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
 
     @ItemClick(R.id.list)
     void listClick(Account account) {
-        AccountDetailActivity_.intent(this).extra("account", account).startForResult(FROM_DETAILS_ACTIVITY);
+        AccountDetailActivity_.intent(this).extra("account", account)
+                .extra("accounts", accounts.toArray(new Account[accounts.size()])).
+                startForResult(FROM_DETAILS_ACTIVITY);
     }
 
     @Click(R.id.addFacture)
@@ -246,7 +251,7 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
             //if (this.getResources().getConfiguration().orientation ==  Configuration.ORIENTATION_PORTRAIT) {
             //    data.setValueTextColor(R.color.colorAmount);
             //} else {
-                data.setValueTextColor(Color.WHITE);
+            data.setValueTextColor(Color.WHITE);
             //}
             chart.setData(data);
             chart.setVisibility(View.VISIBLE);

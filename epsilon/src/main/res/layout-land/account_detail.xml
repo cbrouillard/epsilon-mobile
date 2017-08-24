@@ -137,6 +137,17 @@
                     android:visibility="gone" />
 
                 <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/listAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/footer"
+                    android:layout_alignEnd="@id/footer"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="144dp"
+                    android:src="@drawable/list_account"
+                    android:visibility="gone" />
+
+                <android.support.design.widget.FloatingActionButton
                     android:id="@+id/addFacture"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.baoyz.swipemenulistview.SwipeMenuListView;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.MarkerView;
@@ -94,8 +95,14 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
     @ViewById(R.id.link)
     FloatingActionButton link;
 
+    @ViewById(R.id.listAccount)
+    FloatingActionsMenu listAccount;
+
     @Extra("account")
     Account account;
+
+    @Extra("accounts")
+    Account[] accounts;
 
     @AfterViews
     void showDetails() {
@@ -115,6 +122,22 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
             link.setVisibility(View.VISIBLE);
         } else {
             this.link.setVisibility(View.GONE);
+        }
+
+        if (accounts != null && accounts.length > 1) {
+            this.listAccount.setVisibility(View.VISIBLE);
+
+            for (Account account : accounts) {
+                com.getbase.floatingactionbutton.FloatingActionButton btn = new com.getbase.floatingactionbutton.FloatingActionButton(this);
+                btn.setIcon(R.drawable.list_account);
+                btn.setTitle(account.getName());
+                btn.setSize(com.getbase.floatingactionbutton.FloatingActionButton.SIZE_MINI);
+                listAccount.addButton(btn);
+
+            }
+
+        } else {
+            this.listAccount.setVisibility(View.GONE);
         }
 
         OperationsAdapter fiveLastOperations = new OperationsAdapter(this, account.getLastFiveOperations());
@@ -143,7 +166,6 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
         setDefaultItem.setChecked(!setDefaultItem.isChecked());
         new SetDefaultAsyncLoader(accessService, this, progressBar).execute(account.getId(), Boolean.toString(setDefaultItem.isChecked()));
     }
-
 
     @Override
     @OnActivityResult(OPERATION_ADD_DONE)
