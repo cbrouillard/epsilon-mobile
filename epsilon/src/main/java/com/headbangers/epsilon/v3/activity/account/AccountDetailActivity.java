@@ -254,14 +254,18 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
 
                 Date parse = now;
                 try {
+                    // crapppyyyy :S
                     parse = sdf.parse(oneData.getKey());
                     parse.setYear(now.getYear());
+                    parse.setHours(23);
+                    parse.setMinutes(59);
+                    parse.setSeconds(59);
                     //Log.d("TEST", parse.toString());
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
 
-                if ((minimalValue == null || value < minimalValue) && parse.after(now)) {
+                if (minimalValue == null || (value < minimalValue && parse.after(now))){
                     minimalValue = value;
                 }
 
