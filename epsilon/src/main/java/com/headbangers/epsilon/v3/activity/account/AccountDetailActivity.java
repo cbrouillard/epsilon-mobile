@@ -260,7 +260,6 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
                     parse.setHours(23);
                     parse.setMinutes(59);
                     parse.setSeconds(59);
-                    //Log.d("TEST", parse.toString());
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
