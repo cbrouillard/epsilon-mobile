@@ -95,6 +95,7 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
     private Account defaultAccount;
+    private List<Account> accounts;
 
     @AfterViews
     void bindToolbar() {
@@ -127,6 +128,8 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
     @Override
     public void refresh(List<Account> result) {
         if (result != null) {
+            this.accounts = result;
+
             AccountsAdapter accountsAdapter = new AccountsAdapter(this, result);
             list.setAdapter(accountsAdapter);
 
@@ -178,7 +181,10 @@ public class AccountsActivity extends AbstractEpsilonActivity implements Refresh
 
     @ItemClick(R.id.list)
     void listClick(Account account) {
-        AccountDetailActivity_.intent(this).extra("account", account).startForResult(FROM_DETAILS_ACTIVITY);
+        AccountDetailActivity_.intent(this)
+                .extra("account", account)
+                .extra("accounts", this.accounts.toArray(new Account[this.accounts.size()]))
+                .startForResult(FROM_DETAILS_ACTIVITY);
     }
 
     @Click(R.id.addFacture)

@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -57,6 +59,7 @@ import org.androidannotations.annotations.OptionsMenuItem;
 import org.androidannotations.annotations.ViewById;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -72,6 +75,8 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
         implements Refreshable<List<Operation>>, Reloadable<Account>, OperationEditable {
 
     public static final int FROM_DETAILS_ACTIVITY = 200;
+
+    private static DecimalFormat df = new DecimalFormat("0.00");
 
     @ViewById(R.id.toolbar)
     Toolbar toolbar;
@@ -94,8 +99,14 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
     @ViewById(R.id.link)
     FloatingActionButton link;
 
+    @ViewById(R.id.listAccount)
+    FloatingActionButton listAccount;
+
     @Extra("account")
     Account account;
+
+    @Extra("accounts")
+    Account[] accounts;
 
     @AfterViews
     void showDetails() {
@@ -110,6 +121,12 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
     void init() {
         sold.setText(df.format(account.getSold()) + "€");
         colorizeAmount(this.sold, account.getSold(), 0D);
+
+        if (accounts != null && accounts.length > 1){
+            listAccount.setVisibility(View.VISIBLE);
+        } else {
+            listAccount.setVisibility(View.GONE);
+        }
 
         if (account.getUrl() != null) {
             link.setVisibility(View.VISIBLE);
@@ -165,6 +182,32 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
                 .startForResult(OPERATION_ADD_DONE);
     }
 
+    @Click(R.id.listAccount)
+    void displayListAccount (){
+        PopupMenu menu = new PopupMenu(this, this.listAccount);
+
+        for(int i = 0; i < accounts.length; i++){
+            Account account = accounts[i];
+            menu.getMenu().add (Menu.NONE, Menu.NONE, i, account.getName() + " - (" + df.format(account.getSold()) + " €)");
+        }
+
+        menu.show();
+
+        menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Account account = accounts[item.getOrder()];
+
+                AccountDetailActivity_.intent(AccountDetailActivity.this)
+                        .extra("account", account)
+                        .extra("accounts", accounts)
+                        .startForResult(FROM_DETAILS_ACTIVITY);
+
+                return true;
+            }
+        });
+    }
+
     @Click(R.id.link)
     void showAccountOnWeb() {
         String url = account.getUrl();
@@ -194,6 +237,11 @@ public class AccountDetailActivity extends AbstractEpsilonActivity
         fragment.setOperation(operation);
         fragment.setProgressBar(progressBar);
         fragment.show(this.getFragmentManager(), "EDITOPERATION");
+    }
+
+    @OnActivityResult(FROM_DETAILS_ACTIVITY)
+    void fromDetailsActivity() {
+        init();
     }
 
     @Override
